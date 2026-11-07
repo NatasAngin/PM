@@ -6,7 +6,9 @@
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
-    "run_worker_first": ["/api/*"]
+    "run_worker_first": [
+      "/api/*"
+    ]
   },
   "d1_databases": [
     {
@@ -15,5 +17,11 @@
       "database_id": "1fd1d0f3-f3a8-4bcc-bc58-4a9d7191c847",
       "migrations_dir": "migrations"
     }
-  ]
+  ],
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    }
+  }
 }
