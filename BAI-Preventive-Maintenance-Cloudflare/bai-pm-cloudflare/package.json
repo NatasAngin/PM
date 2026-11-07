@@ -1,0 +1,13 @@
+{
+  "name": "bai-preventive-maintenance-cloudflare",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "db:migrate": "wrangler d1 migrations apply bai-preventive-maintenance --remote",
+    "dev": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
