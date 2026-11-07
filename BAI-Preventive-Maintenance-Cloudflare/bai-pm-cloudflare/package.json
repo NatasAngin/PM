@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "deploy": "wrangler deploy",
+    "deploy": "wrangler d1 migrations apply bai-preventive-maintenance --remote && wrangler deploy",
     "db:migrate": "wrangler d1 migrations apply bai-preventive-maintenance --remote",
     "dev": "wrangler dev"
   },
