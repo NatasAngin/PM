@@ -57,6 +57,42 @@ async function saveState(request, env) {
     return json({ error: "Data teks melebihi batas aman 1,8 MB. Ekspor cadangan dan arsipkan riwayat lama." }, 413);
   }
 
+  // Automatic daily snapshot: preserve the previous state and its photos before overwrite.
+  const lastBackup = await env.DB.prepare(
+    "SELECT created_at FROM pm_backups ORDER BY created_at DESC LIMIT 1"
+  ).first();
+  const shouldBackup = !lastBackup ||
+    (Date.now() - Date.parse(lastBackup.created_at.replace(" ", "T") + "Z")) >= 24 * 60 * 60 * 1000;
+
+  if (shouldBackup) {
+    const previous = await env.DB.prepare("SELECT payload FROM pm_state WHERE id = 1").first();
+    if (previous) {
+      const backupId = crypto.randomUUID();
+      await env.DB.prepare(
+        "INSERT INTO pm_backups (id, payload, created_at) VALUES (?, ?, CURRENT_TIMESTAMP)"
+      ).bind(backupId, previous.payload).run();
+
+      const { results: previousPhotos = [] } = await env.DB.prepare(
+        "SELECT history_id, photo_index, name, data FROM pm_photos"
+      ).all();
+      for (let i = 0; i < previousPhotos.length; i += 50) {
+        const batch = previousPhotos.slice(i, i + 50).map(p => env.DB.prepare(
+          "INSERT INTO pm_backup_photos (backup_id, history_id, photo_index, name, data) VALUES (?, ?, ?, ?, ?)"
+        ).bind(backupId, p.history_id, p.photo_index, p.name, p.data));
+        await env.DB.batch(batch);
+      }
+
+      // Keep the 30 most recent daily snapshots.
+      const { results: expired = [] } = await env.DB.prepare(
+        "SELECT id FROM pm_backups ORDER BY created_at DESC LIMIT -1 OFFSET 30"
+      ).all();
+      for (const old of expired) {
+        await env.DB.prepare("DELETE FROM pm_backup_photos WHERE backup_id = ?").bind(old.id).run();
+        await env.DB.prepare("DELETE FROM pm_backups WHERE id = ?").bind(old.id).run();
+      }
+    }
+  }
+
   await env.DB.prepare(
     "INSERT INTO pm_state (id, payload, updated_at) VALUES (1, ?, CURRENT_TIMESTAMP) " +
     "ON CONFLICT(id) DO UPDATE SET payload = excluded.payload, updated_at = CURRENT_TIMESTAMP"
