@@ -17,8 +17,7 @@ Foto disimpan sebagai baris terpisah di D1, bukan digabungkan ke satu record bes
 1. Buat database D1 bernama `bai-preventive-maintenance` dari Cloudflare Dashboard → Storage & databases → D1.
 2. Salin **Database ID** dari halaman database.
 3. Database ID kamu sudah saya pasang di `wrangler.jsonc` pada binding `DB`.
-4. Di database D1, buka tab **Console**, jalankan isi file `migrations/0001_initial.sql` satu kali.
-5. Hubungkan repository GitHub ke Cloudflare Workers Builds (atau deploy dari terminal).
+4. Hubungkan repository GitHub ke Cloudflare Workers Builds. Saat deploy, perintah `npm run deploy` akan menerapkan migrasi D1 secara otomatis sebelum mengunggah Worker.
 
 ## Build settings untuk Cloudflare Workers Builds
 
