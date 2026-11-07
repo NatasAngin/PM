@@ -1,0 +1,7691 @@
+[
+  {
+    "sheet": "Laporan Mingguan",
+    "rows": [
+      [
+        [
+          "A1",
+          "LAPORAN PROGRES PEKERJAAN MINGGUAN – DEPARTEMEN ICT (Template v2-ICT)",
+          null
+        ]
+      ],
+      [
+        [
+          "J2",
+          "VERIFIKASI KASIE (6 syarat minimum)",
+          null
+        ]
+      ],
+      [
+        [
+          "A3",
+          "Disusun oleh",
+          null
+        ],
+        [
+          "B3",
+          "Rizwan Syaifullah",
+          null
+        ],
+        [
+          "D3",
+          "Jabatan",
+          null
+        ],
+        [
+          "E3",
+          "Officer System & Network (konfirmasi)",
+          "IF(B3=\"\",\"\",IFERROR(INDEX(Master!$B$5:$B$35,MATCH(B3,Master!$A$5:$A$35,0)),\"nama tidak ada di Master\"))"
+        ],
+        [
+          "H3",
+          "Senin periode",
+          null
+        ],
+        [
+          "I3",
+          "46307",
+          null
+        ],
+        [
+          "J3",
+          "1 Header lengkap & Senin",
+          null
+        ],
+        [
+          "K3",
+          "1",
+          "AND(B3<>\"\",I3<>\"\",I5=\"OK (Senin)\",E3<>\"nama tidak ada di Master\")"
+        ]
+      ],
+      [
+        [
+          "A4",
+          "Seksi",
+          null
+        ],
+        [
+          "B4",
+          "System & Network Infrastructure",
+          "IF(B3=\"\",\"\",IFERROR(INDEX(Master!$C$5:$C$35,MATCH(B3,Master!$A$5:$A$35,0)),\"\"))"
+        ],
+        [
+          "D4",
+          "Kasie",
+          null
+        ],
+        [
+          "E4",
+          "Trisnardi Boesyanto",
+          "IF(B3=\"\",\"\",IFERROR(INDEX(Master!$E$5:$E$35,MATCH(B3,Master!$A$5:$A$35,0)),\"\"))"
+        ],
+        [
+          "H4",
+          "Minggu ke-",
+          null
+        ],
+        [
+          "I4",
+          "42",
+          "IF(I3=\"\",\"\",WEEKNUM(I3,21))"
+        ],
+        [
+          "J4",
+          "2 Rutin: target angka & satuan",
+          null
+        ],
+        [
+          "K4",
+          "1",
+          "AND(COUNTIF(B12:B26,\"<>\")=SUMPRODUCT((B12:B26<>\"\")*ISNUMBER(F12:F26)*(D12:D26<>\"\")))"
+        ]
+      ],
+      [
+        [
+          "A5",
+          "Periode",
+          null
+        ],
+        [
+          "B5",
+          "12 Oct s.d. 18 Oct 2026",
+          "IF(I3=\"\",\"\",TEXT(I3,\"dd mmm\")&\" s.d. \"&TEXT(I3+6,\"dd mmm yyyy\"))"
+        ],
+        [
+          "D5",
+          "Nama file",
+          null
+        ],
+        [
+          "E5",
+          "W42_SNI_Rizwan-Syaifullah.xlsx",
+          "IF(OR(B3=\"\",I3=\"\"),\"\",\"W\"&TEXT(I4,\"00\")&\"_\"&IFERROR(INDEX(Master!$D$5:$D$35,MATCH(B3,Master!$A$5:$A$35,0)),\"XX\")&\"_\"&SUBSTITUTE(B3,\" \",\"-\")&\".xlsx\")"
+        ],
+        [
+          "H5",
+          "Cek tanggal",
+          null
+        ],
+        [
+          "I5",
+          "OK (Senin)",
+          "IF(I3=\"\",\"\",IF(WEEKDAY(I3,2)=1,\"OK (Senin)\",\"BUKAN SENIN\"))"
+        ],
+        [
+          "J5",
+          "3 Adhoc: target & pemberi tugas",
+          null
+        ],
+        [
+          "K5",
+          "1",
+          "COUNTIF(B31:B45,\"<>\")=SUMPRODUCT((B31:B45<>\"\")*(D31:D45<>\"\")*ISNUMBER(F31:F45))"
+        ]
+      ],
+      [
+        [
+          "A6",
+          "Isi hanya sel KUNING. Sel putih dihitung otomatis. Target rutin = target MINGGU INI dalam satuan yang dipilih (angka, bukan tanggal). Progres adhoc dihitung dari sheet Rincian: satu tahap dianggap selesai hanya bila Tgl Aktual DAN nama file Bukti terisi. Sel memerah = wajib diisi. Bagian C wajib diisi (tulis \"Tidak ada\" bila tidak ada).",
+          null
+        ],
+        [
+          "J6",
+          "4 Keterangan wajib terisi",
+          null
+        ],
+        [
+          "K6",
+          "1",
+          "AND(SUMPRODUCT((B12:B26<>\"\")*(I12:I26<>\"Tercapai\")*(J12:J26=\"\"))=0,SUMPRODUCT((B31:B45<>\"\")*(I31:I45<>\"Selesai\")*(J31:J45=\"\"))=0)"
+        ]
+      ],
+      [
+        [
+          "A7",
+          "Ringkasan",
+          null
+        ],
+        [
+          "B7",
+          "Rutin: jumlah",
+          null
+        ],
+        [
+          "C7",
+          "Rutin: tercapai",
+          null
+        ],
+        [
+          "D7",
+          "Rutin: rata² progres",
+          null
+        ],
+        [
+          "E7",
+          "Adhoc: jumlah",
+          null
+        ],
+        [
+          "F7",
+          "Adhoc: selesai",
+          null
+        ],
+        [
+          "G7",
+          "Adhoc: terlambat",
+          null
+        ],
+        [
+          "H7",
+          "Adhoc: tanpa target",
+          null
+        ],
+        [
+          "I7",
+          "Tahap berbukti",
+          null
+        ],
+        [
+          "J7",
+          "Porsi adhoc",
+          null
+        ],
+        [
+          "K7",
+          "0",
+          "AND(C49<>\"\",C50<>\"\",C51<>\"\")"
+        ]
+      ],
+      [
+        [
+          "B8",
+          "1",
+          "COUNTA(B12:B26)"
+        ],
+        [
+          "C8",
+          "0",
+          "COUNTIF(I12:I26,\"Tercapai\")"
+        ],
+        [
+          "D8",
+          "0.9",
+          "IFERROR(AVERAGE(H12:H26),0)"
+        ],
+        [
+          "E8",
+          "1",
+          "COUNTA(B31:B45)"
+        ],
+        [
+          "F8",
+          "0",
+          "COUNTIF(I31:I45,\"Selesai\")"
+        ],
+        [
+          "G8",
+          "0",
+          "COUNTIF(I31:I45,\"Terlambat\")"
+        ],
+        [
+          "H8",
+          "0",
+          "SUMPRODUCT((B31:B45<>\"\")*(F31:F45=\"\"))"
+        ],
+        [
+          "I8",
+          "1",
+          "IF(COUNTIF(Rincian!$G$6:$G$205,\"<>\")=0,0,COUNTIF(Rincian!$J$6:$J$205,\"Selesai\")/COUNTIF(Rincian!$G$6:$G$205,\"<>\"))"
+        ],
+        [
+          "J8",
+          "0.5",
+          "IFERROR(E8/(B8+E8),0)"
+        ],
+        [
+          "K8",
+          "1",
+          "(COUNTIFS(Rincian!$A$6:$A$205,\"<>\",Rincian!$L$6:$L$205,\">1.0001\")+COUNTIFS(Rincian!$A$6:$A$205,\"<>\",Rincian!$L$6:$L$205,\"<0.9999\"))=0"
+        ]
+      ],
+      [
+        [
+          "J9",
+          "Skor syarat",
+          null
+        ],
+        [
+          "K9",
+          "5 / 6",
+          "COUNTIF(K3:K8,TRUE())&\" / 6\""
+        ]
+      ],
+      [
+        [
+          "A10",
+          "A. PEKERJAAN RUTIN — target minggu ini, satuan eksplisit",
+          null
+        ]
+      ],
+      [
+        [
+          "A11",
+          "Kode",
+          null
+        ],
+        [
+          "B11",
+          "Pekerjaan Rutin",
+          null
+        ],
+        [
+          "C11",
+          "Kategori",
+          null
+        ],
+        [
+          "D11",
+          "Satuan",
+          null
+        ],
+        [
+          "E11",
+          "Frekuensi",
+          null
+        ],
+        [
+          "F11",
+          "Target mg ini",
+          null
+        ],
+        [
+          "G11",
+          "Realisasi",
+          null
+        ],
+        [
+          "H11",
+          "Progres",
+          null
+        ],
+        [
+          "I11",
+          "Status",
+          null
+        ],
+        [
+          "J11",
+          "Keterangan / Kendala & Tindak Lanjut (wajib bila belum tercapai)",
+          null
+        ],
+        [
+          "K11",
+          "Bukti / rujukan (nama file, log)",
+          null
+        ]
+      ],
+      [
+        [
+          "A12",
+          "A1",
+          null
+        ],
+        [
+          "B12",
+          "Penyelesaian tiket helpdesk – hardware",
+          null
+        ],
+        [
+          "C12",
+          "Helpdesk & Ticketing",
+          null
+        ],
+        [
+          "D12",
+          "tiket",
+          null
+        ],
+        [
+          "E12",
+          "Harian",
+          null
+        ],
+        [
+          "F12",
+          "10",
+          null
+        ],
+        [
+          "G12",
+          "9",
+          null
+        ],
+        [
+          "H12",
+          "0.9",
+          "IF(OR(B12=\"\",F12=\"\"),\"\",IF(NOT(ISNUMBER(F12)),\"TARGET BUKAN ANGKA\",IF(F12=0,0,MIN(1,N(G12)/F12))))"
+        ],
+        [
+          "I12",
+          "Belum Tercapai",
+          "IF(H12=\"\",\"\",IF(H12=\"TARGET BUKAN ANGKA\",\"Periksa\",IF(H12>=1,\"Tercapai\",\"Belum Tercapai\")))"
+        ],
+        [
+          "J12",
+          "1 tiket menunggu sparepart dari vendor. TL: follow-up vendor Senin, user diberi unit pengganti.",
+          null
+        ],
+        [
+          "K12",
+          "IT Service tiket #1041–#1050",
+          null
+        ],
+        [
+          "L12",
+          "← contoh, timpa dengan data Anda",
+          null
+        ]
+      ],
+      [
+        [
+          "A13",
+          "A2",
+          null
+        ],
+        [
+          "H13",
+          null,
+          null
+        ],
+        [
+          "I13",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "A14",
+          "A3",
+          null
+        ],
+        [
+          "H14",
+          null,
+          null
+        ],
+        [
+          "I14",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "A15",
+          "A4",
+          null
+        ],
+        [
+          "H15",
+          null,
+          null
+        ],
+        [
+          "I15",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "A16",
+          "A5",
+          null
+        ],
+        [
+          "H16",
+          null,
+          null
+        ],
+        [
+          "I16",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "A17",
+          "A6",
+          null
+        ],
+        [
+          "H17",
+          null,
+          null
+        ],
+        [
+          "I17",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "A18",
+          "A7",
+          null
+        ],
+        [
+          "H18",
+          null,
+          null
+        ],
+        [
+          "I18",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "A19",
+          "A8",
+          null
+        ],
+        [
+          "H19",
+          null,
+          null
+        ],
+        [
+          "I19",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "A20",
+          "A9",
+          null
+        ],
+        [
+          "H20",
+          null,
+          null
+        ],
+        [
+          "I20",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "A21",
+          "A10",
+          null
+        ],
+        [
+          "H21",
+          null,
+          null
+        ],
+        [
+          "I21",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "A22",
+          "A11",
+          null
+        ],
+        [
+          "H22",
+          null,
+          null
+        ],
+        [
+          "I22",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "A23",
+          "A12",
+          null
+        ],
+        [
+          "H23",
+          null,
+          null
+        ],
+        [
+          "I23",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "A24",
+          "A13",
+          null
+        ],
+        [
+          "H24",
+          null,
+          null
+        ],
+        [
+          "I24",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "A25",
+          "A14",
+          null
+        ],
+        [
+          "H25",
+          null,
+          null
+        ],
+        [
+          "I25",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "A26",
+          "A15",
+          null
+        ],
+        [
+          "H26",
+          null,
+          null
+        ],
+        [
+          "I26",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "A29",
+          "B. PEKERJAAN ADHOC (DI LUAR RUTIN) — progres dihitung dari Rincian, bukan diketik",
+          null
+        ]
+      ],
+      [
+        [
+          "A30",
+          "Kode",
+          null
+        ],
+        [
+          "B30",
+          "Pekerjaan Adhoc",
+          null
+        ],
+        [
+          "C30",
+          "Kategori",
+          null
+        ],
+        [
+          "D30",
+          "Pemberi Tugas",
+          null
+        ],
+        [
+          "E30",
+          "PIC",
+          null
+        ],
+        [
+          "F30",
+          "Target Selesai",
+          null
+        ],
+        [
+          "G30",
+          "Status minggu lalu",
+          null
+        ],
+        [
+          "H30",
+          "Progres % (dari Rincian)",
+          null
+        ],
+        [
+          "I30",
+          "Status (otomatis)",
+          null
+        ],
+        [
+          "J30",
+          "Keterangan / Kendala & Tindak Lanjut (wajib bila belum selesai)",
+          null
+        ],
+        [
+          "K30",
+          "Pola tahapan (Pustaka)",
+          null
+        ]
+      ],
+      [
+        [
+          "A31",
+          "B1",
+          null
+        ],
+        [
+          "B31",
+          "Setup Access Point Gedung Admin A (18 unit)",
+          null
+        ],
+        [
+          "C31",
+          "Infrastruktur Jaringan & Server",
+          null
+        ],
+        [
+          "D31",
+          "GA (Titania Maulidha)",
+          null
+        ],
+        [
+          "E31",
+          "Rizwan Syaifullah",
+          null
+        ],
+        [
+          "F31",
+          "46342",
+          null
+        ],
+        [
+          "G31",
+          "Belum Mulai",
+          null
+        ],
+        [
+          "H31",
+          "0.1",
+          "IF(B31=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A31,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I31",
+          "Dalam Proses",
+          "IF(B31=\"\",\"\",IF(H31>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A31)=0,\"Belum Dirinci\",IF(AND(F31<>\"\",F31<$I$3+7),\"Terlambat\",IF(H31>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ],
+        [
+          "J31",
+          "Survei titik AP selesai; menunggu PO vendor (pengadaan B2 Ebhan).",
+          null
+        ],
+        [
+          "K31",
+          "3. Proyek infrastruktur IT oleh vendor",
+          null
+        ],
+        [
+          "L31",
+          "← contoh",
+          null
+        ]
+      ],
+      [
+        [
+          "A32",
+          "B2",
+          null
+        ],
+        [
+          "H32",
+          null,
+          "IF(B32=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A32,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I32",
+          null,
+          "IF(B32=\"\",\"\",IF(H32>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A32)=0,\"Belum Dirinci\",IF(AND(F32<>\"\",F32<$I$3+7),\"Terlambat\",IF(H32>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ]
+      ],
+      [
+        [
+          "A33",
+          "B3",
+          null
+        ],
+        [
+          "H33",
+          null,
+          "IF(B33=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A33,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I33",
+          null,
+          "IF(B33=\"\",\"\",IF(H33>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A33)=0,\"Belum Dirinci\",IF(AND(F33<>\"\",F33<$I$3+7),\"Terlambat\",IF(H33>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ]
+      ],
+      [
+        [
+          "A34",
+          "B4",
+          null
+        ],
+        [
+          "H34",
+          null,
+          "IF(B34=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A34,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I34",
+          null,
+          "IF(B34=\"\",\"\",IF(H34>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A34)=0,\"Belum Dirinci\",IF(AND(F34<>\"\",F34<$I$3+7),\"Terlambat\",IF(H34>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ]
+      ],
+      [
+        [
+          "A35",
+          "B5",
+          null
+        ],
+        [
+          "H35",
+          null,
+          "IF(B35=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A35,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I35",
+          null,
+          "IF(B35=\"\",\"\",IF(H35>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A35)=0,\"Belum Dirinci\",IF(AND(F35<>\"\",F35<$I$3+7),\"Terlambat\",IF(H35>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ]
+      ],
+      [
+        [
+          "A36",
+          "B6",
+          null
+        ],
+        [
+          "H36",
+          null,
+          "IF(B36=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A36,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I36",
+          null,
+          "IF(B36=\"\",\"\",IF(H36>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A36)=0,\"Belum Dirinci\",IF(AND(F36<>\"\",F36<$I$3+7),\"Terlambat\",IF(H36>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ]
+      ],
+      [
+        [
+          "A37",
+          "B7",
+          null
+        ],
+        [
+          "H37",
+          null,
+          "IF(B37=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A37,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I37",
+          null,
+          "IF(B37=\"\",\"\",IF(H37>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A37)=0,\"Belum Dirinci\",IF(AND(F37<>\"\",F37<$I$3+7),\"Terlambat\",IF(H37>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ]
+      ],
+      [
+        [
+          "A38",
+          "B8",
+          null
+        ],
+        [
+          "H38",
+          null,
+          "IF(B38=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A38,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I38",
+          null,
+          "IF(B38=\"\",\"\",IF(H38>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A38)=0,\"Belum Dirinci\",IF(AND(F38<>\"\",F38<$I$3+7),\"Terlambat\",IF(H38>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ]
+      ],
+      [
+        [
+          "A39",
+          "B9",
+          null
+        ],
+        [
+          "H39",
+          null,
+          "IF(B39=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A39,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I39",
+          null,
+          "IF(B39=\"\",\"\",IF(H39>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A39)=0,\"Belum Dirinci\",IF(AND(F39<>\"\",F39<$I$3+7),\"Terlambat\",IF(H39>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ]
+      ],
+      [
+        [
+          "A40",
+          "B10",
+          null
+        ],
+        [
+          "H40",
+          null,
+          "IF(B40=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A40,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I40",
+          null,
+          "IF(B40=\"\",\"\",IF(H40>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A40)=0,\"Belum Dirinci\",IF(AND(F40<>\"\",F40<$I$3+7),\"Terlambat\",IF(H40>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ]
+      ],
+      [
+        [
+          "A41",
+          "B11",
+          null
+        ],
+        [
+          "H41",
+          null,
+          "IF(B41=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A41,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I41",
+          null,
+          "IF(B41=\"\",\"\",IF(H41>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A41)=0,\"Belum Dirinci\",IF(AND(F41<>\"\",F41<$I$3+7),\"Terlambat\",IF(H41>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ]
+      ],
+      [
+        [
+          "A42",
+          "B12",
+          null
+        ],
+        [
+          "H42",
+          null,
+          "IF(B42=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A42,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I42",
+          null,
+          "IF(B42=\"\",\"\",IF(H42>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A42)=0,\"Belum Dirinci\",IF(AND(F42<>\"\",F42<$I$3+7),\"Terlambat\",IF(H42>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ]
+      ],
+      [
+        [
+          "A43",
+          "B13",
+          null
+        ],
+        [
+          "H43",
+          null,
+          "IF(B43=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A43,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I43",
+          null,
+          "IF(B43=\"\",\"\",IF(H43>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A43)=0,\"Belum Dirinci\",IF(AND(F43<>\"\",F43<$I$3+7),\"Terlambat\",IF(H43>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ]
+      ],
+      [
+        [
+          "A44",
+          "B14",
+          null
+        ],
+        [
+          "H44",
+          null,
+          "IF(B44=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A44,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I44",
+          null,
+          "IF(B44=\"\",\"\",IF(H44>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A44)=0,\"Belum Dirinci\",IF(AND(F44<>\"\",F44<$I$3+7),\"Terlambat\",IF(H44>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ]
+      ],
+      [
+        [
+          "A45",
+          "B15",
+          null
+        ],
+        [
+          "H45",
+          null,
+          "IF(B45=\"\",\"\",SUMIFS(Rincian!$E$6:$E$205,Rincian!$A$6:$A$205,A45,Rincian!$J$6:$J$205,\"Selesai\"))"
+        ],
+        [
+          "I45",
+          null,
+          "IF(B45=\"\",\"\",IF(H45>=1,\"Selesai\",IF(COUNTIF(Rincian!$A$6:$A$205,A45)=0,\"Belum Dirinci\",IF(AND(F45<>\"\",F45<$I$3+7),\"Terlambat\",IF(H45>0,\"Dalam Proses\",\"Belum Mulai\")))))"
+        ]
+      ],
+      [
+        [
+          "A47",
+          "C. CATATAN UNTUK ATASAN — wajib diisi; tulis \"Tidak ada\" bila kosong",
+          null
+        ]
+      ],
+      [
+        [
+          "A49",
+          "Kendala yang butuh keputusan/bantuan atasan",
+          null
+        ]
+      ],
+      [
+        [
+          "A50",
+          "Rencana prioritas minggu depan",
+          null
+        ]
+      ],
+      [
+        [
+          "A51",
+          "Pekerjaan yang dihapus/ditunda minggu ini dan alasannya",
+          null
+        ],
+        [
+          "C51",
+          "Tidak ada",
+          null
+        ]
+      ],
+      [
+        [
+          "A52",
+          "Legenda: sel kuning = diisi staf · sel putih = rumus · sel merah = wajib diisi · blok J2:K10 = diisi/diperiksa Kasie sebelum cut-off Kamis 16.00.",
+          null
+        ]
+      ]
+    ],
+    "merges": [
+      "A51:B51",
+      "C51:K51",
+      "A29:K29",
+      "A47:K47",
+      "A49:B49",
+      "C49:K49",
+      "A50:B50",
+      "C50:K50",
+      "B5:C5",
+      "E5:G5",
+      "A6:I6",
+      "A7:A8",
+      "A10:K10",
+      "A1:K1",
+      "J2:K2",
+      "B3:C3",
+      "E3:G3",
+      "B4:C4",
+      "E4:G4"
+    ],
+    "validations": [
+      "<ns0:dataValidation xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:ns1=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" type=\"decimal\" operator=\"greaterThanOrEqual\" allowBlank=\"1\" showErrorMessage=\"1\" errorTitle=\"Harus angka\" error=\"Target dan realisasi harus ANGKA (bukan tanggal/teks). Satuan dipilih di kolom Satuan.\" sqref=\"F12:G26\" ns1:uid=\"{00000000-0002-0000-0000-000006000000}\"><ns0:formula1>0</ns0:formula1><ns0:formula2>0</ns0:formula2></ns0:dataValidation>",
+      "<ns0:dataValidation xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:ns1=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" type=\"date\" operator=\"greaterThan\" allowBlank=\"1\" showErrorMessage=\"1\" error=\"Isi tanggal target selesai (dd/mm/yyyy)\" sqref=\"F31:F45\" ns1:uid=\"{00000000-0002-0000-0000-000007000000}\"><ns0:formula1>DATE(2026,1,1)</ns0:formula1><ns0:formula2>0</ns0:formula2></ns0:dataValidation>",
+      "<ns0:dataValidation xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:ns1=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" type=\"date\" error=\"Isi tanggal Senin awal periode\" sqref=\"I3\" ns1:uid=\"{00000000-0002-0000-0000-000008000000}\"><ns0:formula1>0</ns0:formula1><ns0:formula2>0</ns0:formula2></ns0:dataValidation>"
+    ]
+  },
+  {
+    "sheet": "Master",
+    "rows": [
+      [
+        [
+          "A1",
+          "MASTER DATA — diisi/diubah hanya oleh Dept Head",
+          null
+        ]
+      ],
+      [
+        [
+          "A2",
+          "Sheet ini menjadi sumber semua dropdown. Menambah staf = menambah baris di tabel Staf. Jangan ubah judul kolom.",
+          null
+        ]
+      ],
+      [
+        [
+          "A4",
+          "Nama",
+          null
+        ],
+        [
+          "B4",
+          "Jabatan",
+          null
+        ],
+        [
+          "C4",
+          "Seksi",
+          null
+        ],
+        [
+          "D4",
+          "Kode Seksi",
+          null
+        ],
+        [
+          "E4",
+          "Kasie",
+          null
+        ],
+        [
+          "G4",
+          "Seksi",
+          null
+        ],
+        [
+          "H4",
+          "Kategori",
+          null
+        ],
+        [
+          "I4",
+          "Satuan",
+          null
+        ],
+        [
+          "J4",
+          "Frekuensi",
+          null
+        ],
+        [
+          "K4",
+          "JenisBukti",
+          null
+        ],
+        [
+          "L4",
+          "PolaTahapan",
+          null
+        ]
+      ],
+      [
+        [
+          "A5",
+          "Rudy Hendrayanto",
+          null
+        ],
+        [
+          "B5",
+          "Kepala Seksi Enterprise Application, Data & Document",
+          null
+        ],
+        [
+          "C5",
+          "Enterprise Application, Data & Document",
+          null
+        ],
+        [
+          "D5",
+          "EADD",
+          null
+        ],
+        [
+          "E5",
+          "Franky Pasaribu",
+          null
+        ],
+        [
+          "G5",
+          "Enterprise Application, Data & Document",
+          null
+        ],
+        [
+          "H5",
+          "Helpdesk & Ticketing",
+          null
+        ],
+        [
+          "I5",
+          "tiket",
+          null
+        ],
+        [
+          "J5",
+          "Harian",
+          null
+        ],
+        [
+          "K5",
+          "Nomor tiket / screenshot sistem",
+          null
+        ],
+        [
+          "L5",
+          "1. Penyelesaian insiden / permintaan (eskalasi vendor)",
+          null
+        ]
+      ],
+      [
+        [
+          "A6",
+          "Trisnardi Boesyanto",
+          null
+        ],
+        [
+          "B6",
+          "Kepala Seksi System & Network Infrastructure (konfirmasi)",
+          null
+        ],
+        [
+          "C6",
+          "System & Network Infrastructure",
+          null
+        ],
+        [
+          "D6",
+          "SNI",
+          null
+        ],
+        [
+          "E6",
+          "Franky Pasaribu",
+          null
+        ],
+        [
+          "G6",
+          "System & Network Infrastructure",
+          null
+        ],
+        [
+          "H6",
+          "Infrastruktur Jaringan & Server",
+          null
+        ],
+        [
+          "I6",
+          "unit",
+          null
+        ],
+        [
+          "J6",
+          "Mingguan",
+          null
+        ],
+        [
+          "K6",
+          "Foto sebelum–sesudah",
+          null
+        ],
+        [
+          "L6",
+          "2. Instalasi / relokasi perangkat & jaringan (swakelola)",
+          null
+        ]
+      ],
+      [
+        [
+          "A7",
+          "Rizwan Syaifullah",
+          null
+        ],
+        [
+          "B7",
+          "Officer System & Network (konfirmasi)",
+          null
+        ],
+        [
+          "C7",
+          "System & Network Infrastructure",
+          null
+        ],
+        [
+          "D7",
+          "SNI",
+          null
+        ],
+        [
+          "E7",
+          "Trisnardi Boesyanto",
+          null
+        ],
+        [
+          "G7",
+          "IT Admin, Pengadaan & Aset",
+          null
+        ],
+        [
+          "H7",
+          "Keamanan Informasi",
+          null
+        ],
+        [
+          "I7",
+          "permintaan",
+          null
+        ],
+        [
+          "J7",
+          "Bulanan",
+          null
+        ],
+        [
+          "K7",
+          "BAST / BA / UAT",
+          null
+        ],
+        [
+          "L7",
+          "3. Proyek infrastruktur IT oleh vendor",
+          null
+        ]
+      ],
+      [
+        [
+          "A8",
+          "Fajar Akbar",
+          null
+        ],
+        [
+          "B8",
+          "Teknisi IT Support (konfirmasi)",
+          null
+        ],
+        [
+          "C8",
+          "System & Network Infrastructure",
+          null
+        ],
+        [
+          "D8",
+          "SNI",
+          null
+        ],
+        [
+          "E8",
+          "Trisnardi Boesyanto",
+          null
+        ],
+        [
+          "H8",
+          "Aplikasi Enterprise (SAP/Procureplus/M365)",
+          null
+        ],
+        [
+          "I8",
+          "dokumen",
+          null
+        ],
+        [
+          "J8",
+          "Sesuai permintaan",
+          null
+        ],
+        [
+          "K8",
+          "Nomor PR/PO/SPK",
+          null
+        ],
+        [
+          "L8",
+          "4. Pengadaan nilai kecil (pembelian langsung)",
+          null
+        ]
+      ],
+      [
+        [
+          "A9",
+          "Wahyu Zulkarnain",
+          null
+        ],
+        [
+          "B9",
+          "Teknisi IT Support (konfirmasi)",
+          null
+        ],
+        [
+          "C9",
+          "System & Network Infrastructure",
+          null
+        ],
+        [
+          "D9",
+          "SNI",
+          null
+        ],
+        [
+          "E9",
+          "Trisnardi Boesyanto",
+          null
+        ],
+        [
+          "H9",
+          "In-house Development",
+          null
+        ],
+        [
+          "I9",
+          "hari",
+          null
+        ],
+        [
+          "K9",
+          "Email / memo",
+          null
+        ],
+        [
+          "L9",
+          "5. Dokumen / kajian / SOP / KAK",
+          null
+        ]
+      ],
+      [
+        [
+          "A10",
+          "Rifki Mahsyaf",
+          null
+        ],
+        [
+          "B10",
+          "Application Developer (konfirmasi)",
+          null
+        ],
+        [
+          "C10",
+          "Enterprise Application, Data & Document",
+          null
+        ],
+        [
+          "D10",
+          "EADD",
+          null
+        ],
+        [
+          "E10",
+          "Rudy Hendrayanto",
+          null
+        ],
+        [
+          "H10",
+          "Pengadaan & Kontrak IT",
+          null
+        ],
+        [
+          "I10",
+          "kali",
+          null
+        ],
+        [
+          "K10",
+          "Dokumen / laporan / draf",
+          null
+        ],
+        [
+          "L10",
+          "6. Pengembangan & enhancement aplikasi (in-house)",
+          null
+        ]
+      ],
+      [
+        [
+          "A11",
+          "Ebhan Kharisma Bangun",
+          null
+        ],
+        [
+          "B11",
+          "Officer IT Procurement & Asset (konfirmasi)",
+          null
+        ],
+        [
+          "C11",
+          "IT Admin, Pengadaan & Aset",
+          null
+        ],
+        [
+          "D11",
+          "ADM",
+          null
+        ],
+        [
+          "E11",
+          "Rudy Hendrayanto",
+          null
+        ],
+        [
+          "H11",
+          "Aset & Lisensi",
+          null
+        ],
+        [
+          "I11",
+          "tagihan",
+          null
+        ],
+        [
+          "K11",
+          "Log / checklist / backup config",
+          null
+        ],
+        [
+          "L11",
+          "7. Pengadaan via Procurement (KAK/HPS → RFA → tender → PO/SPK)",
+          null
+        ]
+      ],
+      [
+        [
+          "A12",
+          "Fanta Liona Huring",
+          null
+        ],
+        [
+          "B12",
+          "Admin IT",
+          null
+        ],
+        [
+          "C12",
+          "IT Admin, Pengadaan & Aset",
+          null
+        ],
+        [
+          "D12",
+          "ADM",
+          null
+        ],
+        [
+          "E12",
+          "Rudy Hendrayanto",
+          null
+        ],
+        [
+          "H12",
+          "Administrasi & Keuangan",
+          null
+        ],
+        [
+          "I12",
+          "rekap",
+          null
+        ],
+        [
+          "L12",
+          "8. Tindak lanjut temuan audit / PIR",
+          null
+        ]
+      ],
+      [
+        [
+          "A13",
+          "Septiadela",
+          null
+        ],
+        [
+          "B13",
+          "Magang",
+          null
+        ],
+        [
+          "C13",
+          "IT Admin, Pengadaan & Aset",
+          null
+        ],
+        [
+          "D13",
+          "ADM",
+          null
+        ],
+        [
+          "E13",
+          "Rudy Hendrayanto",
+          null
+        ],
+        [
+          "H13",
+          "Tata Kelola, Audit & Dokumen",
+          null
+        ],
+        [
+          "I13",
+          "isu",
+          null
+        ]
+      ],
+      [
+        [
+          "H14",
+          "Lainnya",
+          null
+        ],
+        [
+          "I14",
+          "lokasi",
+          null
+        ]
+      ],
+      [
+        [
+          "A36",
+          "Nama & jabatan disalin dari laporan W41 Departemen ICT. Yang bertanda (konfirmasi) adalah asumsi penyusun — perbaiki sesuai SK/struktur organisasi. Pengelompokan 'IT Admin, Pengadaan & Aset' bersifat sementara.",
+          null
+        ]
+      ],
+      [
+        [
+          "A39",
+          "DAFTAR PEKERJAAN RUTIN STANDAR ICT (referensi; disalin ke laporan, target = per minggu)",
+          null
+        ]
+      ],
+      [
+        [
+          "A40",
+          "Seksi",
+          null
+        ],
+        [
+          "B40",
+          "Pekerjaan rutin",
+          null
+        ],
+        [
+          "C40",
+          "Kategori",
+          null
+        ],
+        [
+          "D40",
+          "Satuan",
+          null
+        ],
+        [
+          "E40",
+          "Frekuensi",
+          null
+        ],
+        [
+          "F40",
+          "Target / minggu",
+          null
+        ],
+        [
+          "G40",
+          "Dihitung 1 realisasi bila… (bukti)",
+          null
+        ],
+        [
+          "H40",
+          "Sumber",
+          null
+        ]
+      ],
+      [
+        [
+          "A41",
+          "SNI",
+          null
+        ],
+        [
+          "B41",
+          "Penyelesaian tiket helpdesk – hardware",
+          null
+        ],
+        [
+          "C41",
+          "Helpdesk & Ticketing",
+          null
+        ],
+        [
+          "D41",
+          "tiket",
+          null
+        ],
+        [
+          "E41",
+          "Harian",
+          null
+        ],
+        [
+          "F41",
+          "sesuai tiket masuk",
+          null
+        ],
+        [
+          "G41",
+          "Tiket ditutup di IT Service & dikonfirmasi user",
+          null
+        ],
+        [
+          "H41",
+          "Wahyu W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A42",
+          "SNI",
+          null
+        ],
+        [
+          "B42",
+          "Penyelesaian tiket – jaringan & CCTV",
+          null
+        ],
+        [
+          "C42",
+          "Helpdesk & Ticketing",
+          null
+        ],
+        [
+          "D42",
+          "tiket",
+          null
+        ],
+        [
+          "E42",
+          "Harian",
+          null
+        ],
+        [
+          "F42",
+          "sesuai tiket masuk",
+          null
+        ],
+        [
+          "G42",
+          "Tiket ditutup & dikonfirmasi user",
+          null
+        ],
+        [
+          "H42",
+          "Rizwan W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A43",
+          "EADD",
+          null
+        ],
+        [
+          "B43",
+          "Penyelesaian tiket – software / aplikasi (SAP, Procureplus, M365)",
+          null
+        ],
+        [
+          "C43",
+          "Helpdesk & Ticketing",
+          null
+        ],
+        [
+          "D43",
+          "tiket",
+          null
+        ],
+        [
+          "E43",
+          "Harian",
+          null
+        ],
+        [
+          "F43",
+          "sesuai tiket masuk",
+          null
+        ],
+        [
+          "G43",
+          "Tiket ditutup & dikonfirmasi user",
+          null
+        ],
+        [
+          "H43",
+          "Ebhan/Rifki W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A44",
+          "SNI",
+          null
+        ],
+        [
+          "B44",
+          "Dukungan instalasi / relokasi PC, laptop & periferal",
+          null
+        ],
+        [
+          "C44",
+          "Helpdesk & Ticketing",
+          null
+        ],
+        [
+          "D44",
+          "unit",
+          null
+        ],
+        [
+          "E44",
+          "Sesuai permintaan",
+          null
+        ],
+        [
+          "F44",
+          "sesuai permintaan",
+          null
+        ],
+        [
+          "G44",
+          "Form serah terima / tiket ditutup",
+          null
+        ],
+        [
+          "H44",
+          "Fajar W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A45",
+          "SNI",
+          null
+        ],
+        [
+          "B45",
+          "Dukungan AV ruang meeting & acara (speaker, TV, Indonesia Raya)",
+          null
+        ],
+        [
+          "C45",
+          "Helpdesk & Ticketing",
+          null
+        ],
+        [
+          "D45",
+          "kali",
+          null
+        ],
+        [
+          "E45",
+          "Sesuai permintaan",
+          null
+        ],
+        [
+          "F45",
+          "sesuai jadwal",
+          null
+        ],
+        [
+          "G45",
+          "Checklist persiapan diparaf pemohon",
+          null
+        ],
+        [
+          "H45",
+          "Fajar W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A46",
+          "SNI",
+          null
+        ],
+        [
+          "B46",
+          "Monitoring kesehatan server, storage & backup harian",
+          null
+        ],
+        [
+          "C46",
+          "Infrastruktur Jaringan & Server",
+          null
+        ],
+        [
+          "D46",
+          "hari",
+          null
+        ],
+        [
+          "E46",
+          "Harian",
+          null
+        ],
+        [
+          "F46",
+          "5",
+          null
+        ],
+        [
+          "G46",
+          "Log monitoring / backup berhasil tersimpan",
+          null
+        ],
+        [
+          "H46",
+          "baru (usulan)",
+          null
+        ]
+      ],
+      [
+        [
+          "A47",
+          "SNI",
+          null
+        ],
+        [
+          "B47",
+          "Monitoring perangkat jaringan & CCTV (uptime)",
+          null
+        ],
+        [
+          "C47",
+          "Infrastruktur Jaringan & Server",
+          null
+        ],
+        [
+          "D47",
+          "hari",
+          null
+        ],
+        [
+          "E47",
+          "Harian",
+          null
+        ],
+        [
+          "F47",
+          "5",
+          null
+        ],
+        [
+          "G47",
+          "Log NMS/SolarWinds atau checklist harian",
+          null
+        ],
+        [
+          "H47",
+          "Trisnardi W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A48",
+          "SNI",
+          null
+        ],
+        [
+          "B48",
+          "Setup VM / akun / hak akses sesuai permintaan",
+          null
+        ],
+        [
+          "C48",
+          "Infrastruktur Jaringan & Server",
+          null
+        ],
+        [
+          "D48",
+          "permintaan",
+          null
+        ],
+        [
+          "E48",
+          "Sesuai permintaan",
+          null
+        ],
+        [
+          "F48",
+          "sesuai permintaan",
+          null
+        ],
+        [
+          "G48",
+          "Email konfirmasi pemohon",
+          null
+        ],
+        [
+          "H48",
+          "Rizwan W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A49",
+          "SNI",
+          null
+        ],
+        [
+          "B49",
+          "Migrasi / patching endpoint (antivirus, OS)",
+          null
+        ],
+        [
+          "C49",
+          "Keamanan Informasi",
+          null
+        ],
+        [
+          "D49",
+          "unit",
+          null
+        ],
+        [
+          "E49",
+          "Mingguan",
+          null
+        ],
+        [
+          "F49",
+          "sesuai rencana",
+          null
+        ],
+        [
+          "G49",
+          "Daftar unit tampil di konsol Kaspersky",
+          null
+        ],
+        [
+          "H49",
+          "Septiadela W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A50",
+          "EADD",
+          null
+        ],
+        [
+          "B50",
+          "Monitoring isu sinkronisasi Procureplus–SAP (PR/PO)",
+          null
+        ],
+        [
+          "C50",
+          "Aplikasi Enterprise (SAP/Procureplus/M365)",
+          null
+        ],
+        [
+          "D50",
+          "isu",
+          null
+        ],
+        [
+          "E50",
+          "Harian",
+          null
+        ],
+        [
+          "F50",
+          "sesuai isu terbuka",
+          null
+        ],
+        [
+          "G50",
+          "Isu ditutup & tercatat di tracker",
+          null
+        ],
+        [
+          "H50",
+          "Rudy/Fanta W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A51",
+          "EADD",
+          null
+        ],
+        [
+          "B51",
+          "Pengelolaan role / approval & hak akses aplikasi",
+          null
+        ],
+        [
+          "C51",
+          "Aplikasi Enterprise (SAP/Procureplus/M365)",
+          null
+        ],
+        [
+          "D51",
+          "permintaan",
+          null
+        ],
+        [
+          "E51",
+          "Sesuai permintaan",
+          null
+        ],
+        [
+          "F51",
+          "sesuai permintaan",
+          null
+        ],
+        [
+          "G51",
+          "Email / tiket permintaan ditutup",
+          null
+        ],
+        [
+          "H51",
+          "Ebhan W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A52",
+          "EADD",
+          null
+        ],
+        [
+          "B52",
+          "Dukungan SAP (instalasi GUI, user, otorisasi)",
+          null
+        ],
+        [
+          "C52",
+          "Aplikasi Enterprise (SAP/Procureplus/M365)",
+          null
+        ],
+        [
+          "D52",
+          "permintaan",
+          null
+        ],
+        [
+          "E52",
+          "Sesuai permintaan",
+          null
+        ],
+        [
+          "F52",
+          "sesuai permintaan",
+          null
+        ],
+        [
+          "G52",
+          "Tiket ditutup",
+          null
+        ],
+        [
+          "H52",
+          "Fajar W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A53",
+          "ADM",
+          null
+        ],
+        [
+          "B53",
+          "Monitoring outstanding pembayaran IT",
+          null
+        ],
+        [
+          "C53",
+          "Administrasi & Keuangan",
+          null
+        ],
+        [
+          "D53",
+          "tagihan",
+          null
+        ],
+        [
+          "E53",
+          "Mingguan",
+          null
+        ],
+        [
+          "F53",
+          "sesuai tagihan terbuka",
+          null
+        ],
+        [
+          "G53",
+          "Email update status ke Finance",
+          null
+        ],
+        [
+          "H53",
+          "Fanta W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A54",
+          "ADM",
+          null
+        ],
+        [
+          "B54",
+          "Pembuatan Payment Request (PR)",
+          null
+        ],
+        [
+          "C54",
+          "Administrasi & Keuangan",
+          null
+        ],
+        [
+          "D54",
+          "dokumen",
+          null
+        ],
+        [
+          "E54",
+          "Sesuai permintaan",
+          null
+        ],
+        [
+          "F54",
+          "sesuai invoice masuk",
+          null
+        ],
+        [
+          "G54",
+          "PR tersubmit di sistem (nomor PR)",
+          null
+        ],
+        [
+          "H54",
+          "Septiadela W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A55",
+          "ADM",
+          null
+        ],
+        [
+          "B55",
+          "Monitoring IT budget & realisasi PR",
+          null
+        ],
+        [
+          "C55",
+          "Administrasi & Keuangan",
+          null
+        ],
+        [
+          "D55",
+          "rekap",
+          null
+        ],
+        [
+          "E55",
+          "Mingguan",
+          null
+        ],
+        [
+          "F55",
+          "1",
+          null
+        ],
+        [
+          "G55",
+          "Rekap budget diperbarui & dikirim",
+          null
+        ],
+        [
+          "H55",
+          "Ebhan W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A56",
+          "ADM",
+          null
+        ],
+        [
+          "B56",
+          "Monitoring masa aktif & sisa lisensi",
+          null
+        ],
+        [
+          "C56",
+          "Aset & Lisensi",
+          null
+        ],
+        [
+          "D56",
+          "rekap",
+          null
+        ],
+        [
+          "E56",
+          "Mingguan",
+          null
+        ],
+        [
+          "F56",
+          "1",
+          null
+        ],
+        [
+          "G56",
+          "Register lisensi diperbarui",
+          null
+        ],
+        [
+          "H56",
+          "Ebhan W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A57",
+          "ADM",
+          null
+        ],
+        [
+          "B57",
+          "Monitoring kontrak IT (jatuh tempo, amandemen)",
+          null
+        ],
+        [
+          "C57",
+          "Pengadaan & Kontrak IT",
+          null
+        ],
+        [
+          "D57",
+          "rekap",
+          null
+        ],
+        [
+          "E57",
+          "Mingguan",
+          null
+        ],
+        [
+          "F57",
+          "1",
+          null
+        ],
+        [
+          "G57",
+          "Register kontrak diperbarui",
+          null
+        ],
+        [
+          "H57",
+          "Ebhan W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A58",
+          "ADM",
+          null
+        ],
+        [
+          "B58",
+          "Stock opname laptop, periferal & tinta",
+          null
+        ],
+        [
+          "C58",
+          "Aset & Lisensi",
+          null
+        ],
+        [
+          "D58",
+          "kali",
+          null
+        ],
+        [
+          "E58",
+          "Bulanan",
+          null
+        ],
+        [
+          "F58",
+          "1",
+          null
+        ],
+        [
+          "G58",
+          "Kartu stok diperbarui & selisih dijelaskan",
+          null
+        ],
+        [
+          "H58",
+          "Ebhan/Fanta W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A59",
+          "ADM",
+          null
+        ],
+        [
+          "B59",
+          "Monitoring perbaikan laptop (vendor Sinergi)",
+          null
+        ],
+        [
+          "C59",
+          "Aset & Lisensi",
+          null
+        ],
+        [
+          "D59",
+          "unit",
+          null
+        ],
+        [
+          "E59",
+          "Mingguan",
+          null
+        ],
+        [
+          "F59",
+          "sesuai unit terbuka",
+          null
+        ],
+        [
+          "G59",
+          "Daftar perbaikan diperbarui (status per unit)",
+          null
+        ],
+        [
+          "H59",
+          "Fanta W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A60",
+          "EADD",
+          null
+        ],
+        [
+          "B60",
+          "Pemutakhiran Risk Register IT",
+          null
+        ],
+        [
+          "C60",
+          "Tata Kelola, Audit & Dokumen",
+          null
+        ],
+        [
+          "D60",
+          "dokumen",
+          null
+        ],
+        [
+          "E60",
+          "Bulanan",
+          null
+        ],
+        [
+          "F60",
+          "1",
+          null
+        ],
+        [
+          "G60",
+          "Risk register tersubmit (email konfirmasi)",
+          null
+        ],
+        [
+          "H60",
+          "Rudy W41",
+          null
+        ]
+      ],
+      [
+        [
+          "A61",
+          "Target bertanda \"sesuai …\" berarti target minggu ini sama dengan jumlah yang masuk/jatuh tempo pada minggu itu (diisi tiap minggu), bukan angka tetap.",
+          null
+        ]
+      ]
+    ],
+    "merges": [
+      "A1:H1",
+      "A2:H2",
+      "A39:H39"
+    ],
+    "validations": []
+  },
+  {
+    "sheet": "Rincian",
+    "rows": [
+      [
+        [
+          "A1",
+          "RINCIAN TAHAPAN PEKERJAAN ADHOC (WORK BREAKDOWN)",
+          null
+        ]
+      ],
+      [
+        [
+          "A2",
+          "Periode: 12 Oct s.d. 18 Oct 2026",
+          "\"Periode: \"&'Laporan Mingguan'!B5"
+        ]
+      ],
+      [
+        [
+          "A3",
+          "Aturan: setiap adhoc dipecah menjadi tahapan berbobot (total 100%); salin dari sheet 'Pustaka Tahapan' sesuai pola yang dipilih di kolom K laporan. Satu tahap SELESAI hanya bila Tgl Aktual DAN Bukti (nama file di folder Evidence, pola W41_FM_B3_T05_deskripsi.jpg) terisi. Progres di laporan = jumlah bobot tahap Selesai.",
+          null
+        ]
+      ],
+      [
+        [
+          "A5",
+          "Kode",
+          null
+        ],
+        [
+          "B5",
+          "Nama Pekerjaan (otomatis)",
+          null
+        ],
+        [
+          "C5",
+          "Tahap",
+          null
+        ],
+        [
+          "D5",
+          "Uraian Tahapan (hasil yang terlihat)",
+          null
+        ],
+        [
+          "E5",
+          "Bobot",
+          null
+        ],
+        [
+          "F5",
+          "Rencana Selesai",
+          null
+        ],
+        [
+          "G5",
+          "Tgl Selesai Aktual",
+          null
+        ],
+        [
+          "H5",
+          "Jenis Bukti",
+          null
+        ],
+        [
+          "I5",
+          "Bukti: nama file / No. dokumen",
+          null
+        ],
+        [
+          "J5",
+          "Status Tahap",
+          null
+        ],
+        [
+          "K5",
+          "Catatan",
+          null
+        ],
+        [
+          "L5",
+          "Total Bobot",
+          null
+        ]
+      ],
+      [
+        [
+          "A6",
+          "B1",
+          null
+        ],
+        [
+          "B6",
+          "Setup Access Point Gedung Admin A (18 unit)",
+          "IF(A6=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A6,2,3))),\"\"))"
+        ],
+        [
+          "C6",
+          "1",
+          null
+        ],
+        [
+          "D6",
+          "Survei & desain teknis disetujui",
+          null
+        ],
+        [
+          "E6",
+          "0.1",
+          null
+        ],
+        [
+          "F6",
+          "46309",
+          null
+        ],
+        [
+          "G6",
+          "46309",
+          null
+        ],
+        [
+          "H6",
+          "Dokumen / laporan / draf",
+          null
+        ],
+        [
+          "I6",
+          "W42_SNI_B1_T01_survei-AP.pdf",
+          null
+        ],
+        [
+          "J6",
+          "Selesai",
+          "IF(A6=\"\",\"\",IF(AND(G6<>\"\",I6<>\"\"),\"Selesai\",IF(G6<>\"\",\"Bukti Kurang\",IF(AND(F6<>\"\",F6<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L6",
+          "1",
+          "IF(A6=\"\",\"\",SUMIF($A$6:$A$205,A6,$E$6:$E$205))"
+        ],
+        [
+          "M6",
+          "← contoh (5 tahap B1, pola 3), timpa",
+          null
+        ]
+      ],
+      [
+        [
+          "A7",
+          "B1",
+          null
+        ],
+        [
+          "B7",
+          "Setup Access Point Gedung Admin A (18 unit)",
+          "IF(A7=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A7,2,3))),\"\"))"
+        ],
+        [
+          "C7",
+          "2",
+          null
+        ],
+        [
+          "D7",
+          "PO / SPK vendor terbit",
+          null
+        ],
+        [
+          "E7",
+          "0.15",
+          null
+        ],
+        [
+          "F7",
+          "46318",
+          null
+        ],
+        [
+          "H7",
+          "Nomor PR/PO/SPK",
+          null
+        ],
+        [
+          "J7",
+          "Dijadwalkan",
+          "IF(A7=\"\",\"\",IF(AND(G7<>\"\",I7<>\"\"),\"Selesai\",IF(G7<>\"\",\"Bukti Kurang\",IF(AND(F7<>\"\",F7<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L7",
+          "1",
+          null
+        ]
+      ],
+      [
+        [
+          "A8",
+          "B1",
+          null
+        ],
+        [
+          "B8",
+          "Setup Access Point Gedung Admin A (18 unit)",
+          "IF(A8=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A8,2,3))),\"\"))"
+        ],
+        [
+          "C8",
+          "3",
+          null
+        ],
+        [
+          "D8",
+          "Mobilisasi & instalasi infrastruktur (kabel, rak, power)",
+          null
+        ],
+        [
+          "E8",
+          "0.3",
+          null
+        ],
+        [
+          "F8",
+          "46332",
+          null
+        ],
+        [
+          "H8",
+          "Foto sebelum–sesudah",
+          null
+        ],
+        [
+          "J8",
+          "Dijadwalkan",
+          "IF(A8=\"\",\"\",IF(AND(G8<>\"\",I8<>\"\"),\"Selesai\",IF(G8<>\"\",\"Bukti Kurang\",IF(AND(F8<>\"\",F8<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L8",
+          "1",
+          null
+        ]
+      ],
+      [
+        [
+          "A9",
+          "B1",
+          null
+        ],
+        [
+          "B9",
+          "Setup Access Point Gedung Admin A (18 unit)",
+          "IF(A9=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A9,2,3))),\"\"))"
+        ],
+        [
+          "C9",
+          "4",
+          null
+        ],
+        [
+          "D9",
+          "Instalasi & konfigurasi perangkat",
+          null
+        ],
+        [
+          "E9",
+          "0.25",
+          null
+        ],
+        [
+          "F9",
+          "46338",
+          null
+        ],
+        [
+          "H9",
+          "Foto sebelum–sesudah",
+          null
+        ],
+        [
+          "J9",
+          "Dijadwalkan",
+          "IF(A9=\"\",\"\",IF(AND(G9<>\"\",I9<>\"\"),\"Selesai\",IF(G9<>\"\",\"Bukti Kurang\",IF(AND(F9<>\"\",F9<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L9",
+          "1",
+          null
+        ]
+      ],
+      [
+        [
+          "A10",
+          "B1",
+          null
+        ],
+        [
+          "B10",
+          "Setup Access Point Gedung Admin A (18 unit)",
+          "IF(A10=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A10,2,3))),\"\"))"
+        ],
+        [
+          "C10",
+          "5",
+          null
+        ],
+        [
+          "D10",
+          "UAT & BAST ditandatangani",
+          null
+        ],
+        [
+          "E10",
+          "0.2",
+          null
+        ],
+        [
+          "F10",
+          "46342",
+          null
+        ],
+        [
+          "H10",
+          "BAST / BA / UAT",
+          null
+        ],
+        [
+          "J10",
+          "Dijadwalkan",
+          "IF(A10=\"\",\"\",IF(AND(G10<>\"\",I10<>\"\"),\"Selesai\",IF(G10<>\"\",\"Bukti Kurang\",IF(AND(F10<>\"\",F10<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L10",
+          "1",
+          null
+        ]
+      ],
+      [
+        [
+          "B11",
+          null,
+          "IF(A11=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A11,2,3))),\"\"))"
+        ],
+        [
+          "J11",
+          null,
+          "IF(A11=\"\",\"\",IF(AND(G11<>\"\",I11<>\"\"),\"Selesai\",IF(G11<>\"\",\"Bukti Kurang\",IF(AND(F11<>\"\",F11<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L11",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B12",
+          null,
+          "IF(A12=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A12,2,3))),\"\"))"
+        ],
+        [
+          "J12",
+          null,
+          "IF(A12=\"\",\"\",IF(AND(G12<>\"\",I12<>\"\"),\"Selesai\",IF(G12<>\"\",\"Bukti Kurang\",IF(AND(F12<>\"\",F12<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L12",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B13",
+          null,
+          "IF(A13=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A13,2,3))),\"\"))"
+        ],
+        [
+          "J13",
+          null,
+          "IF(A13=\"\",\"\",IF(AND(G13<>\"\",I13<>\"\"),\"Selesai\",IF(G13<>\"\",\"Bukti Kurang\",IF(AND(F13<>\"\",F13<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L13",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B14",
+          null,
+          "IF(A14=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A14,2,3))),\"\"))"
+        ],
+        [
+          "J14",
+          null,
+          "IF(A14=\"\",\"\",IF(AND(G14<>\"\",I14<>\"\"),\"Selesai\",IF(G14<>\"\",\"Bukti Kurang\",IF(AND(F14<>\"\",F14<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L14",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B15",
+          null,
+          "IF(A15=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A15,2,3))),\"\"))"
+        ],
+        [
+          "J15",
+          null,
+          "IF(A15=\"\",\"\",IF(AND(G15<>\"\",I15<>\"\"),\"Selesai\",IF(G15<>\"\",\"Bukti Kurang\",IF(AND(F15<>\"\",F15<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L15",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B16",
+          null,
+          "IF(A16=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A16,2,3))),\"\"))"
+        ],
+        [
+          "J16",
+          null,
+          "IF(A16=\"\",\"\",IF(AND(G16<>\"\",I16<>\"\"),\"Selesai\",IF(G16<>\"\",\"Bukti Kurang\",IF(AND(F16<>\"\",F16<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L16",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B17",
+          null,
+          "IF(A17=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A17,2,3))),\"\"))"
+        ],
+        [
+          "J17",
+          null,
+          "IF(A17=\"\",\"\",IF(AND(G17<>\"\",I17<>\"\"),\"Selesai\",IF(G17<>\"\",\"Bukti Kurang\",IF(AND(F17<>\"\",F17<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L17",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B18",
+          null,
+          "IF(A18=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A18,2,3))),\"\"))"
+        ],
+        [
+          "J18",
+          null,
+          "IF(A18=\"\",\"\",IF(AND(G18<>\"\",I18<>\"\"),\"Selesai\",IF(G18<>\"\",\"Bukti Kurang\",IF(AND(F18<>\"\",F18<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L18",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B19",
+          null,
+          "IF(A19=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A19,2,3))),\"\"))"
+        ],
+        [
+          "J19",
+          null,
+          "IF(A19=\"\",\"\",IF(AND(G19<>\"\",I19<>\"\"),\"Selesai\",IF(G19<>\"\",\"Bukti Kurang\",IF(AND(F19<>\"\",F19<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L19",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B20",
+          null,
+          "IF(A20=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A20,2,3))),\"\"))"
+        ],
+        [
+          "J20",
+          null,
+          "IF(A20=\"\",\"\",IF(AND(G20<>\"\",I20<>\"\"),\"Selesai\",IF(G20<>\"\",\"Bukti Kurang\",IF(AND(F20<>\"\",F20<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L20",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B21",
+          null,
+          "IF(A21=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A21,2,3))),\"\"))"
+        ],
+        [
+          "J21",
+          null,
+          "IF(A21=\"\",\"\",IF(AND(G21<>\"\",I21<>\"\"),\"Selesai\",IF(G21<>\"\",\"Bukti Kurang\",IF(AND(F21<>\"\",F21<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L21",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B22",
+          null,
+          "IF(A22=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A22,2,3))),\"\"))"
+        ],
+        [
+          "J22",
+          null,
+          "IF(A22=\"\",\"\",IF(AND(G22<>\"\",I22<>\"\"),\"Selesai\",IF(G22<>\"\",\"Bukti Kurang\",IF(AND(F22<>\"\",F22<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L22",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B23",
+          null,
+          "IF(A23=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A23,2,3))),\"\"))"
+        ],
+        [
+          "J23",
+          null,
+          "IF(A23=\"\",\"\",IF(AND(G23<>\"\",I23<>\"\"),\"Selesai\",IF(G23<>\"\",\"Bukti Kurang\",IF(AND(F23<>\"\",F23<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L23",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B24",
+          null,
+          "IF(A24=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A24,2,3))),\"\"))"
+        ],
+        [
+          "J24",
+          null,
+          "IF(A24=\"\",\"\",IF(AND(G24<>\"\",I24<>\"\"),\"Selesai\",IF(G24<>\"\",\"Bukti Kurang\",IF(AND(F24<>\"\",F24<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L24",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B25",
+          null,
+          "IF(A25=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A25,2,3))),\"\"))"
+        ],
+        [
+          "J25",
+          null,
+          "IF(A25=\"\",\"\",IF(AND(G25<>\"\",I25<>\"\"),\"Selesai\",IF(G25<>\"\",\"Bukti Kurang\",IF(AND(F25<>\"\",F25<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L25",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B26",
+          null,
+          "IF(A26=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A26,2,3))),\"\"))"
+        ],
+        [
+          "J26",
+          null,
+          "IF(A26=\"\",\"\",IF(AND(G26<>\"\",I26<>\"\"),\"Selesai\",IF(G26<>\"\",\"Bukti Kurang\",IF(AND(F26<>\"\",F26<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L26",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B27",
+          null,
+          "IF(A27=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A27,2,3))),\"\"))"
+        ],
+        [
+          "J27",
+          null,
+          "IF(A27=\"\",\"\",IF(AND(G27<>\"\",I27<>\"\"),\"Selesai\",IF(G27<>\"\",\"Bukti Kurang\",IF(AND(F27<>\"\",F27<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L27",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B28",
+          null,
+          "IF(A28=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A28,2,3))),\"\"))"
+        ],
+        [
+          "J28",
+          null,
+          "IF(A28=\"\",\"\",IF(AND(G28<>\"\",I28<>\"\"),\"Selesai\",IF(G28<>\"\",\"Bukti Kurang\",IF(AND(F28<>\"\",F28<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L28",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B29",
+          null,
+          "IF(A29=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A29,2,3))),\"\"))"
+        ],
+        [
+          "J29",
+          null,
+          "IF(A29=\"\",\"\",IF(AND(G29<>\"\",I29<>\"\"),\"Selesai\",IF(G29<>\"\",\"Bukti Kurang\",IF(AND(F29<>\"\",F29<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L29",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B30",
+          null,
+          "IF(A30=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A30,2,3))),\"\"))"
+        ],
+        [
+          "J30",
+          null,
+          "IF(A30=\"\",\"\",IF(AND(G30<>\"\",I30<>\"\"),\"Selesai\",IF(G30<>\"\",\"Bukti Kurang\",IF(AND(F30<>\"\",F30<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L30",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B31",
+          null,
+          "IF(A31=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A31,2,3))),\"\"))"
+        ],
+        [
+          "J31",
+          null,
+          "IF(A31=\"\",\"\",IF(AND(G31<>\"\",I31<>\"\"),\"Selesai\",IF(G31<>\"\",\"Bukti Kurang\",IF(AND(F31<>\"\",F31<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L31",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B32",
+          null,
+          "IF(A32=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A32,2,3))),\"\"))"
+        ],
+        [
+          "J32",
+          null,
+          "IF(A32=\"\",\"\",IF(AND(G32<>\"\",I32<>\"\"),\"Selesai\",IF(G32<>\"\",\"Bukti Kurang\",IF(AND(F32<>\"\",F32<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L32",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B33",
+          null,
+          "IF(A33=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A33,2,3))),\"\"))"
+        ],
+        [
+          "J33",
+          null,
+          "IF(A33=\"\",\"\",IF(AND(G33<>\"\",I33<>\"\"),\"Selesai\",IF(G33<>\"\",\"Bukti Kurang\",IF(AND(F33<>\"\",F33<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L33",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B34",
+          null,
+          "IF(A34=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A34,2,3))),\"\"))"
+        ],
+        [
+          "J34",
+          null,
+          "IF(A34=\"\",\"\",IF(AND(G34<>\"\",I34<>\"\"),\"Selesai\",IF(G34<>\"\",\"Bukti Kurang\",IF(AND(F34<>\"\",F34<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L34",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B35",
+          null,
+          "IF(A35=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A35,2,3))),\"\"))"
+        ],
+        [
+          "J35",
+          null,
+          "IF(A35=\"\",\"\",IF(AND(G35<>\"\",I35<>\"\"),\"Selesai\",IF(G35<>\"\",\"Bukti Kurang\",IF(AND(F35<>\"\",F35<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L35",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B36",
+          null,
+          "IF(A36=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A36,2,3))),\"\"))"
+        ],
+        [
+          "J36",
+          null,
+          "IF(A36=\"\",\"\",IF(AND(G36<>\"\",I36<>\"\"),\"Selesai\",IF(G36<>\"\",\"Bukti Kurang\",IF(AND(F36<>\"\",F36<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L36",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B37",
+          null,
+          "IF(A37=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A37,2,3))),\"\"))"
+        ],
+        [
+          "J37",
+          null,
+          "IF(A37=\"\",\"\",IF(AND(G37<>\"\",I37<>\"\"),\"Selesai\",IF(G37<>\"\",\"Bukti Kurang\",IF(AND(F37<>\"\",F37<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L37",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B38",
+          null,
+          "IF(A38=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A38,2,3))),\"\"))"
+        ],
+        [
+          "J38",
+          null,
+          "IF(A38=\"\",\"\",IF(AND(G38<>\"\",I38<>\"\"),\"Selesai\",IF(G38<>\"\",\"Bukti Kurang\",IF(AND(F38<>\"\",F38<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L38",
+          null,
+          "IF(A38=\"\",\"\",SUMIF($A$6:$A$205,A38,$E$6:$E$205))"
+        ]
+      ],
+      [
+        [
+          "B39",
+          null,
+          "IF(A39=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A39,2,3))),\"\"))"
+        ],
+        [
+          "J39",
+          null,
+          "IF(A39=\"\",\"\",IF(AND(G39<>\"\",I39<>\"\"),\"Selesai\",IF(G39<>\"\",\"Bukti Kurang\",IF(AND(F39<>\"\",F39<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L39",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B40",
+          null,
+          "IF(A40=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A40,2,3))),\"\"))"
+        ],
+        [
+          "J40",
+          null,
+          "IF(A40=\"\",\"\",IF(AND(G40<>\"\",I40<>\"\"),\"Selesai\",IF(G40<>\"\",\"Bukti Kurang\",IF(AND(F40<>\"\",F40<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L40",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B41",
+          null,
+          "IF(A41=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A41,2,3))),\"\"))"
+        ],
+        [
+          "J41",
+          null,
+          "IF(A41=\"\",\"\",IF(AND(G41<>\"\",I41<>\"\"),\"Selesai\",IF(G41<>\"\",\"Bukti Kurang\",IF(AND(F41<>\"\",F41<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L41",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B42",
+          null,
+          "IF(A42=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A42,2,3))),\"\"))"
+        ],
+        [
+          "J42",
+          null,
+          "IF(A42=\"\",\"\",IF(AND(G42<>\"\",I42<>\"\"),\"Selesai\",IF(G42<>\"\",\"Bukti Kurang\",IF(AND(F42<>\"\",F42<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L42",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B43",
+          null,
+          "IF(A43=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A43,2,3))),\"\"))"
+        ],
+        [
+          "J43",
+          null,
+          "IF(A43=\"\",\"\",IF(AND(G43<>\"\",I43<>\"\"),\"Selesai\",IF(G43<>\"\",\"Bukti Kurang\",IF(AND(F43<>\"\",F43<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L43",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B44",
+          null,
+          "IF(A44=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A44,2,3))),\"\"))"
+        ],
+        [
+          "J44",
+          null,
+          "IF(A44=\"\",\"\",IF(AND(G44<>\"\",I44<>\"\"),\"Selesai\",IF(G44<>\"\",\"Bukti Kurang\",IF(AND(F44<>\"\",F44<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L44",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B45",
+          null,
+          "IF(A45=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A45,2,3))),\"\"))"
+        ],
+        [
+          "J45",
+          null,
+          "IF(A45=\"\",\"\",IF(AND(G45<>\"\",I45<>\"\"),\"Selesai\",IF(G45<>\"\",\"Bukti Kurang\",IF(AND(F45<>\"\",F45<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L45",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B46",
+          null,
+          "IF(A46=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A46,2,3))),\"\"))"
+        ],
+        [
+          "J46",
+          null,
+          "IF(A46=\"\",\"\",IF(AND(G46<>\"\",I46<>\"\"),\"Selesai\",IF(G46<>\"\",\"Bukti Kurang\",IF(AND(F46<>\"\",F46<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L46",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B47",
+          null,
+          "IF(A47=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A47,2,3))),\"\"))"
+        ],
+        [
+          "J47",
+          null,
+          "IF(A47=\"\",\"\",IF(AND(G47<>\"\",I47<>\"\"),\"Selesai\",IF(G47<>\"\",\"Bukti Kurang\",IF(AND(F47<>\"\",F47<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L47",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B48",
+          null,
+          "IF(A48=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A48,2,3))),\"\"))"
+        ],
+        [
+          "J48",
+          null,
+          "IF(A48=\"\",\"\",IF(AND(G48<>\"\",I48<>\"\"),\"Selesai\",IF(G48<>\"\",\"Bukti Kurang\",IF(AND(F48<>\"\",F48<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L48",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B49",
+          null,
+          "IF(A49=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A49,2,3))),\"\"))"
+        ],
+        [
+          "J49",
+          null,
+          "IF(A49=\"\",\"\",IF(AND(G49<>\"\",I49<>\"\"),\"Selesai\",IF(G49<>\"\",\"Bukti Kurang\",IF(AND(F49<>\"\",F49<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L49",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B50",
+          null,
+          "IF(A50=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A50,2,3))),\"\"))"
+        ],
+        [
+          "J50",
+          null,
+          "IF(A50=\"\",\"\",IF(AND(G50<>\"\",I50<>\"\"),\"Selesai\",IF(G50<>\"\",\"Bukti Kurang\",IF(AND(F50<>\"\",F50<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L50",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B51",
+          null,
+          "IF(A51=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A51,2,3))),\"\"))"
+        ],
+        [
+          "J51",
+          null,
+          "IF(A51=\"\",\"\",IF(AND(G51<>\"\",I51<>\"\"),\"Selesai\",IF(G51<>\"\",\"Bukti Kurang\",IF(AND(F51<>\"\",F51<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L51",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B52",
+          null,
+          "IF(A52=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A52,2,3))),\"\"))"
+        ],
+        [
+          "J52",
+          null,
+          "IF(A52=\"\",\"\",IF(AND(G52<>\"\",I52<>\"\"),\"Selesai\",IF(G52<>\"\",\"Bukti Kurang\",IF(AND(F52<>\"\",F52<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L52",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B53",
+          null,
+          "IF(A53=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A53,2,3))),\"\"))"
+        ],
+        [
+          "J53",
+          null,
+          "IF(A53=\"\",\"\",IF(AND(G53<>\"\",I53<>\"\"),\"Selesai\",IF(G53<>\"\",\"Bukti Kurang\",IF(AND(F53<>\"\",F53<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L53",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B54",
+          null,
+          "IF(A54=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A54,2,3))),\"\"))"
+        ],
+        [
+          "J54",
+          null,
+          "IF(A54=\"\",\"\",IF(AND(G54<>\"\",I54<>\"\"),\"Selesai\",IF(G54<>\"\",\"Bukti Kurang\",IF(AND(F54<>\"\",F54<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L54",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B55",
+          null,
+          "IF(A55=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A55,2,3))),\"\"))"
+        ],
+        [
+          "J55",
+          null,
+          "IF(A55=\"\",\"\",IF(AND(G55<>\"\",I55<>\"\"),\"Selesai\",IF(G55<>\"\",\"Bukti Kurang\",IF(AND(F55<>\"\",F55<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L55",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B56",
+          null,
+          "IF(A56=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A56,2,3))),\"\"))"
+        ],
+        [
+          "J56",
+          null,
+          "IF(A56=\"\",\"\",IF(AND(G56<>\"\",I56<>\"\"),\"Selesai\",IF(G56<>\"\",\"Bukti Kurang\",IF(AND(F56<>\"\",F56<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L56",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B57",
+          null,
+          "IF(A57=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A57,2,3))),\"\"))"
+        ],
+        [
+          "J57",
+          null,
+          "IF(A57=\"\",\"\",IF(AND(G57<>\"\",I57<>\"\"),\"Selesai\",IF(G57<>\"\",\"Bukti Kurang\",IF(AND(F57<>\"\",F57<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L57",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B58",
+          null,
+          "IF(A58=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A58,2,3))),\"\"))"
+        ],
+        [
+          "J58",
+          null,
+          "IF(A58=\"\",\"\",IF(AND(G58<>\"\",I58<>\"\"),\"Selesai\",IF(G58<>\"\",\"Bukti Kurang\",IF(AND(F58<>\"\",F58<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L58",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B59",
+          null,
+          "IF(A59=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A59,2,3))),\"\"))"
+        ],
+        [
+          "J59",
+          null,
+          "IF(A59=\"\",\"\",IF(AND(G59<>\"\",I59<>\"\"),\"Selesai\",IF(G59<>\"\",\"Bukti Kurang\",IF(AND(F59<>\"\",F59<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L59",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B60",
+          null,
+          "IF(A60=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A60,2,3))),\"\"))"
+        ],
+        [
+          "J60",
+          null,
+          "IF(A60=\"\",\"\",IF(AND(G60<>\"\",I60<>\"\"),\"Selesai\",IF(G60<>\"\",\"Bukti Kurang\",IF(AND(F60<>\"\",F60<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L60",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B61",
+          null,
+          "IF(A61=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A61,2,3))),\"\"))"
+        ],
+        [
+          "J61",
+          null,
+          "IF(A61=\"\",\"\",IF(AND(G61<>\"\",I61<>\"\"),\"Selesai\",IF(G61<>\"\",\"Bukti Kurang\",IF(AND(F61<>\"\",F61<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L61",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B62",
+          null,
+          "IF(A62=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A62,2,3))),\"\"))"
+        ],
+        [
+          "J62",
+          null,
+          "IF(A62=\"\",\"\",IF(AND(G62<>\"\",I62<>\"\"),\"Selesai\",IF(G62<>\"\",\"Bukti Kurang\",IF(AND(F62<>\"\",F62<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L62",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B63",
+          null,
+          "IF(A63=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A63,2,3))),\"\"))"
+        ],
+        [
+          "J63",
+          null,
+          "IF(A63=\"\",\"\",IF(AND(G63<>\"\",I63<>\"\"),\"Selesai\",IF(G63<>\"\",\"Bukti Kurang\",IF(AND(F63<>\"\",F63<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L63",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B64",
+          null,
+          "IF(A64=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A64,2,3))),\"\"))"
+        ],
+        [
+          "J64",
+          null,
+          "IF(A64=\"\",\"\",IF(AND(G64<>\"\",I64<>\"\"),\"Selesai\",IF(G64<>\"\",\"Bukti Kurang\",IF(AND(F64<>\"\",F64<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L64",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B65",
+          null,
+          "IF(A65=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A65,2,3))),\"\"))"
+        ],
+        [
+          "J65",
+          null,
+          "IF(A65=\"\",\"\",IF(AND(G65<>\"\",I65<>\"\"),\"Selesai\",IF(G65<>\"\",\"Bukti Kurang\",IF(AND(F65<>\"\",F65<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L65",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B66",
+          null,
+          "IF(A66=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A66,2,3))),\"\"))"
+        ],
+        [
+          "J66",
+          null,
+          "IF(A66=\"\",\"\",IF(AND(G66<>\"\",I66<>\"\"),\"Selesai\",IF(G66<>\"\",\"Bukti Kurang\",IF(AND(F66<>\"\",F66<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L66",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B67",
+          null,
+          "IF(A67=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A67,2,3))),\"\"))"
+        ],
+        [
+          "J67",
+          null,
+          "IF(A67=\"\",\"\",IF(AND(G67<>\"\",I67<>\"\"),\"Selesai\",IF(G67<>\"\",\"Bukti Kurang\",IF(AND(F67<>\"\",F67<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L67",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B68",
+          null,
+          "IF(A68=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A68,2,3))),\"\"))"
+        ],
+        [
+          "J68",
+          null,
+          "IF(A68=\"\",\"\",IF(AND(G68<>\"\",I68<>\"\"),\"Selesai\",IF(G68<>\"\",\"Bukti Kurang\",IF(AND(F68<>\"\",F68<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L68",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B69",
+          null,
+          "IF(A69=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A69,2,3))),\"\"))"
+        ],
+        [
+          "J69",
+          null,
+          "IF(A69=\"\",\"\",IF(AND(G69<>\"\",I69<>\"\"),\"Selesai\",IF(G69<>\"\",\"Bukti Kurang\",IF(AND(F69<>\"\",F69<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L69",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B70",
+          null,
+          "IF(A70=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A70,2,3))),\"\"))"
+        ],
+        [
+          "J70",
+          null,
+          "IF(A70=\"\",\"\",IF(AND(G70<>\"\",I70<>\"\"),\"Selesai\",IF(G70<>\"\",\"Bukti Kurang\",IF(AND(F70<>\"\",F70<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L70",
+          null,
+          "IF(A70=\"\",\"\",SUMIF($A$6:$A$205,A70,$E$6:$E$205))"
+        ]
+      ],
+      [
+        [
+          "B71",
+          null,
+          "IF(A71=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A71,2,3))),\"\"))"
+        ],
+        [
+          "J71",
+          null,
+          "IF(A71=\"\",\"\",IF(AND(G71<>\"\",I71<>\"\"),\"Selesai\",IF(G71<>\"\",\"Bukti Kurang\",IF(AND(F71<>\"\",F71<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L71",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B72",
+          null,
+          "IF(A72=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A72,2,3))),\"\"))"
+        ],
+        [
+          "J72",
+          null,
+          "IF(A72=\"\",\"\",IF(AND(G72<>\"\",I72<>\"\"),\"Selesai\",IF(G72<>\"\",\"Bukti Kurang\",IF(AND(F72<>\"\",F72<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L72",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B73",
+          null,
+          "IF(A73=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A73,2,3))),\"\"))"
+        ],
+        [
+          "J73",
+          null,
+          "IF(A73=\"\",\"\",IF(AND(G73<>\"\",I73<>\"\"),\"Selesai\",IF(G73<>\"\",\"Bukti Kurang\",IF(AND(F73<>\"\",F73<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L73",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B74",
+          null,
+          "IF(A74=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A74,2,3))),\"\"))"
+        ],
+        [
+          "J74",
+          null,
+          "IF(A74=\"\",\"\",IF(AND(G74<>\"\",I74<>\"\"),\"Selesai\",IF(G74<>\"\",\"Bukti Kurang\",IF(AND(F74<>\"\",F74<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L74",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B75",
+          null,
+          "IF(A75=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A75,2,3))),\"\"))"
+        ],
+        [
+          "J75",
+          null,
+          "IF(A75=\"\",\"\",IF(AND(G75<>\"\",I75<>\"\"),\"Selesai\",IF(G75<>\"\",\"Bukti Kurang\",IF(AND(F75<>\"\",F75<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L75",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B76",
+          null,
+          "IF(A76=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A76,2,3))),\"\"))"
+        ],
+        [
+          "J76",
+          null,
+          "IF(A76=\"\",\"\",IF(AND(G76<>\"\",I76<>\"\"),\"Selesai\",IF(G76<>\"\",\"Bukti Kurang\",IF(AND(F76<>\"\",F76<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L76",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B77",
+          null,
+          "IF(A77=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A77,2,3))),\"\"))"
+        ],
+        [
+          "J77",
+          null,
+          "IF(A77=\"\",\"\",IF(AND(G77<>\"\",I77<>\"\"),\"Selesai\",IF(G77<>\"\",\"Bukti Kurang\",IF(AND(F77<>\"\",F77<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L77",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B78",
+          null,
+          "IF(A78=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A78,2,3))),\"\"))"
+        ],
+        [
+          "J78",
+          null,
+          "IF(A78=\"\",\"\",IF(AND(G78<>\"\",I78<>\"\"),\"Selesai\",IF(G78<>\"\",\"Bukti Kurang\",IF(AND(F78<>\"\",F78<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L78",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B79",
+          null,
+          "IF(A79=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A79,2,3))),\"\"))"
+        ],
+        [
+          "J79",
+          null,
+          "IF(A79=\"\",\"\",IF(AND(G79<>\"\",I79<>\"\"),\"Selesai\",IF(G79<>\"\",\"Bukti Kurang\",IF(AND(F79<>\"\",F79<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L79",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B80",
+          null,
+          "IF(A80=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A80,2,3))),\"\"))"
+        ],
+        [
+          "J80",
+          null,
+          "IF(A80=\"\",\"\",IF(AND(G80<>\"\",I80<>\"\"),\"Selesai\",IF(G80<>\"\",\"Bukti Kurang\",IF(AND(F80<>\"\",F80<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L80",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B81",
+          null,
+          "IF(A81=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A81,2,3))),\"\"))"
+        ],
+        [
+          "J81",
+          null,
+          "IF(A81=\"\",\"\",IF(AND(G81<>\"\",I81<>\"\"),\"Selesai\",IF(G81<>\"\",\"Bukti Kurang\",IF(AND(F81<>\"\",F81<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L81",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B82",
+          null,
+          "IF(A82=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A82,2,3))),\"\"))"
+        ],
+        [
+          "J82",
+          null,
+          "IF(A82=\"\",\"\",IF(AND(G82<>\"\",I82<>\"\"),\"Selesai\",IF(G82<>\"\",\"Bukti Kurang\",IF(AND(F82<>\"\",F82<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L82",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B83",
+          null,
+          "IF(A83=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A83,2,3))),\"\"))"
+        ],
+        [
+          "J83",
+          null,
+          "IF(A83=\"\",\"\",IF(AND(G83<>\"\",I83<>\"\"),\"Selesai\",IF(G83<>\"\",\"Bukti Kurang\",IF(AND(F83<>\"\",F83<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L83",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B84",
+          null,
+          "IF(A84=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A84,2,3))),\"\"))"
+        ],
+        [
+          "J84",
+          null,
+          "IF(A84=\"\",\"\",IF(AND(G84<>\"\",I84<>\"\"),\"Selesai\",IF(G84<>\"\",\"Bukti Kurang\",IF(AND(F84<>\"\",F84<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L84",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B85",
+          null,
+          "IF(A85=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A85,2,3))),\"\"))"
+        ],
+        [
+          "J85",
+          null,
+          "IF(A85=\"\",\"\",IF(AND(G85<>\"\",I85<>\"\"),\"Selesai\",IF(G85<>\"\",\"Bukti Kurang\",IF(AND(F85<>\"\",F85<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L85",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B86",
+          null,
+          "IF(A86=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A86,2,3))),\"\"))"
+        ],
+        [
+          "J86",
+          null,
+          "IF(A86=\"\",\"\",IF(AND(G86<>\"\",I86<>\"\"),\"Selesai\",IF(G86<>\"\",\"Bukti Kurang\",IF(AND(F86<>\"\",F86<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L86",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B87",
+          null,
+          "IF(A87=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A87,2,3))),\"\"))"
+        ],
+        [
+          "J87",
+          null,
+          "IF(A87=\"\",\"\",IF(AND(G87<>\"\",I87<>\"\"),\"Selesai\",IF(G87<>\"\",\"Bukti Kurang\",IF(AND(F87<>\"\",F87<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L87",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B88",
+          null,
+          "IF(A88=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A88,2,3))),\"\"))"
+        ],
+        [
+          "J88",
+          null,
+          "IF(A88=\"\",\"\",IF(AND(G88<>\"\",I88<>\"\"),\"Selesai\",IF(G88<>\"\",\"Bukti Kurang\",IF(AND(F88<>\"\",F88<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L88",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B89",
+          null,
+          "IF(A89=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A89,2,3))),\"\"))"
+        ],
+        [
+          "J89",
+          null,
+          "IF(A89=\"\",\"\",IF(AND(G89<>\"\",I89<>\"\"),\"Selesai\",IF(G89<>\"\",\"Bukti Kurang\",IF(AND(F89<>\"\",F89<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L89",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B90",
+          null,
+          "IF(A90=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A90,2,3))),\"\"))"
+        ],
+        [
+          "J90",
+          null,
+          "IF(A90=\"\",\"\",IF(AND(G90<>\"\",I90<>\"\"),\"Selesai\",IF(G90<>\"\",\"Bukti Kurang\",IF(AND(F90<>\"\",F90<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L90",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B91",
+          null,
+          "IF(A91=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A91,2,3))),\"\"))"
+        ],
+        [
+          "J91",
+          null,
+          "IF(A91=\"\",\"\",IF(AND(G91<>\"\",I91<>\"\"),\"Selesai\",IF(G91<>\"\",\"Bukti Kurang\",IF(AND(F91<>\"\",F91<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L91",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B92",
+          null,
+          "IF(A92=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A92,2,3))),\"\"))"
+        ],
+        [
+          "J92",
+          null,
+          "IF(A92=\"\",\"\",IF(AND(G92<>\"\",I92<>\"\"),\"Selesai\",IF(G92<>\"\",\"Bukti Kurang\",IF(AND(F92<>\"\",F92<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L92",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B93",
+          null,
+          "IF(A93=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A93,2,3))),\"\"))"
+        ],
+        [
+          "J93",
+          null,
+          "IF(A93=\"\",\"\",IF(AND(G93<>\"\",I93<>\"\"),\"Selesai\",IF(G93<>\"\",\"Bukti Kurang\",IF(AND(F93<>\"\",F93<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L93",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B94",
+          null,
+          "IF(A94=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A94,2,3))),\"\"))"
+        ],
+        [
+          "J94",
+          null,
+          "IF(A94=\"\",\"\",IF(AND(G94<>\"\",I94<>\"\"),\"Selesai\",IF(G94<>\"\",\"Bukti Kurang\",IF(AND(F94<>\"\",F94<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L94",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B95",
+          null,
+          "IF(A95=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A95,2,3))),\"\"))"
+        ],
+        [
+          "J95",
+          null,
+          "IF(A95=\"\",\"\",IF(AND(G95<>\"\",I95<>\"\"),\"Selesai\",IF(G95<>\"\",\"Bukti Kurang\",IF(AND(F95<>\"\",F95<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L95",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B96",
+          null,
+          "IF(A96=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A96,2,3))),\"\"))"
+        ],
+        [
+          "J96",
+          null,
+          "IF(A96=\"\",\"\",IF(AND(G96<>\"\",I96<>\"\"),\"Selesai\",IF(G96<>\"\",\"Bukti Kurang\",IF(AND(F96<>\"\",F96<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L96",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B97",
+          null,
+          "IF(A97=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A97,2,3))),\"\"))"
+        ],
+        [
+          "J97",
+          null,
+          "IF(A97=\"\",\"\",IF(AND(G97<>\"\",I97<>\"\"),\"Selesai\",IF(G97<>\"\",\"Bukti Kurang\",IF(AND(F97<>\"\",F97<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L97",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B98",
+          null,
+          "IF(A98=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A98,2,3))),\"\"))"
+        ],
+        [
+          "J98",
+          null,
+          "IF(A98=\"\",\"\",IF(AND(G98<>\"\",I98<>\"\"),\"Selesai\",IF(G98<>\"\",\"Bukti Kurang\",IF(AND(F98<>\"\",F98<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L98",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B99",
+          null,
+          "IF(A99=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A99,2,3))),\"\"))"
+        ],
+        [
+          "J99",
+          null,
+          "IF(A99=\"\",\"\",IF(AND(G99<>\"\",I99<>\"\"),\"Selesai\",IF(G99<>\"\",\"Bukti Kurang\",IF(AND(F99<>\"\",F99<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L99",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B100",
+          null,
+          "IF(A100=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A100,2,3))),\"\"))"
+        ],
+        [
+          "J100",
+          null,
+          "IF(A100=\"\",\"\",IF(AND(G100<>\"\",I100<>\"\"),\"Selesai\",IF(G100<>\"\",\"Bukti Kurang\",IF(AND(F100<>\"\",F100<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L100",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B101",
+          null,
+          "IF(A101=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A101,2,3))),\"\"))"
+        ],
+        [
+          "J101",
+          null,
+          "IF(A101=\"\",\"\",IF(AND(G101<>\"\",I101<>\"\"),\"Selesai\",IF(G101<>\"\",\"Bukti Kurang\",IF(AND(F101<>\"\",F101<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L101",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B102",
+          null,
+          "IF(A102=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A102,2,3))),\"\"))"
+        ],
+        [
+          "J102",
+          null,
+          "IF(A102=\"\",\"\",IF(AND(G102<>\"\",I102<>\"\"),\"Selesai\",IF(G102<>\"\",\"Bukti Kurang\",IF(AND(F102<>\"\",F102<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L102",
+          null,
+          "IF(A102=\"\",\"\",SUMIF($A$6:$A$205,A102,$E$6:$E$205))"
+        ]
+      ],
+      [
+        [
+          "B103",
+          null,
+          "IF(A103=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A103,2,3))),\"\"))"
+        ],
+        [
+          "J103",
+          null,
+          "IF(A103=\"\",\"\",IF(AND(G103<>\"\",I103<>\"\"),\"Selesai\",IF(G103<>\"\",\"Bukti Kurang\",IF(AND(F103<>\"\",F103<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L103",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B104",
+          null,
+          "IF(A104=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A104,2,3))),\"\"))"
+        ],
+        [
+          "J104",
+          null,
+          "IF(A104=\"\",\"\",IF(AND(G104<>\"\",I104<>\"\"),\"Selesai\",IF(G104<>\"\",\"Bukti Kurang\",IF(AND(F104<>\"\",F104<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L104",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B105",
+          null,
+          "IF(A105=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A105,2,3))),\"\"))"
+        ],
+        [
+          "J105",
+          null,
+          "IF(A105=\"\",\"\",IF(AND(G105<>\"\",I105<>\"\"),\"Selesai\",IF(G105<>\"\",\"Bukti Kurang\",IF(AND(F105<>\"\",F105<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L105",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B106",
+          null,
+          "IF(A106=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A106,2,3))),\"\"))"
+        ],
+        [
+          "J106",
+          null,
+          "IF(A106=\"\",\"\",IF(AND(G106<>\"\",I106<>\"\"),\"Selesai\",IF(G106<>\"\",\"Bukti Kurang\",IF(AND(F106<>\"\",F106<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L106",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B107",
+          null,
+          "IF(A107=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A107,2,3))),\"\"))"
+        ],
+        [
+          "J107",
+          null,
+          "IF(A107=\"\",\"\",IF(AND(G107<>\"\",I107<>\"\"),\"Selesai\",IF(G107<>\"\",\"Bukti Kurang\",IF(AND(F107<>\"\",F107<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L107",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B108",
+          null,
+          "IF(A108=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A108,2,3))),\"\"))"
+        ],
+        [
+          "J108",
+          null,
+          "IF(A108=\"\",\"\",IF(AND(G108<>\"\",I108<>\"\"),\"Selesai\",IF(G108<>\"\",\"Bukti Kurang\",IF(AND(F108<>\"\",F108<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L108",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B109",
+          null,
+          "IF(A109=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A109,2,3))),\"\"))"
+        ],
+        [
+          "J109",
+          null,
+          "IF(A109=\"\",\"\",IF(AND(G109<>\"\",I109<>\"\"),\"Selesai\",IF(G109<>\"\",\"Bukti Kurang\",IF(AND(F109<>\"\",F109<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L109",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B110",
+          null,
+          "IF(A110=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A110,2,3))),\"\"))"
+        ],
+        [
+          "J110",
+          null,
+          "IF(A110=\"\",\"\",IF(AND(G110<>\"\",I110<>\"\"),\"Selesai\",IF(G110<>\"\",\"Bukti Kurang\",IF(AND(F110<>\"\",F110<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L110",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B111",
+          null,
+          "IF(A111=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A111,2,3))),\"\"))"
+        ],
+        [
+          "J111",
+          null,
+          "IF(A111=\"\",\"\",IF(AND(G111<>\"\",I111<>\"\"),\"Selesai\",IF(G111<>\"\",\"Bukti Kurang\",IF(AND(F111<>\"\",F111<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L111",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B112",
+          null,
+          "IF(A112=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A112,2,3))),\"\"))"
+        ],
+        [
+          "J112",
+          null,
+          "IF(A112=\"\",\"\",IF(AND(G112<>\"\",I112<>\"\"),\"Selesai\",IF(G112<>\"\",\"Bukti Kurang\",IF(AND(F112<>\"\",F112<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L112",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B113",
+          null,
+          "IF(A113=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A113,2,3))),\"\"))"
+        ],
+        [
+          "J113",
+          null,
+          "IF(A113=\"\",\"\",IF(AND(G113<>\"\",I113<>\"\"),\"Selesai\",IF(G113<>\"\",\"Bukti Kurang\",IF(AND(F113<>\"\",F113<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L113",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B114",
+          null,
+          "IF(A114=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A114,2,3))),\"\"))"
+        ],
+        [
+          "J114",
+          null,
+          "IF(A114=\"\",\"\",IF(AND(G114<>\"\",I114<>\"\"),\"Selesai\",IF(G114<>\"\",\"Bukti Kurang\",IF(AND(F114<>\"\",F114<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L114",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B115",
+          null,
+          "IF(A115=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A115,2,3))),\"\"))"
+        ],
+        [
+          "J115",
+          null,
+          "IF(A115=\"\",\"\",IF(AND(G115<>\"\",I115<>\"\"),\"Selesai\",IF(G115<>\"\",\"Bukti Kurang\",IF(AND(F115<>\"\",F115<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L115",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B116",
+          null,
+          "IF(A116=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A116,2,3))),\"\"))"
+        ],
+        [
+          "J116",
+          null,
+          "IF(A116=\"\",\"\",IF(AND(G116<>\"\",I116<>\"\"),\"Selesai\",IF(G116<>\"\",\"Bukti Kurang\",IF(AND(F116<>\"\",F116<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L116",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B117",
+          null,
+          "IF(A117=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A117,2,3))),\"\"))"
+        ],
+        [
+          "J117",
+          null,
+          "IF(A117=\"\",\"\",IF(AND(G117<>\"\",I117<>\"\"),\"Selesai\",IF(G117<>\"\",\"Bukti Kurang\",IF(AND(F117<>\"\",F117<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L117",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B118",
+          null,
+          "IF(A118=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A118,2,3))),\"\"))"
+        ],
+        [
+          "J118",
+          null,
+          "IF(A118=\"\",\"\",IF(AND(G118<>\"\",I118<>\"\"),\"Selesai\",IF(G118<>\"\",\"Bukti Kurang\",IF(AND(F118<>\"\",F118<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L118",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B119",
+          null,
+          "IF(A119=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A119,2,3))),\"\"))"
+        ],
+        [
+          "J119",
+          null,
+          "IF(A119=\"\",\"\",IF(AND(G119<>\"\",I119<>\"\"),\"Selesai\",IF(G119<>\"\",\"Bukti Kurang\",IF(AND(F119<>\"\",F119<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L119",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B120",
+          null,
+          "IF(A120=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A120,2,3))),\"\"))"
+        ],
+        [
+          "J120",
+          null,
+          "IF(A120=\"\",\"\",IF(AND(G120<>\"\",I120<>\"\"),\"Selesai\",IF(G120<>\"\",\"Bukti Kurang\",IF(AND(F120<>\"\",F120<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L120",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B121",
+          null,
+          "IF(A121=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A121,2,3))),\"\"))"
+        ],
+        [
+          "J121",
+          null,
+          "IF(A121=\"\",\"\",IF(AND(G121<>\"\",I121<>\"\"),\"Selesai\",IF(G121<>\"\",\"Bukti Kurang\",IF(AND(F121<>\"\",F121<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L121",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B122",
+          null,
+          "IF(A122=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A122,2,3))),\"\"))"
+        ],
+        [
+          "J122",
+          null,
+          "IF(A122=\"\",\"\",IF(AND(G122<>\"\",I122<>\"\"),\"Selesai\",IF(G122<>\"\",\"Bukti Kurang\",IF(AND(F122<>\"\",F122<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L122",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B123",
+          null,
+          "IF(A123=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A123,2,3))),\"\"))"
+        ],
+        [
+          "J123",
+          null,
+          "IF(A123=\"\",\"\",IF(AND(G123<>\"\",I123<>\"\"),\"Selesai\",IF(G123<>\"\",\"Bukti Kurang\",IF(AND(F123<>\"\",F123<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L123",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B124",
+          null,
+          "IF(A124=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A124,2,3))),\"\"))"
+        ],
+        [
+          "J124",
+          null,
+          "IF(A124=\"\",\"\",IF(AND(G124<>\"\",I124<>\"\"),\"Selesai\",IF(G124<>\"\",\"Bukti Kurang\",IF(AND(F124<>\"\",F124<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L124",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B125",
+          null,
+          "IF(A125=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A125,2,3))),\"\"))"
+        ],
+        [
+          "J125",
+          null,
+          "IF(A125=\"\",\"\",IF(AND(G125<>\"\",I125<>\"\"),\"Selesai\",IF(G125<>\"\",\"Bukti Kurang\",IF(AND(F125<>\"\",F125<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L125",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B126",
+          null,
+          "IF(A126=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A126,2,3))),\"\"))"
+        ],
+        [
+          "J126",
+          null,
+          "IF(A126=\"\",\"\",IF(AND(G126<>\"\",I126<>\"\"),\"Selesai\",IF(G126<>\"\",\"Bukti Kurang\",IF(AND(F126<>\"\",F126<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L126",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B127",
+          null,
+          "IF(A127=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A127,2,3))),\"\"))"
+        ],
+        [
+          "J127",
+          null,
+          "IF(A127=\"\",\"\",IF(AND(G127<>\"\",I127<>\"\"),\"Selesai\",IF(G127<>\"\",\"Bukti Kurang\",IF(AND(F127<>\"\",F127<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L127",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B128",
+          null,
+          "IF(A128=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A128,2,3))),\"\"))"
+        ],
+        [
+          "J128",
+          null,
+          "IF(A128=\"\",\"\",IF(AND(G128<>\"\",I128<>\"\"),\"Selesai\",IF(G128<>\"\",\"Bukti Kurang\",IF(AND(F128<>\"\",F128<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L128",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B129",
+          null,
+          "IF(A129=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A129,2,3))),\"\"))"
+        ],
+        [
+          "J129",
+          null,
+          "IF(A129=\"\",\"\",IF(AND(G129<>\"\",I129<>\"\"),\"Selesai\",IF(G129<>\"\",\"Bukti Kurang\",IF(AND(F129<>\"\",F129<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L129",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B130",
+          null,
+          "IF(A130=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A130,2,3))),\"\"))"
+        ],
+        [
+          "J130",
+          null,
+          "IF(A130=\"\",\"\",IF(AND(G130<>\"\",I130<>\"\"),\"Selesai\",IF(G130<>\"\",\"Bukti Kurang\",IF(AND(F130<>\"\",F130<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L130",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B131",
+          null,
+          "IF(A131=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A131,2,3))),\"\"))"
+        ],
+        [
+          "J131",
+          null,
+          "IF(A131=\"\",\"\",IF(AND(G131<>\"\",I131<>\"\"),\"Selesai\",IF(G131<>\"\",\"Bukti Kurang\",IF(AND(F131<>\"\",F131<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L131",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B132",
+          null,
+          "IF(A132=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A132,2,3))),\"\"))"
+        ],
+        [
+          "J132",
+          null,
+          "IF(A132=\"\",\"\",IF(AND(G132<>\"\",I132<>\"\"),\"Selesai\",IF(G132<>\"\",\"Bukti Kurang\",IF(AND(F132<>\"\",F132<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L132",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B133",
+          null,
+          "IF(A133=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A133,2,3))),\"\"))"
+        ],
+        [
+          "J133",
+          null,
+          "IF(A133=\"\",\"\",IF(AND(G133<>\"\",I133<>\"\"),\"Selesai\",IF(G133<>\"\",\"Bukti Kurang\",IF(AND(F133<>\"\",F133<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L133",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B134",
+          null,
+          "IF(A134=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A134,2,3))),\"\"))"
+        ],
+        [
+          "J134",
+          null,
+          "IF(A134=\"\",\"\",IF(AND(G134<>\"\",I134<>\"\"),\"Selesai\",IF(G134<>\"\",\"Bukti Kurang\",IF(AND(F134<>\"\",F134<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L134",
+          null,
+          "IF(A134=\"\",\"\",SUMIF($A$6:$A$205,A134,$E$6:$E$205))"
+        ]
+      ],
+      [
+        [
+          "B135",
+          null,
+          "IF(A135=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A135,2,3))),\"\"))"
+        ],
+        [
+          "J135",
+          null,
+          "IF(A135=\"\",\"\",IF(AND(G135<>\"\",I135<>\"\"),\"Selesai\",IF(G135<>\"\",\"Bukti Kurang\",IF(AND(F135<>\"\",F135<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L135",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B136",
+          null,
+          "IF(A136=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A136,2,3))),\"\"))"
+        ],
+        [
+          "J136",
+          null,
+          "IF(A136=\"\",\"\",IF(AND(G136<>\"\",I136<>\"\"),\"Selesai\",IF(G136<>\"\",\"Bukti Kurang\",IF(AND(F136<>\"\",F136<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L136",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B137",
+          null,
+          "IF(A137=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A137,2,3))),\"\"))"
+        ],
+        [
+          "J137",
+          null,
+          "IF(A137=\"\",\"\",IF(AND(G137<>\"\",I137<>\"\"),\"Selesai\",IF(G137<>\"\",\"Bukti Kurang\",IF(AND(F137<>\"\",F137<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L137",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B138",
+          null,
+          "IF(A138=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A138,2,3))),\"\"))"
+        ],
+        [
+          "J138",
+          null,
+          "IF(A138=\"\",\"\",IF(AND(G138<>\"\",I138<>\"\"),\"Selesai\",IF(G138<>\"\",\"Bukti Kurang\",IF(AND(F138<>\"\",F138<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L138",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B139",
+          null,
+          "IF(A139=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A139,2,3))),\"\"))"
+        ],
+        [
+          "J139",
+          null,
+          "IF(A139=\"\",\"\",IF(AND(G139<>\"\",I139<>\"\"),\"Selesai\",IF(G139<>\"\",\"Bukti Kurang\",IF(AND(F139<>\"\",F139<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L139",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B140",
+          null,
+          "IF(A140=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A140,2,3))),\"\"))"
+        ],
+        [
+          "J140",
+          null,
+          "IF(A140=\"\",\"\",IF(AND(G140<>\"\",I140<>\"\"),\"Selesai\",IF(G140<>\"\",\"Bukti Kurang\",IF(AND(F140<>\"\",F140<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L140",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B141",
+          null,
+          "IF(A141=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A141,2,3))),\"\"))"
+        ],
+        [
+          "J141",
+          null,
+          "IF(A141=\"\",\"\",IF(AND(G141<>\"\",I141<>\"\"),\"Selesai\",IF(G141<>\"\",\"Bukti Kurang\",IF(AND(F141<>\"\",F141<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L141",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B142",
+          null,
+          "IF(A142=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A142,2,3))),\"\"))"
+        ],
+        [
+          "J142",
+          null,
+          "IF(A142=\"\",\"\",IF(AND(G142<>\"\",I142<>\"\"),\"Selesai\",IF(G142<>\"\",\"Bukti Kurang\",IF(AND(F142<>\"\",F142<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L142",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B143",
+          null,
+          "IF(A143=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A143,2,3))),\"\"))"
+        ],
+        [
+          "J143",
+          null,
+          "IF(A143=\"\",\"\",IF(AND(G143<>\"\",I143<>\"\"),\"Selesai\",IF(G143<>\"\",\"Bukti Kurang\",IF(AND(F143<>\"\",F143<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L143",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B144",
+          null,
+          "IF(A144=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A144,2,3))),\"\"))"
+        ],
+        [
+          "J144",
+          null,
+          "IF(A144=\"\",\"\",IF(AND(G144<>\"\",I144<>\"\"),\"Selesai\",IF(G144<>\"\",\"Bukti Kurang\",IF(AND(F144<>\"\",F144<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L144",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B145",
+          null,
+          "IF(A145=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A145,2,3))),\"\"))"
+        ],
+        [
+          "J145",
+          null,
+          "IF(A145=\"\",\"\",IF(AND(G145<>\"\",I145<>\"\"),\"Selesai\",IF(G145<>\"\",\"Bukti Kurang\",IF(AND(F145<>\"\",F145<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L145",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B146",
+          null,
+          "IF(A146=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A146,2,3))),\"\"))"
+        ],
+        [
+          "J146",
+          null,
+          "IF(A146=\"\",\"\",IF(AND(G146<>\"\",I146<>\"\"),\"Selesai\",IF(G146<>\"\",\"Bukti Kurang\",IF(AND(F146<>\"\",F146<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L146",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B147",
+          null,
+          "IF(A147=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A147,2,3))),\"\"))"
+        ],
+        [
+          "J147",
+          null,
+          "IF(A147=\"\",\"\",IF(AND(G147<>\"\",I147<>\"\"),\"Selesai\",IF(G147<>\"\",\"Bukti Kurang\",IF(AND(F147<>\"\",F147<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L147",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B148",
+          null,
+          "IF(A148=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A148,2,3))),\"\"))"
+        ],
+        [
+          "J148",
+          null,
+          "IF(A148=\"\",\"\",IF(AND(G148<>\"\",I148<>\"\"),\"Selesai\",IF(G148<>\"\",\"Bukti Kurang\",IF(AND(F148<>\"\",F148<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L148",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B149",
+          null,
+          "IF(A149=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A149,2,3))),\"\"))"
+        ],
+        [
+          "J149",
+          null,
+          "IF(A149=\"\",\"\",IF(AND(G149<>\"\",I149<>\"\"),\"Selesai\",IF(G149<>\"\",\"Bukti Kurang\",IF(AND(F149<>\"\",F149<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L149",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B150",
+          null,
+          "IF(A150=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A150,2,3))),\"\"))"
+        ],
+        [
+          "J150",
+          null,
+          "IF(A150=\"\",\"\",IF(AND(G150<>\"\",I150<>\"\"),\"Selesai\",IF(G150<>\"\",\"Bukti Kurang\",IF(AND(F150<>\"\",F150<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L150",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B151",
+          null,
+          "IF(A151=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A151,2,3))),\"\"))"
+        ],
+        [
+          "J151",
+          null,
+          "IF(A151=\"\",\"\",IF(AND(G151<>\"\",I151<>\"\"),\"Selesai\",IF(G151<>\"\",\"Bukti Kurang\",IF(AND(F151<>\"\",F151<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L151",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B152",
+          null,
+          "IF(A152=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A152,2,3))),\"\"))"
+        ],
+        [
+          "J152",
+          null,
+          "IF(A152=\"\",\"\",IF(AND(G152<>\"\",I152<>\"\"),\"Selesai\",IF(G152<>\"\",\"Bukti Kurang\",IF(AND(F152<>\"\",F152<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L152",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B153",
+          null,
+          "IF(A153=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A153,2,3))),\"\"))"
+        ],
+        [
+          "J153",
+          null,
+          "IF(A153=\"\",\"\",IF(AND(G153<>\"\",I153<>\"\"),\"Selesai\",IF(G153<>\"\",\"Bukti Kurang\",IF(AND(F153<>\"\",F153<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L153",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B154",
+          null,
+          "IF(A154=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A154,2,3))),\"\"))"
+        ],
+        [
+          "J154",
+          null,
+          "IF(A154=\"\",\"\",IF(AND(G154<>\"\",I154<>\"\"),\"Selesai\",IF(G154<>\"\",\"Bukti Kurang\",IF(AND(F154<>\"\",F154<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L154",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B155",
+          null,
+          "IF(A155=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A155,2,3))),\"\"))"
+        ],
+        [
+          "J155",
+          null,
+          "IF(A155=\"\",\"\",IF(AND(G155<>\"\",I155<>\"\"),\"Selesai\",IF(G155<>\"\",\"Bukti Kurang\",IF(AND(F155<>\"\",F155<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L155",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B156",
+          null,
+          "IF(A156=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A156,2,3))),\"\"))"
+        ],
+        [
+          "J156",
+          null,
+          "IF(A156=\"\",\"\",IF(AND(G156<>\"\",I156<>\"\"),\"Selesai\",IF(G156<>\"\",\"Bukti Kurang\",IF(AND(F156<>\"\",F156<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L156",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B157",
+          null,
+          "IF(A157=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A157,2,3))),\"\"))"
+        ],
+        [
+          "J157",
+          null,
+          "IF(A157=\"\",\"\",IF(AND(G157<>\"\",I157<>\"\"),\"Selesai\",IF(G157<>\"\",\"Bukti Kurang\",IF(AND(F157<>\"\",F157<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L157",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B158",
+          null,
+          "IF(A158=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A158,2,3))),\"\"))"
+        ],
+        [
+          "J158",
+          null,
+          "IF(A158=\"\",\"\",IF(AND(G158<>\"\",I158<>\"\"),\"Selesai\",IF(G158<>\"\",\"Bukti Kurang\",IF(AND(F158<>\"\",F158<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L158",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B159",
+          null,
+          "IF(A159=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A159,2,3))),\"\"))"
+        ],
+        [
+          "J159",
+          null,
+          "IF(A159=\"\",\"\",IF(AND(G159<>\"\",I159<>\"\"),\"Selesai\",IF(G159<>\"\",\"Bukti Kurang\",IF(AND(F159<>\"\",F159<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L159",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B160",
+          null,
+          "IF(A160=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A160,2,3))),\"\"))"
+        ],
+        [
+          "J160",
+          null,
+          "IF(A160=\"\",\"\",IF(AND(G160<>\"\",I160<>\"\"),\"Selesai\",IF(G160<>\"\",\"Bukti Kurang\",IF(AND(F160<>\"\",F160<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L160",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B161",
+          null,
+          "IF(A161=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A161,2,3))),\"\"))"
+        ],
+        [
+          "J161",
+          null,
+          "IF(A161=\"\",\"\",IF(AND(G161<>\"\",I161<>\"\"),\"Selesai\",IF(G161<>\"\",\"Bukti Kurang\",IF(AND(F161<>\"\",F161<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L161",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B162",
+          null,
+          "IF(A162=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A162,2,3))),\"\"))"
+        ],
+        [
+          "J162",
+          null,
+          "IF(A162=\"\",\"\",IF(AND(G162<>\"\",I162<>\"\"),\"Selesai\",IF(G162<>\"\",\"Bukti Kurang\",IF(AND(F162<>\"\",F162<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L162",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B163",
+          null,
+          "IF(A163=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A163,2,3))),\"\"))"
+        ],
+        [
+          "J163",
+          null,
+          "IF(A163=\"\",\"\",IF(AND(G163<>\"\",I163<>\"\"),\"Selesai\",IF(G163<>\"\",\"Bukti Kurang\",IF(AND(F163<>\"\",F163<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L163",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B164",
+          null,
+          "IF(A164=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A164,2,3))),\"\"))"
+        ],
+        [
+          "J164",
+          null,
+          "IF(A164=\"\",\"\",IF(AND(G164<>\"\",I164<>\"\"),\"Selesai\",IF(G164<>\"\",\"Bukti Kurang\",IF(AND(F164<>\"\",F164<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L164",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B165",
+          null,
+          "IF(A165=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A165,2,3))),\"\"))"
+        ],
+        [
+          "J165",
+          null,
+          "IF(A165=\"\",\"\",IF(AND(G165<>\"\",I165<>\"\"),\"Selesai\",IF(G165<>\"\",\"Bukti Kurang\",IF(AND(F165<>\"\",F165<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L165",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B166",
+          null,
+          "IF(A166=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A166,2,3))),\"\"))"
+        ],
+        [
+          "J166",
+          null,
+          "IF(A166=\"\",\"\",IF(AND(G166<>\"\",I166<>\"\"),\"Selesai\",IF(G166<>\"\",\"Bukti Kurang\",IF(AND(F166<>\"\",F166<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L166",
+          null,
+          "IF(A166=\"\",\"\",SUMIF($A$6:$A$205,A166,$E$6:$E$205))"
+        ]
+      ],
+      [
+        [
+          "B167",
+          null,
+          "IF(A167=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A167,2,3))),\"\"))"
+        ],
+        [
+          "J167",
+          null,
+          "IF(A167=\"\",\"\",IF(AND(G167<>\"\",I167<>\"\"),\"Selesai\",IF(G167<>\"\",\"Bukti Kurang\",IF(AND(F167<>\"\",F167<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L167",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B168",
+          null,
+          "IF(A168=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A168,2,3))),\"\"))"
+        ],
+        [
+          "J168",
+          null,
+          "IF(A168=\"\",\"\",IF(AND(G168<>\"\",I168<>\"\"),\"Selesai\",IF(G168<>\"\",\"Bukti Kurang\",IF(AND(F168<>\"\",F168<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L168",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B169",
+          null,
+          "IF(A169=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A169,2,3))),\"\"))"
+        ],
+        [
+          "J169",
+          null,
+          "IF(A169=\"\",\"\",IF(AND(G169<>\"\",I169<>\"\"),\"Selesai\",IF(G169<>\"\",\"Bukti Kurang\",IF(AND(F169<>\"\",F169<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L169",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B170",
+          null,
+          "IF(A170=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A170,2,3))),\"\"))"
+        ],
+        [
+          "J170",
+          null,
+          "IF(A170=\"\",\"\",IF(AND(G170<>\"\",I170<>\"\"),\"Selesai\",IF(G170<>\"\",\"Bukti Kurang\",IF(AND(F170<>\"\",F170<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L170",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B171",
+          null,
+          "IF(A171=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A171,2,3))),\"\"))"
+        ],
+        [
+          "J171",
+          null,
+          "IF(A171=\"\",\"\",IF(AND(G171<>\"\",I171<>\"\"),\"Selesai\",IF(G171<>\"\",\"Bukti Kurang\",IF(AND(F171<>\"\",F171<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L171",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B172",
+          null,
+          "IF(A172=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A172,2,3))),\"\"))"
+        ],
+        [
+          "J172",
+          null,
+          "IF(A172=\"\",\"\",IF(AND(G172<>\"\",I172<>\"\"),\"Selesai\",IF(G172<>\"\",\"Bukti Kurang\",IF(AND(F172<>\"\",F172<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L172",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B173",
+          null,
+          "IF(A173=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A173,2,3))),\"\"))"
+        ],
+        [
+          "J173",
+          null,
+          "IF(A173=\"\",\"\",IF(AND(G173<>\"\",I173<>\"\"),\"Selesai\",IF(G173<>\"\",\"Bukti Kurang\",IF(AND(F173<>\"\",F173<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L173",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B174",
+          null,
+          "IF(A174=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A174,2,3))),\"\"))"
+        ],
+        [
+          "J174",
+          null,
+          "IF(A174=\"\",\"\",IF(AND(G174<>\"\",I174<>\"\"),\"Selesai\",IF(G174<>\"\",\"Bukti Kurang\",IF(AND(F174<>\"\",F174<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L174",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B175",
+          null,
+          "IF(A175=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A175,2,3))),\"\"))"
+        ],
+        [
+          "J175",
+          null,
+          "IF(A175=\"\",\"\",IF(AND(G175<>\"\",I175<>\"\"),\"Selesai\",IF(G175<>\"\",\"Bukti Kurang\",IF(AND(F175<>\"\",F175<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L175",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B176",
+          null,
+          "IF(A176=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A176,2,3))),\"\"))"
+        ],
+        [
+          "J176",
+          null,
+          "IF(A176=\"\",\"\",IF(AND(G176<>\"\",I176<>\"\"),\"Selesai\",IF(G176<>\"\",\"Bukti Kurang\",IF(AND(F176<>\"\",F176<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L176",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B177",
+          null,
+          "IF(A177=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A177,2,3))),\"\"))"
+        ],
+        [
+          "J177",
+          null,
+          "IF(A177=\"\",\"\",IF(AND(G177<>\"\",I177<>\"\"),\"Selesai\",IF(G177<>\"\",\"Bukti Kurang\",IF(AND(F177<>\"\",F177<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L177",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B178",
+          null,
+          "IF(A178=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A178,2,3))),\"\"))"
+        ],
+        [
+          "J178",
+          null,
+          "IF(A178=\"\",\"\",IF(AND(G178<>\"\",I178<>\"\"),\"Selesai\",IF(G178<>\"\",\"Bukti Kurang\",IF(AND(F178<>\"\",F178<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L178",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B179",
+          null,
+          "IF(A179=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A179,2,3))),\"\"))"
+        ],
+        [
+          "J179",
+          null,
+          "IF(A179=\"\",\"\",IF(AND(G179<>\"\",I179<>\"\"),\"Selesai\",IF(G179<>\"\",\"Bukti Kurang\",IF(AND(F179<>\"\",F179<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L179",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B180",
+          null,
+          "IF(A180=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A180,2,3))),\"\"))"
+        ],
+        [
+          "J180",
+          null,
+          "IF(A180=\"\",\"\",IF(AND(G180<>\"\",I180<>\"\"),\"Selesai\",IF(G180<>\"\",\"Bukti Kurang\",IF(AND(F180<>\"\",F180<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L180",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B181",
+          null,
+          "IF(A181=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A181,2,3))),\"\"))"
+        ],
+        [
+          "J181",
+          null,
+          "IF(A181=\"\",\"\",IF(AND(G181<>\"\",I181<>\"\"),\"Selesai\",IF(G181<>\"\",\"Bukti Kurang\",IF(AND(F181<>\"\",F181<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L181",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B182",
+          null,
+          "IF(A182=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A182,2,3))),\"\"))"
+        ],
+        [
+          "J182",
+          null,
+          "IF(A182=\"\",\"\",IF(AND(G182<>\"\",I182<>\"\"),\"Selesai\",IF(G182<>\"\",\"Bukti Kurang\",IF(AND(F182<>\"\",F182<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L182",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B183",
+          null,
+          "IF(A183=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A183,2,3))),\"\"))"
+        ],
+        [
+          "J183",
+          null,
+          "IF(A183=\"\",\"\",IF(AND(G183<>\"\",I183<>\"\"),\"Selesai\",IF(G183<>\"\",\"Bukti Kurang\",IF(AND(F183<>\"\",F183<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L183",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B184",
+          null,
+          "IF(A184=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A184,2,3))),\"\"))"
+        ],
+        [
+          "J184",
+          null,
+          "IF(A184=\"\",\"\",IF(AND(G184<>\"\",I184<>\"\"),\"Selesai\",IF(G184<>\"\",\"Bukti Kurang\",IF(AND(F184<>\"\",F184<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L184",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B185",
+          null,
+          "IF(A185=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A185,2,3))),\"\"))"
+        ],
+        [
+          "J185",
+          null,
+          "IF(A185=\"\",\"\",IF(AND(G185<>\"\",I185<>\"\"),\"Selesai\",IF(G185<>\"\",\"Bukti Kurang\",IF(AND(F185<>\"\",F185<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L185",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B186",
+          null,
+          "IF(A186=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A186,2,3))),\"\"))"
+        ],
+        [
+          "J186",
+          null,
+          "IF(A186=\"\",\"\",IF(AND(G186<>\"\",I186<>\"\"),\"Selesai\",IF(G186<>\"\",\"Bukti Kurang\",IF(AND(F186<>\"\",F186<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L186",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B187",
+          null,
+          "IF(A187=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A187,2,3))),\"\"))"
+        ],
+        [
+          "J187",
+          null,
+          "IF(A187=\"\",\"\",IF(AND(G187<>\"\",I187<>\"\"),\"Selesai\",IF(G187<>\"\",\"Bukti Kurang\",IF(AND(F187<>\"\",F187<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L187",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B188",
+          null,
+          "IF(A188=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A188,2,3))),\"\"))"
+        ],
+        [
+          "J188",
+          null,
+          "IF(A188=\"\",\"\",IF(AND(G188<>\"\",I188<>\"\"),\"Selesai\",IF(G188<>\"\",\"Bukti Kurang\",IF(AND(F188<>\"\",F188<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L188",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B189",
+          null,
+          "IF(A189=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A189,2,3))),\"\"))"
+        ],
+        [
+          "J189",
+          null,
+          "IF(A189=\"\",\"\",IF(AND(G189<>\"\",I189<>\"\"),\"Selesai\",IF(G189<>\"\",\"Bukti Kurang\",IF(AND(F189<>\"\",F189<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L189",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B190",
+          null,
+          "IF(A190=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A190,2,3))),\"\"))"
+        ],
+        [
+          "J190",
+          null,
+          "IF(A190=\"\",\"\",IF(AND(G190<>\"\",I190<>\"\"),\"Selesai\",IF(G190<>\"\",\"Bukti Kurang\",IF(AND(F190<>\"\",F190<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L190",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B191",
+          null,
+          "IF(A191=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A191,2,3))),\"\"))"
+        ],
+        [
+          "J191",
+          null,
+          "IF(A191=\"\",\"\",IF(AND(G191<>\"\",I191<>\"\"),\"Selesai\",IF(G191<>\"\",\"Bukti Kurang\",IF(AND(F191<>\"\",F191<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L191",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B192",
+          null,
+          "IF(A192=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A192,2,3))),\"\"))"
+        ],
+        [
+          "J192",
+          null,
+          "IF(A192=\"\",\"\",IF(AND(G192<>\"\",I192<>\"\"),\"Selesai\",IF(G192<>\"\",\"Bukti Kurang\",IF(AND(F192<>\"\",F192<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L192",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B193",
+          null,
+          "IF(A193=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A193,2,3))),\"\"))"
+        ],
+        [
+          "J193",
+          null,
+          "IF(A193=\"\",\"\",IF(AND(G193<>\"\",I193<>\"\"),\"Selesai\",IF(G193<>\"\",\"Bukti Kurang\",IF(AND(F193<>\"\",F193<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L193",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B194",
+          null,
+          "IF(A194=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A194,2,3))),\"\"))"
+        ],
+        [
+          "J194",
+          null,
+          "IF(A194=\"\",\"\",IF(AND(G194<>\"\",I194<>\"\"),\"Selesai\",IF(G194<>\"\",\"Bukti Kurang\",IF(AND(F194<>\"\",F194<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L194",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B195",
+          null,
+          "IF(A195=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A195,2,3))),\"\"))"
+        ],
+        [
+          "J195",
+          null,
+          "IF(A195=\"\",\"\",IF(AND(G195<>\"\",I195<>\"\"),\"Selesai\",IF(G195<>\"\",\"Bukti Kurang\",IF(AND(F195<>\"\",F195<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L195",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B196",
+          null,
+          "IF(A196=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A196,2,3))),\"\"))"
+        ],
+        [
+          "J196",
+          null,
+          "IF(A196=\"\",\"\",IF(AND(G196<>\"\",I196<>\"\"),\"Selesai\",IF(G196<>\"\",\"Bukti Kurang\",IF(AND(F196<>\"\",F196<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L196",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B197",
+          null,
+          "IF(A197=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A197,2,3))),\"\"))"
+        ],
+        [
+          "J197",
+          null,
+          "IF(A197=\"\",\"\",IF(AND(G197<>\"\",I197<>\"\"),\"Selesai\",IF(G197<>\"\",\"Bukti Kurang\",IF(AND(F197<>\"\",F197<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L197",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B198",
+          null,
+          "IF(A198=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A198,2,3))),\"\"))"
+        ],
+        [
+          "J198",
+          null,
+          "IF(A198=\"\",\"\",IF(AND(G198<>\"\",I198<>\"\"),\"Selesai\",IF(G198<>\"\",\"Bukti Kurang\",IF(AND(F198<>\"\",F198<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L198",
+          null,
+          "IF(A198=\"\",\"\",SUMIF($A$6:$A$205,A198,$E$6:$E$205))"
+        ]
+      ],
+      [
+        [
+          "B199",
+          null,
+          "IF(A199=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A199,2,3))),\"\"))"
+        ],
+        [
+          "J199",
+          null,
+          "IF(A199=\"\",\"\",IF(AND(G199<>\"\",I199<>\"\"),\"Selesai\",IF(G199<>\"\",\"Bukti Kurang\",IF(AND(F199<>\"\",F199<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L199",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B200",
+          null,
+          "IF(A200=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A200,2,3))),\"\"))"
+        ],
+        [
+          "J200",
+          null,
+          "IF(A200=\"\",\"\",IF(AND(G200<>\"\",I200<>\"\"),\"Selesai\",IF(G200<>\"\",\"Bukti Kurang\",IF(AND(F200<>\"\",F200<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L200",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B201",
+          null,
+          "IF(A201=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A201,2,3))),\"\"))"
+        ],
+        [
+          "J201",
+          null,
+          "IF(A201=\"\",\"\",IF(AND(G201<>\"\",I201<>\"\"),\"Selesai\",IF(G201<>\"\",\"Bukti Kurang\",IF(AND(F201<>\"\",F201<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L201",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B202",
+          null,
+          "IF(A202=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A202,2,3))),\"\"))"
+        ],
+        [
+          "J202",
+          null,
+          "IF(A202=\"\",\"\",IF(AND(G202<>\"\",I202<>\"\"),\"Selesai\",IF(G202<>\"\",\"Bukti Kurang\",IF(AND(F202<>\"\",F202<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L202",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B203",
+          null,
+          "IF(A203=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A203,2,3))),\"\"))"
+        ],
+        [
+          "J203",
+          null,
+          "IF(A203=\"\",\"\",IF(AND(G203<>\"\",I203<>\"\"),\"Selesai\",IF(G203<>\"\",\"Bukti Kurang\",IF(AND(F203<>\"\",F203<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L203",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B204",
+          null,
+          "IF(A204=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A204,2,3))),\"\"))"
+        ],
+        [
+          "J204",
+          null,
+          "IF(A204=\"\",\"\",IF(AND(G204<>\"\",I204<>\"\"),\"Selesai\",IF(G204<>\"\",\"Bukti Kurang\",IF(AND(F204<>\"\",F204<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L204",
+          null,
+          null
+        ]
+      ],
+      [
+        [
+          "B205",
+          null,
+          "IF(A205=\"\",\"\",IFERROR(INDEX('Laporan Mingguan'!$B$31:$B$45,VALUE(MID(A205,2,3))),\"\"))"
+        ],
+        [
+          "J205",
+          null,
+          "IF(A205=\"\",\"\",IF(AND(G205<>\"\",I205<>\"\"),\"Selesai\",IF(G205<>\"\",\"Bukti Kurang\",IF(AND(F205<>\"\",F205<'Laporan Mingguan'!$I$3+7),\"Terlambat\",\"Dijadwalkan\"))))"
+        ],
+        [
+          "L205",
+          null,
+          null
+        ]
+      ]
+    ],
+    "merges": [
+      "A1:L1",
+      "A3:L3"
+    ],
+    "validations": [
+      "<ns0:dataValidation xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:ns1=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" type=\"list\" allowBlank=\"1\" sqref=\"A6:A205\" ns1:uid=\"{00000000-0002-0000-0200-000000000000}\"><ns0:formula1>\"B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11,B12,B13,B14,B15\"</ns0:formula1><ns0:formula2>0</ns0:formula2></ns0:dataValidation>",
+      "<ns0:dataValidation xmlns:ns0=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:ns1=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" type=\"decimal\" allowBlank=\"1\" showErrorMessage=\"1\" error=\"Bobot 0–100% (ketik 0,25 untuk 25%)\" sqref=\"E6:E205\" ns1:uid=\"{00000000-0002-0000-0200-000002000000}\"><ns0:formula1>0</ns0:formula1><ns0:formula2>1</ns0:formula2></ns0:dataValidation>"
+    ]
+  },
+  {
+    "sheet": "Pustaka Tahapan",
+    "rows": [
+      [
+        [
+          "A1",
+          "PUSTAKA TAHAPAN STANDAR & DEFINISI SELESAI",
+          null
+        ]
+      ],
+      [
+        [
+          "A2",
+          "Bobot mencerminkan porsi usaha/waktu, bukan urutan. Tahap dengan bobot besar dipecah lagi bila berlangsung lebih dari 1 minggu. Bobot boleh disesuaikan per pekerjaan selama total tetap 100% dan disepakati dengan pemberi tugas di awal.",
+          null
+        ]
+      ],
+      [
+        [
+          "A4",
+          "1. Penyelesaian insiden / permintaan dengan eskalasi vendor (tiket yang tidak selesai dalam 1 hari)",
+          null
+        ]
+      ],
+      [
+        [
+          "A5",
+          "Tahap",
+          null
+        ],
+        [
+          "B5",
+          "Uraian tahapan (hasil yang terlihat)",
+          null
+        ],
+        [
+          "C5",
+          "Bobot",
+          null
+        ],
+        [
+          "D5",
+          "Bukti wajib",
+          null
+        ]
+      ],
+      [
+        [
+          "A6",
+          "1",
+          null
+        ],
+        [
+          "B6",
+          "Tiket diterima, dikategorikan & diprioritaskan",
+          null
+        ],
+        [
+          "C6",
+          "0.1",
+          null
+        ],
+        [
+          "D6",
+          "Nomor tiket",
+          null
+        ]
+      ],
+      [
+        [
+          "A7",
+          "2",
+          null
+        ],
+        [
+          "B7",
+          "Diagnosa awal & workaround diberikan",
+          null
+        ],
+        [
+          "C7",
+          "0.2",
+          null
+        ],
+        [
+          "D7",
+          "Catatan tiket / screenshot",
+          null
+        ]
+      ],
+      [
+        [
+          "A8",
+          "3",
+          null
+        ],
+        [
+          "B8",
+          "Eskalasi ke vendor / principal (tiket vendor terbit)",
+          null
+        ],
+        [
+          "C8",
+          "0.2",
+          null
+        ],
+        [
+          "D8",
+          "Nomor tiket vendor / email",
+          null
+        ]
+      ],
+      [
+        [
+          "A9",
+          "4",
+          null
+        ],
+        [
+          "B9",
+          "Perbaikan selesai & diuji",
+          null
+        ],
+        [
+          "C9",
+          "0.35",
+          null
+        ],
+        [
+          "D9",
+          "Screenshot / foto sesudah",
+          null
+        ]
+      ],
+      [
+        [
+          "A10",
+          "5",
+          null
+        ],
+        [
+          "B10",
+          "Konfirmasi user & tiket ditutup",
+          null
+        ],
+        [
+          "C10",
+          "0.15",
+          null
+        ],
+        [
+          "D10",
+          "Tiket closed + email user",
+          null
+        ]
+      ],
+      [
+        [
+          "B14",
+          "Total",
+          null
+        ],
+        [
+          "C14",
+          "1",
+          "SUM(C6:C13)"
+        ]
+      ],
+      [
+        [
+          "A17",
+          "2. Instalasi / relokasi perangkat & jaringan (swakelola tim internal)",
+          null
+        ]
+      ],
+      [
+        [
+          "A18",
+          "Tahap",
+          null
+        ],
+        [
+          "B18",
+          "Uraian tahapan (hasil yang terlihat)",
+          null
+        ],
+        [
+          "C18",
+          "Bobot",
+          null
+        ],
+        [
+          "D18",
+          "Bukti wajib",
+          null
+        ]
+      ],
+      [
+        [
+          "A19",
+          "1",
+          null
+        ],
+        [
+          "B19",
+          "Survei lokasi & kebutuhan material",
+          null
+        ],
+        [
+          "C19",
+          "0.15",
+          null
+        ],
+        [
+          "D19",
+          "Foto lokasi + daftar material",
+          null
+        ]
+      ],
+      [
+        [
+          "A20",
+          "2",
+          null
+        ],
+        [
+          "B20",
+          "Material / perangkat tersedia",
+          null
+        ],
+        [
+          "C20",
+          "0.2",
+          null
+        ],
+        [
+          "D20",
+          "Bon gudang / nota",
+          null
+        ]
+      ],
+      [
+        [
+          "A21",
+          "3",
+          null
+        ],
+        [
+          "B21",
+          "Instalasi fisik selesai",
+          null
+        ],
+        [
+          "C21",
+          "0.4",
+          null
+        ],
+        [
+          "D21",
+          "Foto sebelum–sesudah",
+          null
+        ]
+      ],
+      [
+        [
+          "A22",
+          "4",
+          null
+        ],
+        [
+          "B22",
+          "Uji fungsi & konfirmasi pemohon",
+          null
+        ],
+        [
+          "C22",
+          "0.25",
+          null
+        ],
+        [
+          "D22",
+          "Email / paraf pemohon",
+          null
+        ]
+      ],
+      [
+        [
+          "B23",
+          "Total",
+          null
+        ],
+        [
+          "C23",
+          "1",
+          "SUM(C19:C22)"
+        ]
+      ],
+      [
+        [
+          "A25",
+          "3. Proyek infrastruktur IT oleh vendor (AP, CCTV, AV, server, data center)",
+          null
+        ]
+      ],
+      [
+        [
+          "A26",
+          "Tahap",
+          null
+        ],
+        [
+          "B26",
+          "Uraian tahapan (hasil yang terlihat)",
+          null
+        ],
+        [
+          "C26",
+          "Bobot",
+          null
+        ],
+        [
+          "D26",
+          "Bukti wajib",
+          null
+        ]
+      ],
+      [
+        [
+          "A27",
+          "1",
+          null
+        ],
+        [
+          "B27",
+          "Survei & desain teknis disetujui",
+          null
+        ],
+        [
+          "C27",
+          "0.1",
+          null
+        ],
+        [
+          "D27",
+          "Dokumen desain / BoQ",
+          null
+        ]
+      ],
+      [
+        [
+          "A28",
+          "2",
+          null
+        ],
+        [
+          "B28",
+          "PO / SPK vendor terbit",
+          null
+        ],
+        [
+          "C28",
+          "0.15",
+          null
+        ],
+        [
+          "D28",
+          "Nomor PO/SPK",
+          null
+        ]
+      ],
+      [
+        [
+          "A29",
+          "3",
+          null
+        ],
+        [
+          "B29",
+          "Mobilisasi & instalasi infrastruktur (kabel, rak, power)",
+          null
+        ],
+        [
+          "C29",
+          "0.3",
+          null
+        ],
+        [
+          "D29",
+          "BA pengawasan + foto progres",
+          null
+        ]
+      ],
+      [
+        [
+          "A30",
+          "4",
+          null
+        ],
+        [
+          "B30",
+          "Instalasi & konfigurasi perangkat",
+          null
+        ],
+        [
+          "C30",
+          "0.25",
+          null
+        ],
+        [
+          "D30",
+          "Foto + config backup",
+          null
+        ]
+      ],
+      [
+        [
+          "A31",
+          "5",
+          null
+        ],
+        [
+          "B31",
+          "UAT & BAST ditandatangani",
+          null
+        ],
+        [
+          "C31",
+          "0.2",
+          null
+        ],
+        [
+          "D31",
+          "BA UAT + BAST",
+          null
+        ]
+      ],
+      [
+        [
+          "B33",
+          "Total",
+          null
+        ],
+        [
+          "C33",
+          "1",
+          "SUM(C27:C32)"
+        ]
+      ],
+      [
+        [
+          "A35",
+          "4. Pengadaan barang/jasa nilai kecil (pembelian langsung)",
+          null
+        ]
+      ],
+      [
+        [
+          "A36",
+          "Tahap",
+          null
+        ],
+        [
+          "B36",
+          "Uraian tahapan (hasil yang terlihat)",
+          null
+        ],
+        [
+          "C36",
+          "Bobot",
+          null
+        ],
+        [
+          "D36",
+          "Bukti wajib",
+          null
+        ]
+      ],
+      [
+        [
+          "A37",
+          "1",
+          null
+        ],
+        [
+          "B37",
+          "Spesifikasi & kebutuhan disetujui",
+          null
+        ],
+        [
+          "C37",
+          "0.15",
+          null
+        ],
+        [
+          "D37",
+          "Form permintaan",
+          null
+        ]
+      ],
+      [
+        [
+          "A38",
+          "2",
+          null
+        ],
+        [
+          "B38",
+          "Perbandingan harga (min. 2 penawaran)",
+          null
+        ],
+        [
+          "C38",
+          "0.2",
+          null
+        ],
+        [
+          "D38",
+          "Dokumen penawaran",
+          null
+        ]
+      ],
+      [
+        [
+          "A39",
+          "3",
+          null
+        ],
+        [
+          "B39",
+          "PR / PO terbit",
+          null
+        ],
+        [
+          "C39",
+          "0.2",
+          null
+        ],
+        [
+          "D39",
+          "Nomor PR/PO",
+          null
+        ]
+      ],
+      [
+        [
+          "A40",
+          "4",
+          null
+        ],
+        [
+          "B40",
+          "Barang/jasa diterima & diperiksa",
+          null
+        ],
+        [
+          "C40",
+          "0.3",
+          null
+        ],
+        [
+          "D40",
+          "BAPB / BA pemeriksaan",
+          null
+        ]
+      ],
+      [
+        [
+          "A41",
+          "5",
+          null
+        ],
+        [
+          "B41",
+          "Diserahkan ke pemohon & dokumen tagihan lengkap",
+          null
+        ],
+        [
+          "C41",
+          "0.15",
+          null
+        ],
+        [
+          "D41",
+          "Tanda terima + invoice",
+          null
+        ]
+      ],
+      [
+        [
+          "B42",
+          "Total",
+          null
+        ],
+        [
+          "C42",
+          "1",
+          "SUM(C37:C41)"
+        ]
+      ],
+      [
+        [
+          "A44",
+          "5. Penyusunan dokumen / kajian / SOP / KAK",
+          null
+        ]
+      ],
+      [
+        [
+          "A45",
+          "Tahap",
+          null
+        ],
+        [
+          "B45",
+          "Uraian tahapan (hasil yang terlihat)",
+          null
+        ],
+        [
+          "C45",
+          "Bobot",
+          null
+        ],
+        [
+          "D45",
+          "Bukti wajib",
+          null
+        ]
+      ],
+      [
+        [
+          "A46",
+          "1",
+          null
+        ],
+        [
+          "B46",
+          "Data & referensi terkumpul",
+          null
+        ],
+        [
+          "C46",
+          "0.25",
+          null
+        ],
+        [
+          "D46",
+          "Daftar data / sumber",
+          null
+        ]
+      ],
+      [
+        [
+          "A47",
+          "2",
+          null
+        ],
+        [
+          "B47",
+          "Draf pertama selesai",
+          null
+        ],
+        [
+          "C47",
+          "0.3",
+          null
+        ],
+        [
+          "D47",
+          "File draf (SharePoint)",
+          null
+        ]
+      ],
+      [
+        [
+          "A48",
+          "3",
+          null
+        ],
+        [
+          "B48",
+          "Direview atasan / stakeholder",
+          null
+        ],
+        [
+          "C48",
+          "0.2",
+          null
+        ],
+        [
+          "D48",
+          "Komentar / email review",
+          null
+        ]
+      ],
+      [
+        [
+          "A49",
+          "4",
+          null
+        ],
+        [
+          "B49",
+          "Final disahkan / dikirim",
+          null
+        ],
+        [
+          "C49",
+          "0.25",
+          null
+        ],
+        [
+          "D49",
+          "Dokumen final / email kirim",
+          null
+        ]
+      ],
+      [
+        [
+          "B50",
+          "Total",
+          null
+        ],
+        [
+          "C50",
+          "1",
+          "SUM(C46:C49)"
+        ]
+      ],
+      [
+        [
+          "A52",
+          "6. Pengembangan & enhancement aplikasi (in-house development)",
+          null
+        ]
+      ],
+      [
+        [
+          "A53",
+          "Tahap",
+          null
+        ],
+        [
+          "B53",
+          "Uraian tahapan (hasil yang terlihat)",
+          null
+        ],
+        [
+          "C53",
+          "Bobot",
+          null
+        ],
+        [
+          "D53",
+          "Bukti wajib",
+          null
+        ]
+      ],
+      [
+        [
+          "A54",
+          "1",
+          null
+        ],
+        [
+          "B54",
+          "Requirement disepakati dengan business owner (BRD)",
+          null
+        ],
+        [
+          "C54",
+          "0.15",
+          null
+        ],
+        [
+          "D54",
+          "BRD / notulen",
+          null
+        ]
+      ],
+      [
+        [
+          "A55",
+          "2",
+          null
+        ],
+        [
+          "B55",
+          "Development selesai di lingkungan dev",
+          null
+        ],
+        [
+          "C55",
+          "0.4",
+          null
+        ],
+        [
+          "D55",
+          "Commit / demo",
+          null
+        ]
+      ],
+      [
+        [
+          "A56",
+          "3",
+          null
+        ],
+        [
+          "B56",
+          "UAT oleh business owner lulus",
+          null
+        ],
+        [
+          "C56",
+          "0.25",
+          null
+        ],
+        [
+          "D56",
+          "BA UAT",
+          null
+        ]
+      ],
+      [
+        [
+          "A57",
+          "4",
+          null
+        ],
+        [
+          "B57",
+          "Go-live, dokumentasi & handover",
+          null
+        ],
+        [
+          "C57",
+          "0.2",
+          null
+        ],
+        [
+          "D57",
+          "Email go-live + dokumen",
+          null
+        ]
+      ],
+      [
+        [
+          "B58",
+          "Total",
+          null
+        ],
+        [
+          "C58",
+          "1",
+          "SUM(C54:C57)"
+        ]
+      ],
+      [
+        [
+          "A60",
+          "7. Pengadaan via Procurement (alur BAI: KAK/HPS → RFA → tender → PO/SPK → pelaksanaan)",
+          null
+        ]
+      ],
+      [
+        [
+          "A61",
+          "Tahap",
+          null
+        ],
+        [
+          "B61",
+          "Uraian tahapan (hasil yang terlihat)",
+          null
+        ],
+        [
+          "C61",
+          "Bobot",
+          null
+        ],
+        [
+          "D61",
+          "Bukti wajib",
+          null
+        ]
+      ],
+      [
+        [
+          "A62",
+          "1",
+          null
+        ],
+        [
+          "B62",
+          "KAK, HPS, justifikasi & RFA disetujui",
+          null
+        ],
+        [
+          "C62",
+          "0.1",
+          null
+        ],
+        [
+          "D62",
+          "Nomor RFA / memo approval",
+          null
+        ]
+      ],
+      [
+        [
+          "A63",
+          "2",
+          null
+        ],
+        [
+          "B63",
+          "Bid creation / aanwijzing oleh Procurement",
+          null
+        ],
+        [
+          "C63",
+          "0.1",
+          null
+        ],
+        [
+          "D63",
+          "Undangan tender / BA aanwijzing",
+          null
+        ]
+      ],
+      [
+        [
+          "A64",
+          "3",
+          null
+        ],
+        [
+          "B64",
+          "Evaluasi administrasi, teknis & harga",
+          null
+        ],
+        [
+          "C64",
+          "0.1",
+          null
+        ],
+        [
+          "D64",
+          "BA evaluasi",
+          null
+        ]
+      ],
+      [
+        [
+          "A65",
+          "4",
+          null
+        ],
+        [
+          "B65",
+          "Penetapan pemenang & PO/SPK/kontrak terbit",
+          null
+        ],
+        [
+          "C65",
+          "0.15",
+          null
+        ],
+        [
+          "D65",
+          "Nomor PO/SPK",
+          null
+        ]
+      ],
+      [
+        [
+          "A66",
+          "5",
+          null
+        ],
+        [
+          "B66",
+          "Kick-off & safety induction vendor",
+          null
+        ],
+        [
+          "C66",
+          "0.05",
+          null
+        ],
+        [
+          "D66",
+          "Daftar hadir / BA kick-off",
+          null
+        ]
+      ],
+      [
+        [
+          "A67",
+          "6",
+          null
+        ],
+        [
+          "B67",
+          "Pelaksanaan / penyerahan barang-jasa",
+          null
+        ],
+        [
+          "C67",
+          "0.35",
+          null
+        ],
+        [
+          "D67",
+          "Foto / BAPB / laporan progres",
+          null
+        ]
+      ],
+      [
+        [
+          "A68",
+          "7",
+          null
+        ],
+        [
+          "B68",
+          "BAST & kelengkapan tagihan",
+          null
+        ],
+        [
+          "C68",
+          "0.15",
+          null
+        ],
+        [
+          "D68",
+          "BAST + invoice diteruskan",
+          null
+        ]
+      ],
+      [
+        [
+          "B69",
+          "Total",
+          null
+        ],
+        [
+          "C69",
+          "1",
+          "SUM(C62:C68)"
+        ]
+      ],
+      [
+        [
+          "A71",
+          "8. Tindak lanjut temuan audit / PIR (per nomor temuan)",
+          null
+        ]
+      ],
+      [
+        [
+          "A72",
+          "Tahap",
+          null
+        ],
+        [
+          "B72",
+          "Uraian tahapan (hasil yang terlihat)",
+          null
+        ],
+        [
+          "C72",
+          "Bobot",
+          null
+        ],
+        [
+          "D72",
+          "Bukti wajib",
+          null
+        ]
+      ],
+      [
+        [
+          "A73",
+          "1",
+          null
+        ],
+        [
+          "B73",
+          "Temuan dipahami; PIC & rencana aksi ditetapkan",
+          null
+        ],
+        [
+          "C73",
+          "0.1",
+          null
+        ],
+        [
+          "D73",
+          "Rencana aksi / email",
+          null
+        ]
+      ],
+      [
+        [
+          "A74",
+          "2",
+          null
+        ],
+        [
+          "B74",
+          "Data & dokumen pendukung dikumpulkan",
+          null
+        ],
+        [
+          "C74",
+          "0.2",
+          null
+        ],
+        [
+          "D74",
+          "Daftar dokumen",
+          null
+        ]
+      ],
+      [
+        [
+          "A75",
+          "3",
+          null
+        ],
+        [
+          "B75",
+          "Draf tindak lanjut / dokumen disusun",
+          null
+        ],
+        [
+          "C75",
+          "0.3",
+          null
+        ],
+        [
+          "D75",
+          "File draf",
+          null
+        ]
+      ],
+      [
+        [
+          "A76",
+          "4",
+          null
+        ],
+        [
+          "B76",
+          "Review & persetujuan internal (Kasie/Dept Head)",
+          null
+        ],
+        [
+          "C76",
+          "0.2",
+          null
+        ],
+        [
+          "D76",
+          "Email persetujuan",
+          null
+        ]
+      ],
+      [
+        [
+          "A77",
+          "5",
+          null
+        ],
+        [
+          "B77",
+          "Bukti dikirim ke auditor / SK PIR & status closed",
+          null
+        ],
+        [
+          "C77",
+          "0.2",
+          null
+        ],
+        [
+          "D77",
+          "Email kirim + status closed",
+          null
+        ]
+      ],
+      [
+        [
+          "B78",
+          "Total",
+          null
+        ],
+        [
+          "C78",
+          "1",
+          "SUM(C73:C77)"
+        ]
+      ],
+      [
+        [
+          "A80",
+          "DEFINISI SELESAI PEKERJAAN RUTIN (dasar menghitung Realisasi)",
+          null
+        ]
+      ],
+      [
+        [
+          "A81",
+          "No",
+          null
+        ],
+        [
+          "B81",
+          "Pekerjaan rutin (contoh)",
+          null
+        ],
+        [
+          "C81",
+          "Satuan",
+          null
+        ],
+        [
+          "D81",
+          "Dihitung 1 realisasi bila… (bukti)",
+          null
+        ]
+      ],
+      [
+        [
+          "A82",
+          "1",
+          null
+        ],
+        [
+          "B82",
+          "Penyelesaian tiket helpdesk",
+          null
+        ],
+        [
+          "C82",
+          "tiket",
+          null
+        ],
+        [
+          "D82",
+          "Tiket ditutup di IT Service dengan konfirmasi user (bukan sekadar 'resolved')",
+          null
+        ]
+      ],
+      [
+        [
+          "A83",
+          "2",
+          null
+        ],
+        [
+          "B83",
+          "Monitoring server & backup harian",
+          null
+        ],
+        [
+          "C83",
+          "hari",
+          null
+        ],
+        [
+          "D83",
+          "Log backup sukses & checklist monitoring tersimpan",
+          null
+        ]
+      ],
+      [
+        [
+          "A84",
+          "3",
+          null
+        ],
+        [
+          "B84",
+          "Pembuatan Payment Request",
+          null
+        ],
+        [
+          "C84",
+          "dokumen",
+          null
+        ],
+        [
+          "D84",
+          "PR tersubmit & nomor PR tercatat di tracker",
+          null
+        ]
+      ],
+      [
+        [
+          "A85",
+          "4",
+          null
+        ],
+        [
+          "B85",
+          "Monitoring lisensi / kontrak",
+          null
+        ],
+        [
+          "C85",
+          "rekap",
+          null
+        ],
+        [
+          "D85",
+          "Register diperbarui & dikirim ke Kasie (email)",
+          null
+        ]
+      ],
+      [
+        [
+          "A86",
+          "5",
+          null
+        ],
+        [
+          "B86",
+          "Stock opname perangkat / tinta",
+          null
+        ],
+        [
+          "C86",
+          "kali",
+          null
+        ],
+        [
+          "D86",
+          "Kartu stok diperbarui, selisih dijelaskan",
+          null
+        ]
+      ],
+      [
+        [
+          "A87",
+          "6",
+          null
+        ],
+        [
+          "B87",
+          "Migrasi endpoint (antivirus)",
+          null
+        ],
+        [
+          "C87",
+          "unit",
+          null
+        ],
+        [
+          "D87",
+          "Unit tampil aktif di konsol Kaspersky baru",
+          null
+        ]
+      ],
+      [
+        [
+          "A88",
+          "Realisasi pekerjaan rutin hanya boleh dihitung bila buktinya ada. Tanpa bukti = belum dihitung.",
+          null
+        ]
+      ],
+      [
+        [
+          "A89",
+          "Catatan v2-ICT (13 Okt 2026): pola 1–8 disesuaikan untuk Departemen ICT (helpdesk, infrastruktur, aplikasi, pengadaan, audit). Bobot boleh disesuaikan per pekerjaan selama total 100% dan disepakati dengan pemberi tugas di awal.",
+          null
+        ]
+      ]
+    ],
+    "merges": [
+      "A80:D80",
+      "A35:D35",
+      "A44:D44",
+      "A52:D52",
+      "A60:D60",
+      "A71:D71",
+      "A1:D1",
+      "A2:D2",
+      "A4:D4",
+      "A17:D17",
+      "A25:D25"
+    ],
+    "validations": []
+  },
+  {
+    "sheet": "Panduan",
+    "rows": [
+      [
+        [
+          "B1",
+          "PANDUAN PENGISIAN 1 HALAMAN — Template v2-ICT",
+          null
+        ]
+      ],
+      [
+        [
+          "A3",
+          "1",
+          null
+        ],
+        [
+          "B3",
+          "Kapan. Isi setiap hari (5 menit) atau paling lambat Kamis 12.00. Cut-off Kasie: Kamis 16.00. Rapat Jumat 30 menit hanya membahas adhoc Terlambat, Bagian C, dan pekerjaan yang hilang dari minggu lalu.",
+          null
+        ]
+      ],
+      [
+        [
+          "A4",
+          "2",
+          null
+        ],
+        [
+          "B4",
+          "Minggu & file. Minggu = ISO (Senin–Minggu). Isi tanggal Senin di sel I3; nomor minggu, periode, dan nama file terhitung otomatis. Simpan dengan nama di sel E5 (contoh W42_SNI_Rizwan-Syaifullah.xlsx) ke folder Departemen IT/2026/Weekly Report/Week 42/. Revisi = timpa file yang sama; SharePoint menyimpan versinya.",
+          null
+        ]
+      ],
+      [
+        [
+          "A5",
+          "3",
+          null
+        ],
+        [
+          "B5",
+          "Rutin vs adhoc. RUTIN = pekerjaan berulang dengan frekuensi tetap (harian/mingguan/bulanan). ADHOC = pekerjaan dengan awal dan akhir (perbaikan, pengadaan, proyek, dokumen). Monitoring proyek berjalan = ADHOC pola 8, bukan rutin.",
+          null
+        ]
+      ],
+      [
+        [
+          "A6",
+          "4",
+          null
+        ],
+        [
+          "B6",
+          "Target rutin. Target = jumlah yang harus dilakukan MINGGU INI dalam satuan yang dipilih (bukan target bulanan, bukan tanggal). Contoh: inspeksi 5 kali, payment request 4 dokumen, servis 3 unit. Bila target bergantung permintaan, isi jumlah permintaan yang masuk minggu ini.",
+          null
+        ]
+      ],
+      [
+        [
+          "A7",
+          "5",
+          null
+        ],
+        [
+          "B7",
+          "Adhoc. Setiap adhoc wajib punya Pemberi Tugas, Target Selesai, dan pola tahapan. Progres dihitung otomatis dari sheet Rincian. Adhoc yang belum selesai minggu lalu WAJIB muncul lagi minggu ini (isi kolom Status minggu lalu). Bila dihentikan/ditunda, pindahkan ke Bagian C baris 3.",
+          null
+        ]
+      ],
+      [
+        [
+          "A8",
+          "6",
+          null
+        ],
+        [
+          "B8",
+          "Rincian & bukti. Salin tahapan dari Pustaka sesuai pola. Satu tahap Selesai hanya bila Tgl Aktual DAN Bukti terisi. Bukti = nama file di folder Evidence dengan pola W<minggu>_<Seksi>_<Kode>_T<tahap>_<deskripsi>.jpg, atau nomor dokumen (PR/PO/BAST). Foto tanpa nama pola tidak dihitung.",
+          null
+        ]
+      ],
+      [
+        [
+          "A9",
+          "7",
+          null
+        ],
+        [
+          "B9",
+          "Bagian C. Tiga baris wajib diisi. Tulis \"Tidak ada\" bila memang tidak ada. Baris ini dibaca langsung oleh Dept Head dan dibahas Jumat.",
+          null
+        ]
+      ],
+      [
+        [
+          "A10",
+          "8",
+          null
+        ],
+        [
+          "B10",
+          "Verifikasi Kasie. Kasie memeriksa blok J2:K10 (6 syarat). File dengan skor < 6/6 dikembalikan ke staf sebelum Kamis 16.00. Hanya file 6/6 yang masuk konsolidasi departemen.",
+          null
+        ]
+      ],
+      [
+        [
+          "B12",
+          "Versi template: v2.0-ICT — 13 Okt 2026. Diturunkan dari v2.0 Service Support (09 Okt 2026): judul ICT, sheet Master berisi staf/seksi ICT, kategori & satuan ICT, jenis bukti ICT, pola tahapan 1–8 ICT, daftar rutin standar ICT, contoh pengisian ICT. Rumus & verifikasi Kasie tidak berubah.",
+          null
+        ]
+      ]
+    ],
+    "merges": [],
+    "validations": []
+  }
+]

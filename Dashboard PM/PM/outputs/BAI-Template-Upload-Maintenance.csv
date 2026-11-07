@@ -1,0 +1,4 @@
+﻿"kode_aset","nama_peralatan","kategori","lokasi","penanggung_jawab","kondisi","jadwal_berikutnya","interval_bulan","checklist"
+"BAI-PC-010","Laptop Finance 01","Komputer & Laptop","Kantor Finance","Tim IT Support","Baik","2026-11-15","3","Bersihkan ventilasi;Periksa storage;Verifikasi proteksi endpoint"
+"BAI-NET-010","Switch Distribusi 01","Jaringan","Kantor Utama","Tim Network","Perlu perhatian","2026-11-20","3","Periksa port dan kabel;Tinjau log perangkat;Cadangkan konfigurasi"
+"BAI-UPS-010","UPS Rack 02","UPS","Ruang Server","Tim Infrastruktur","Baik","2026-11-25","6","Periksa kondisi fisik;Catat beban dan alarm;Tinjau log perangkat"

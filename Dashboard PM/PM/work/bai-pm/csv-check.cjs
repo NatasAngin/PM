@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict');require('./core.js');require('./csv-core.js');
+const text=PMCSV.template(),preview=PMCSV.prepare(text,[]);assert.equal(preview.errors.length,0);assert.equal(preview.items.length,3);assert.equal(preview.items[0].asset.checklist.length,3);
+const existing=[{...preview.items[0].asset,id:'keep-id'}];assert.equal(PMCSV.prepare(text,existing).errors.length,1);const update=PMCSV.prepare(text,existing,'update');assert.equal(update.errors.length,0);assert.equal(update.items[0].asset.id,'keep-id');assert.equal(update.items[0].update,true);
+assert.equal(PMCSV.prepare(PMCSV.serialize([...PMCSV.sample,PMCSV.sample[1]]),[]).errors.length,1);
+assert.equal(PMCSV.prepare(text.replace('2026-11-15','2026-02-30'),[]).errors.length,1);
+assert.equal(PMCSV.prepare(text.replace('Komputer & Laptop','Salah'),[]).errors.length,1);
+assert.deepEqual(PMCSV.parse('a,b\r\n"comma, quote ""x""","line\nnext"'),[['a','b'],['comma, quote "x"','line\nnext']]);
+assert.throws(()=>PMCSV.parse('a,b\n"unclosed,b'));assert.throws(()=>PMCSV.prepare('bad,header\nx,y',[]));
+const exported=PMCSV.serialize([PMCSV.keys,...preview.items.map(x=>PMCSV.keys.map(k=>Array.isArray(x.asset[k])?x.asset[k].join('; '):x.asset[k]))]);assert.equal(PMCSV.prepare(exported,[]).errors.length,0);
+const semi=PMCSV.sample.map(r=>r.map(x=>'"'+x+'"').join(';')).join('\r\n');assert.equal(PMCSV.prepare(semi,[]).items.length,3);
+const fs=require('node:fs'),path=require('node:path');fs.writeFileSync(path.resolve(__dirname,'../../outputs/BAI-Template-Upload-Maintenance.csv'),text);console.log('PASS: template, quoted CSV, semicolon delimiter, dates, duplicate codes, update identity and export round trip.');

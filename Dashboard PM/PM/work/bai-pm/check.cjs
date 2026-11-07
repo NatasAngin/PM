@@ -1,0 +1,28 @@
+const assert=require('node:assert/strict');require('./core.js');
+assert.equal(PM.addMonths('2026-01-31',1),'2026-02-28');
+assert.equal(PM.addMonths('2028-01-31',1),'2028-02-29');
+assert.equal(PM.addMonths('2026-10-27',3),'2027-01-27');
+assert.equal(PM.validDate('2026-02-30'),false);
+assert.equal(PM.status({due:'2026-10-26'},'2026-10-27'),'Terlambat');
+assert.equal(PM.status({due:'2026-10-27'},'2026-10-27'),'Jatuh tempo ≤7 hari');
+assert.equal(PM.status({due:'2026-11-03'},'2026-10-27'),'Jatuh tempo ≤7 hari');
+assert.equal(PM.status({due:'2026-11-04'},'2026-10-27'),'Terjadwal');
+const a={id:'a',code:'A',name:'Server A',category:'Server',location:'DC',pic:'IT',condition:'Baik',due:'2026-10-27',interval:3,checklist:['Periksa log']};
+const data={version:1,assets:[a],history:[]};assert.equal(PM.validate(data),data);
+assert.throws(()=>PM.validate({...data,assets:[a,{...a,id:'b'}]}));
+assert.throws(()=>PM.validate({...data,assets:[{...a,due:'bad'}]}));
+assert.throws(()=>PM.validate({...data,history:[{id:'bad'}]}));
+const fs=require('node:fs'),vm=require('node:vm');const elements=new Map();const el=id=>{if(!elements.has(id))elements.set(id,{value:'',textContent:'',innerHTML:'',style:{},classList:{toggle(){}},elements:{category:{},date:{}},addEventListener(){}});return elements.get(id)};const sandbox={PM,console,Date,Math,JSON,Set,Blob,URL,document:{getElementById:el,querySelectorAll:()=>[],addEventListener(){}},localStorage:{getItem:()=>null,setItem(){}},setInterval(){},setTimeout(){},clearTimeout(){}};vm.createContext(sandbox);vm.runInContext(fs.readFileSync(__dirname+'/app.js','utf8'),sandbox);assert.match(el('recordcount').textContent,/12 peralatan/);assert.match(el('rows').innerHTML,/NET-001/);vm.runInContext('PM.validate(state);',sandbox);vm.runInContext("page='Riwayat Pekerjaan';render()",sandbox);assert.match(el('recordcount').textContent,/12 pekerjaan/);assert.match(el('rows').innerHTML,/Contoh:/);console.log('PASS: date boundaries, recurring intervals, backup validation, demo data and dashboard/history rendering.');
+vm.runInContext(`
+const oldSnapshot=JSON.parse(JSON.stringify(state));PM.validate(oldSnapshot);
+const photo={name:'hasil.jpg',data:'data:image/jpeg;base64,/9j/AA=='};
+const photoSnapshot=JSON.parse(JSON.stringify(state));photoSnapshot.history[0].photos=[photo];PM.validate(JSON.parse(JSON.stringify(photoSnapshot)));
+photoSnapshot.history[0].photos=[{name:'bad.svg',data:'data:image/svg+xml;base64,AAAA'}];
+let rejected=false;try{PM.validate(photoSnapshot)}catch{rejected=true}if(!rejected)throw Error('Unsafe photo format accepted');
+photoSnapshot.history[0].photos=Array(6).fill(photo);rejected=false;try{PM.validate(photoSnapshot)}catch{rejected=true}if(!rejected)throw Error('Too many photos accepted');
+let photoBusy=false,pendingPhotos=[photo];completeId=state.assets[0].id;
+globalThis.FormData=class {constructor(){return [['date',now()],['next',PM.addMonths(now(),3)],['technician','Teknisi Uji'],['condition','Baik'],['notes','Maintenance dengan foto']][Symbol.iterator]()}};
+`,sandbox);
+el('completeDialog').close=()=>{};
+vm.runInContext(`$('completeForm').onsubmit({preventDefault(){},target:{}});if(state.history.at(-1).photos.length!==1)throw Error('Photo was not saved');if(state.assets[0].due!==PM.addMonths(now(),3))throw Error('Next schedule was not saved');`,sandbox);
+console.log('PASS: old backups, photo backup round-trip, invalid formats, photo count limit, completion with photo and recurring schedule.');
