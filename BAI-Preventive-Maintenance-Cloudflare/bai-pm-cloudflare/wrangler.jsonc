@@ -12,7 +12,7 @@
     {
       "binding": "DB",
       "database_name": "bai-preventive-maintenance",
-      "database_id": "GANTI_DENGAN_DATABASE_ID_D1",
+      "database_id": "1fd1d0f3-f3a8-4bcc-bc58-4a9d7191c847",
       "migrations_dir": "migrations"
     }
   ]
