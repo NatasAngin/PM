@@ -65,3 +65,7 @@
   #agenda .datebox{grid-row:1 / span 2;min-width:50px}
   #agenda .agendainfo strong{font-size:12px}
 }
+
+
+/* Hide the manual storage banner; cloud backup runs automatically in D1. */
+.notice{display:none!important}
