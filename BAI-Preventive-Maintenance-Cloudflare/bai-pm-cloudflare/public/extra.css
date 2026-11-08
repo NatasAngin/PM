@@ -69,3 +69,6 @@
 
 /* Hide the manual storage banner; cloud backup runs automatically in D1. */
 .notice{display:none!important}
+
+/* Cloud D1 is automatic; remove manual local backup controls from the interface. */
+.notice{display:none!important}
