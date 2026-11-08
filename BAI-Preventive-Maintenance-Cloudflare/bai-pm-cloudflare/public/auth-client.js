@@ -30,7 +30,7 @@ function lock(){document.body.classList.add("secure-locked");login.hidden=false}
 function unlock(a){actor=a;login.hidden=true;document.body.classList.remove("secure-locked");window.PM_ACTOR=a;document.body.dataset.role=a.role;const bottom=document.querySelector(".sidebottom");if(bottom){bottom.innerHTML='<div class="avatar">IT</div><strong>'+esc(a.name)+'</strong><small>'+esc(a.role)+'</small><button id="secureManage" '+(a.role==="user"?"hidden":"")+'>Kelola Akun</button><button id="secureLogout">Keluar</button>'}
 document.querySelectorAll('nav [data-page]').forEach(b=>{b.hidden=a.role==="user"&&b.dataset.page!=="Jadwal Maintenance"});
 document.querySelectorAll("#export,#uploadCSV,#backup,#import").forEach(b=>{if(b)b.hidden=a.role==="user"});
-if(a.role==="user"){const add=$("add");if(add)add.hidden=true;document.querySelectorAll("[data-edit]").forEach(b=>b.hidden=true)}
+if(a.role==="user"){$("deleteAsset")?.setAttribute("hidden","");document.querySelectorAll("[data-delete-saved-photo]").forEach(b=>b.hidden=true);document.querySelector('nav [data-page="Jadwal Maintenance"]')?.click()}
 $("secureLogout")?.addEventListener("click",async()=>{try{await api("/api/auth/logout",{});location.reload()}catch(e){alert(e.message)}});
 $("secureManage")?.addEventListener("click",showAccounts);
 }
