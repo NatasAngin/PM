@@ -280,6 +280,6 @@ export default {
       if (request.method === "PUT") return saveState(request, env, actor);
       return json({error:"Method tidak didukung."},405);
     }
-    return env.ASSETS.fetch(request);
+    if (url.pathname.startsWith("/weekly/")) {\n      const actor = await currentActor(request, env);\n      if (!actor) return Response.redirect(new URL("/", request.url), 302);\n    }\n    return env.ASSETS.fetch(request);
   }
 };
