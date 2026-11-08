@@ -22,7 +22,7 @@ async function readState(env) {
 
 function allowedUserStateChange(before, after) {
   if (!before || !after || after.version !== before.version || !Array.isArray(before.assets) || !Array.isArray(after.assets) || !Array.isArray(before.history) || !Array.isArray(after.history)) return false;
-  const strip = (x, keys) => Object.fromEntries(Object.entries(x).filter(([k]) => !keys.includes(k)));
+  const clean = x => ({...x, demo:undefined, assets:x.assets, history:x.history.map(h=>{const c={...h};delete c.photos;return c;})});\n  before=clean(before); after=clean(after);\n  const strip = (x, keys) => Object.fromEntries(Object.entries(x).filter(([k]) => !keys.includes(k)));
   if (JSON.stringify(strip(before,["assets","history"])) !== JSON.stringify(strip(after,["assets","history"]))) return false;
   if (JSON.stringify(before.history) === JSON.stringify(after.history) && after.assets.length >= before.assets.length) {
     if (JSON.stringify(after.assets.slice(0,before.assets.length)) === JSON.stringify(before.assets)) return true;
