@@ -1,5 +1,5 @@
 (function(g){
-const categories=['Komputer & Laptop','Server','Jaringan','Printer','UPS','CCTV'],conditions=['Baik','Perlu perhatian','Gangguan'];
+const categories=['CCTV','Jaringan','Kabinet (Rak Server)','Komputer & Laptop','Server','Printer','UPS'],conditions=['Baik','Perlu perhatian','Gangguan'];
 function iso(d=new Date()){return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')}
 function validDate(s){if(typeof s!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(s))return false;const d=new Date(s+'T12:00:00');return !isNaN(d)&&iso(d)===s}
 function addMonths(s,n){const d=new Date(s+'T12:00:00'),day=d.getDate();d.setDate(1);d.setMonth(d.getMonth()+Number(n));const last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();d.setDate(Math.min(day,last));return iso(d)}
