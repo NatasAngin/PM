@@ -19,7 +19,38 @@ async function readState(env) {
   return state;
 }
 
-async function saveState(request, env) {
+
+function allowedUserStateChange(before, after) {
+  if (!before || !after || after.version !== before.version || !Array.isArray(before.assets) || !Array.isArray(after.assets) || !Array.isArray(before.history) || !Array.isArray(after.history)) return false;
+  const strip = (x, keys) => Object.fromEntries(Object.entries(x).filter(([k]) => !keys.includes(k)));
+  if (JSON.stringify(strip(before,["assets","history"])) !== JSON.stringify(strip(after,["assets","history"]))) return false;
+  if (JSON.stringify(before.history) === JSON.stringify(after.history) && after.assets.length >= before.assets.length) {
+    if (JSON.stringify(after.assets.slice(0,before.assets.length)) === JSON.stringify(before.assets)) return true;
+    if (after.assets.length === before.assets.length) {
+      let changed=0;
+      for(let i=0;i<before.assets.length;i++) if(JSON.stringify(before.assets[i])!==JSON.stringify(after.assets[i])) {
+        changed++;
+        if(after.assets[i]?.id!==before.assets[i]?.id) return false;
+      }
+      return changed===1;
+    }
+  }
+  if(after.history.length!==before.history.length+1 || after.assets.length!==before.assets.length || JSON.stringify(after.history.slice(0,-1))!==JSON.stringify(before.history)) return false;
+  const h=after.history.at(-1), asset=before.assets.find(a=>a.id===h.assetId);
+  if(!asset || h.code!==asset.code || h.name!==asset.name || h.scheduled!==asset.due) return false;
+  let changed=0;
+  for(let i=0;i<before.assets.length;i++) {
+    const old=before.assets[i], next=after.assets[i];
+    if(old.id!==next.id) return false;
+    if(JSON.stringify(old)!==JSON.stringify(next)) {
+      changed++;
+      if(old.id!==asset.id || next.due!==h.next || next.condition!==h.condition) return false;
+    }
+  }
+  return changed===1;
+}
+
+async function saveState(request, env, actor) {
   const declaredLength = Number(request.headers.get("content-length") || 0);
   if (declaredLength > 35 * 1024 * 1024) return json({ error: "Payload melebihi 35 MB." }, 413);
 
@@ -31,6 +62,11 @@ async function saveState(request, env) {
       !Array.isArray(state.history) || state.assets.length > 10000 ||
       state.history.length > 50000) {
     return json({ error: "Struktur data Preventive Maintenance tidak valid." }, 400);
+  }
+
+  if (actor?.role === "user") {
+    const previous = await env.DB.prepare("SELECT payload FROM pm_state WHERE id=1").first();
+    if (!previous || !allowedUserStateChange(JSON.parse(previous.payload), state)) return json({error:"Akun User hanya dapat menambah/mengedit aset dan mencatat hasil maintenance. Perubahan ini ditolak server."},403);
   }
 
   const photos = [];
@@ -148,7 +184,7 @@ function sessionCookie(token, maxAge=60*60*24*7) {
 async function currentActor(request, env) {
   const token = cookie(request);
   if (!token) return null;
-  const row = await env.DB.prepare("SELECT a.id,a.username,a.display_name,a.role,a.active,a.version,s.expires_at FROM auth_sessions s JOIN auth_accounts a ON a.id=s.account_id WHERE s.token_hash=?").bind(await digest(token)).first();
+  const row = await env.DB.prepare("SELECT a.id,a.username,a.display_name,a.role,a.active,a.version,s.account_version,s.expires_at FROM auth_sessions s JOIN auth_accounts a ON a.id=s.account_id WHERE s.token_hash=?").bind(await digest(token)).first();
   if (!row || !row.active || row.expires_at <= new Date().toISOString() || row.version !== row.account_version) return null;
   return {id:row.id,username:row.username,name:row.display_name,role:row.role,active:!!row.active,version:row.version};
 }
@@ -241,7 +277,7 @@ export default {
         try { return json({state:await readState(env),actor}); }
         catch { return json({error:"Gagal membaca database D1."},500); }
       }
-      if (request.method === "PUT") return saveState(request, env);
+      if (request.method === "PUT") return saveState(request, env, actor);
       return json({error:"Method tidak didukung."},405);
     }
     return env.ASSETS.fetch(request);
