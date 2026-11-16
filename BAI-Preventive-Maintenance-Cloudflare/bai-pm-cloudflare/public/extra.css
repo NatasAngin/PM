@@ -134,3 +134,41 @@ body[data-role="Super Admin"] #agenda .agendarow button[data-complete]:hover{tra
   body[data-role="administrator"] #agenda .agendarow button[data-complete],
   body[data-role="Super Admin"] #agenda .agendarow button[data-complete]{grid-column:3;grid-row:1 / span 2;min-width:82px}
 }
+
+
+/* BAI corporate motion system: subtle, quick and accessibility-aware */
+@keyframes baiFadeUp{from{opacity:0;transform:translate3d(0,10px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes baiFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes baiSoftPop{0%{opacity:0;transform:scale(.985)}100%{opacity:1;transform:scale(1)}}
+main>.heading{animation:baiFadeUp .48s cubic-bezier(.2,.7,.25,1) both}
+#overview> .stats{animation:baiFadeUp .5s .06s both}
+#overview>.charts{animation:baiFadeUp .55s .12s both}
+#overview>.monthcard{animation:baiFadeUp .55s .18s both}
+main>#register{animation:baiFadeUp .55s .2s both}
+main>footer{animation:baiFadeIn .7s .24s both}
+article,.stats>*,#agenda .agendarow{transition:box-shadow .22s ease,border-color .22s ease,background-color .22s ease}
+article:hover{box-shadow:0 8px 24px rgba(27,65,53,.055)}
+.stats>*:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(27,65,53,.07)}
+nav button{transition:background-color .2s ease,color .2s ease,border-color .2s ease,padding-left .2s ease}
+nav button:hover{padding-left:14px}
+nav button.active{transition:background-color .22s ease,color .22s ease}
+button{transition:transform .16s ease,background-color .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease}
+button:hover{transform:translateY(-1px)}
+button:active{transform:translateY(0) scale(.98)}
+#agenda .agendarow{animation:baiFadeUp .38s ease both}
+#agenda .agendarow:nth-child(2){animation-delay:.035s}
+#agenda .agendarow:nth-child(3){animation-delay:.07s}
+#agenda .agendarow:nth-child(4){animation-delay:.105s}
+#agenda .agendarow:nth-child(5){animation-delay:.14s}
+#agenda .agendarow:nth-child(6){animation-delay:.175s}
+#agenda .datebox{transition:background-color .2s ease,border-color .2s ease,transform .2s ease}
+#agenda .agendarow:hover .datebox{background:#eaf4ee;border-color:#cfe3d8;transform:scale(1.035)}
+.donut{transition:background .55s ease,transform .35s ease}
+.priority:hover .donut{transform:rotate(4deg)}
+dialog[open]{animation:baiSoftPop .2s ease both}
+dialog::backdrop{animation:baiFadeIn .18s ease both}
+input,select,textarea{transition:border-color .18s ease,box-shadow .18s ease}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(34,133,104,.10)}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
