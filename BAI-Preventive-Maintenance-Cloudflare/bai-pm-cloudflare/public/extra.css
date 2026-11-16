@@ -73,19 +73,24 @@
 /* Cloud D1 is automatic; remove manual local backup controls from the interface. */
 .notice{display:none!important}
 
-/* BAI brand and consistent button system */
-.brand{display:flex;align-items:center;justify-content:flex-start;min-height:94px;padding:0 2px 12px}
-.brand-logo{display:block;width:154px;height:auto;max-height:94px;object-fit:contain;object-position:left center}
-button{font-weight:600;letter-spacing:.05px;transition:background .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease;box-shadow:0 1px 2px rgba(16,44,48,.04)}
-button:hover{border-color:#b9d0c7;box-shadow:0 3px 9px rgba(20,65,54,.09);transform:translateY(-1px)}
-button:active{transform:translateY(0);box-shadow:none}
-button:focus-visible{outline:3px solid rgba(34,133,104,.25);outline-offset:2px}
-button.primary{background:#ed7100;border-color:#ed7100;color:#fff;box-shadow:0 2px 5px rgba(237,113,0,.16)}
-button.primary:hover{background:#d96300;border-color:#d96300;box-shadow:0 4px 10px rgba(237,113,0,.2)}
+
+/* Compact BAI interface controls */
+.brand{min-height:76px;padding:0 2px 8px}
+.brand-logo{width:132px;max-height:76px;object-fit:contain;object-position:left center}
+button{font-size:12px;font-weight:500;letter-spacing:0;min-height:32px;padding:7px 11px;border-radius:6px;box-shadow:none;transition:background .15s ease,border-color .15s ease,color .15s ease}
+button:hover{box-shadow:0 1px 4px rgba(20,65,54,.08);transform:none}
+button:active{transform:none;box-shadow:none}
+button:focus-visible{outline:2px solid rgba(34,133,104,.25);outline-offset:2px}
+button.primary{background:#ed7100;border-color:#ed7100;color:#fff;box-shadow:none}
+button.primary:hover{background:#d96300;border-color:#d96300;box-shadow:none}
 nav button,nav button:hover{box-shadow:none;transform:none}
-nav button.active{border-radius:8px}
-.actions button{min-height:40px;padding:10px 16px;border-radius:8px}
-td button,.rowactions button,#agenda .agendarow button{border-radius:8px;font-weight:600}
-.formactions button{min-height:40px;padding:10px 16px;border-radius:8px}
-dialog .cardhead>button{width:36px;height:36px;padding:0;display:grid;place-items:center;border-radius:50%}
-@media(max-width:760px){.brand{min-height:54px;padding-bottom:4px}.brand-logo{width:112px;max-height:58px}}
+nav button{min-height:38px;padding:8px 10px}
+nav button.active{border-radius:6px}
+.actions{gap:8px}
+.actions button{min-height:34px;padding:8px 12px;border-radius:6px;font-size:11px}
+td button,.rowactions button,#agenda .agendarow button{min-height:30px;padding:6px 9px;border-radius:6px;font-size:11px}
+.formactions{gap:8px}
+.formactions button{min-height:34px;padding:8px 12px;border-radius:6px;font-size:11px}
+dialog .cardhead>button{width:30px;height:30px;min-height:30px;padding:0;display:grid;place-items:center;border-radius:6px}
+.notice button{min-height:28px;padding:5px 8px;font-size:10px}
+@media(max-width:760px){.brand{min-height:48px;padding-bottom:3px}.brand-logo{width:104px;max-height:50px}.actions button{min-height:32px;padding:7px 9px}}
