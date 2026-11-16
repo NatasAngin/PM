@@ -87,6 +87,18 @@
     [...category.options].forEach(o=>{o.hidden=!allowed.includes(o.value)&&o.value!==current?.category});
     if(current)category.value=current.category;
     else if(!allowed.includes(category.value))category.value='CCTV';
+    const f=$('assetForm');
+    for(const name of ['pic','condition','due','interval']){
+      const field=f.elements[name];if(!field)continue;
+      const label=field.closest('label');if(label)label.hidden=true;
+      field.required=false;
+      if(!current){
+        if(name==='pic')field.value='Belum ditentukan';
+        if(name==='condition')field.value='Baik';
+        if(name==='due')field.value=now();
+        if(name==='interval')field.value='3';
+      }
+    }
   };
   // Preserve legacy category values in existing records; new records are restricted to the updated set.
   const baseAssetSubmit=$('assetForm').onsubmit;
