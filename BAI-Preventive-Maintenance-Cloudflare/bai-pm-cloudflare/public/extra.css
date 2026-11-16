@@ -94,3 +94,43 @@ td button,.rowactions button,#agenda .agendarow button{min-height:30px;padding:6
 dialog .cardhead>button{width:30px;height:30px;min-height:30px;padding:0;display:grid;place-items:center;border-radius:6px}
 .notice button{min-height:28px;padding:5px 8px;font-size:10px}
 @media(max-width:760px){.brand{min-height:48px;padding-bottom:3px}.brand-logo{width:104px;max-height:50px}.actions button{min-height:32px;padding:7px 9px}}
+
+
+/* Final polish: compact account controls and single-line manager action */
+.sidebottom{display:flow-root;padding:16px 0 2px;margin-top:auto}
+.sidebottom .avatar{float:left;width:32px;height:32px;padding:0;display:grid;place-items:center;margin:8px 9px 0 0;font-size:10px}
+.sidebottom strong{padding-top:9px;margin:0;font-size:11px;line-height:1.35}
+.sidebottom small{margin:3px 0 10px;font-size:10px}
+#secureManage,#secureLogout{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:auto;min-height:29px;margin:6px 5px 0 0;padding:6px 10px;
+  border:1px solid rgba(195,218,208,.25);border-radius:5px;
+  background:rgba(255,255,255,.07);color:#d8e7e1;
+  font-size:10px;font-weight:500;line-height:1;white-space:nowrap;
+  box-shadow:none
+}
+#secureManage:hover,#secureLogout:hover{background:#315b50;border-color:#547b6d;color:#fff;box-shadow:none}
+#secureLogout{background:transparent;color:#c6d3ce}
+body[data-role="administrator"] #agenda .agendarow,
+body[data-role="Super Admin"] #agenda .agendarow{
+  grid-template-columns:58px minmax(0,1fr) auto minmax(88px,max-content)
+}
+body[data-role="administrator"] #agenda .agendarow button[data-complete],
+body[data-role="Super Admin"] #agenda .agendarow button[data-complete]{
+  width:auto;min-width:88px;height:32px;min-height:32px;padding:0 10px;
+  display:inline-flex;align-items:center;justify-content:center;
+  white-space:nowrap;word-break:keep-all;overflow-wrap:normal;
+  border-radius:6px;font-size:11px;line-height:1.1;font-weight:600
+}
+body[data-role="administrator"] #agenda .agendarow button[data-complete]:hover,
+body[data-role="Super Admin"] #agenda .agendarow button[data-complete]:hover{transform:none}
+@media(max-width:760px){
+  .sidebottom{padding-top:12px}
+  #secureManage,#secureLogout{min-height:28px;padding:6px 8px;font-size:10px}
+  body[data-role="administrator"] #agenda .agendarow,
+  body[data-role="Super Admin"] #agenda .agendarow{grid-template-columns:48px minmax(0,1fr) 88px;gap:8px}
+  body[data-role="administrator"] #agenda .agendarow .badge,
+  body[data-role="Super Admin"] #agenda .agendarow .badge{grid-column:2;grid-row:2}
+  body[data-role="administrator"] #agenda .agendarow button[data-complete],
+  body[data-role="Super Admin"] #agenda .agendarow button[data-complete]{grid-column:3;grid-row:1 / span 2;min-width:82px}
+}
