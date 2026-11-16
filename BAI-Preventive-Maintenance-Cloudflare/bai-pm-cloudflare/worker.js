@@ -46,7 +46,7 @@ function allowedUserStateChange(before, after) {
     if(old.id!==next.id) return false;
     if(JSON.stringify(old)!==JSON.stringify(next)) {
       changed++;
-      if(old.id!==asset.id || next.due!==h.next || next.condition!==h.condition) return false;
+      if(old.id!==asset.id || next.due!==h.next || next.condition!==h.condition || next.lastMaintenance!==h.date || next.interval!==h.interval || next.pic!==h.technician) return false;
     }
   }
   return changed===1;
