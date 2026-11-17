@@ -31,7 +31,7 @@ function prepare(text,assets,mode='add'){
  const sourceMode=sourceHeaders.every(h=>header.includes(h));
  const required=sourceMode?['kode_aset','nama_peralatan','kategori','lokasi']:legacyHeaders.map(x=>x.toLowerCase());
  const keys=sourceMode?sourceKeys:legacyKeys;
- const positions=keys.map(k=>header.indexOf(sourceMode?k:legacyHeaders[legacyKeys.indexOf(k)].toLowerCase()));
+ const positions=sourceMode?sourceHeaders.map(h=>header.indexOf(h)):legacyHeaders.map(h=>header.indexOf(h.toLowerCase()));
  if(positions.some(i=>i<0)||new Set(header).size!==header.length)throw Error('Header tidak dikenali. Gunakan file BAI-Template-Upload-Maintenance.csv atau template 4 kolom dari aplikasi.');
  if(!sourceMode&&(header.length!==4||required.some(h=>!header.includes(h))))throw Error('Template lama harus memiliki tepat 4 kolom: Kode Asset, Nama Peralatan, Kategori, dan Lokasi.');
  if(sourceMode&&header.length!==9)throw Error('Template BAI harus memiliki tepat 9 kolom sesuai file sumber.');
