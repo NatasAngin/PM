@@ -64,9 +64,9 @@ function prepare(text,assets,mode='add'){
    if(!raw.location)throw Error('lokasi wajib diisi.');
    const category=normalizeCategory(raw.category,raw.name);
    if(!category)throw Error('Kategori "'+raw.category+'" belum dapat dipetakan. Periksa kategori atau nama peralatan.');
-   const existing=assets.find(v=>v.code.toLowerCase()===raw.code.toLowerCase());
-   const codeKey=raw.code.toLocaleLowerCase('id');
-   if(seen.has(codeKey))throw Error('Kode aset '+raw.code+' duplikat dengan baris '+seen.get(codeKey)+'.');
+   const existing=assets.find(v=>v.code.toLowerCase()===raw.code.toLowerCase()&&v.location.trim().toLocaleLowerCase('id')===raw.location.trim().toLocaleLowerCase('id'));
+   const codeKey=raw.code.toLocaleLowerCase('id')+'|'+raw.location.trim().toLocaleLowerCase('id');
+   if(seen.has(codeKey))throw Error('Kombinasi kode aset dan lokasi duplikat dengan baris '+seen.get(codeKey)+'.');
    seen.set(codeKey,line);
    if(existing&&mode==='add')throw Error('Kode aset sudah terdaftar. Pilih mode perbarui untuk menggantinya.');
    const pic=raw.pic||existing?.pic||'Belum ditentukan';

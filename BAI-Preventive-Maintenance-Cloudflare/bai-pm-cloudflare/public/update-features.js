@@ -95,6 +95,70 @@
     });
     if(isManager())document.querySelectorAll('[data-complete]').forEach(b=>{b.textContent='Lihat hasil';b.title='Lihat hasil maintenance sebelumnya'});
   };
+
+  // Group inventory by full physical location and provide administrator bulk deletion.
+  const selectedAssetIds=new Set();
+  function enhanceInventory(){
+    if(!isManager()||page!=='Inventaris Aset')return;
+    const body=$('rows'),head=$('thead'),tableWrap=$('register').querySelector('.tablewrap');
+    if(!body||!head||!tableWrap)return;
+    let bar=$('bulkActions');
+    if(!bar){
+      bar=document.createElement('div');bar.id='bulkActions';bar.className='bulk-actions';
+      bar.innerHTML='<span id="bulkSelectedCount">0 dipilih</span><label><input type="checkbox" id="selectAllVisibleAssets"> Pilih semua hasil filter</label><button type="button" id="deleteSelectedAssets" class="danger">Hapus yang dipilih</button>';
+      tableWrap.before(bar);
+      bar.addEventListener('change',e=>{
+        if(e.target.id==='selectAllVisibleAssets'){
+          [...body.querySelectorAll('tr[data-asset-row]')].forEach(row=>{const cb=row.querySelector('[data-bulk-select]');if(!cb)return;cb.checked=e.target.checked;e.target.checked?selectedAssetIds.add(row.dataset.assetRow):selectedAssetIds.delete(row.dataset.assetRow)});
+          updateBulkCount();
+        }
+      });
+      bar.addEventListener('click',e=>{
+        if(e.target.id!=='deleteSelectedAssets')return;
+        const ids=[...selectedAssetIds];if(!ids.length)return;
+        if(!confirm('Hapus '+ids.length+' peralatan terpilih? Riwayat pekerjaan tetap disimpan.'))return;
+        if(commit({...state,assets:state.assets.filter(a=>!selectedAssetIds.has(a.id))})){selectedAssetIds.clear();updateBulkCount();toast(ids.length+' peralatan dihapus. Riwayat pekerjaan tetap tersimpan.')}
+      });
+    }
+    const rows=[...body.querySelectorAll('tr')].filter(row=>!row.classList.contains('category-group-row'));
+    const groups=new Map();
+    rows.forEach(row=>{
+      const id=row.querySelector('[data-edit]')?.dataset.edit||row.querySelector('[data-complete]')?.dataset.complete;
+      if(!id)return;
+      row.dataset.assetRow=id;
+      const small=row.querySelector('td small')?.textContent||'';
+      const parts=small.split(' · ');
+      const location=(parts.length>1?parts.slice(1).join(' · '):'Lokasi belum ditentukan').trim().replace(/\s+/g,' ');
+      const key=location.toLocaleLowerCase('id');
+      if(!groups.has(key))groups.set(key,{location,rows:[]});
+      groups.get(key).rows.push(row);
+      if(!row.querySelector('[data-bulk-select]')){
+        const cell=document.createElement('td');cell.className='select-cell';
+        const cb=document.createElement('input');cb.type='checkbox';cb.dataset.bulkSelect='';cb.setAttribute('aria-label','Pilih aset '+id);cb.checked=selectedAssetIds.has(id);
+        cb.addEventListener('change',()=>{cb.checked?selectedAssetIds.add(id):selectedAssetIds.delete(id);updateBulkCount()});
+        cell.append(cb);row.insertBefore(cell,row.firstElementChild);
+      }
+    });
+    if(!groups.size){updateBulkCount();return}
+    const header=head.querySelector('tr');
+    if(header&&!header.querySelector('.select-head')){const th=document.createElement('th');th.className='select-head';th.textContent='PILIH';header.insertBefore(th,header.firstElementChild)}
+    body.replaceChildren();
+    [...groups.values()].sort((a,b)=>a.location.localeCompare(b.location,'id')).forEach(group=>{
+      const tr=document.createElement('tr');tr.className='location-group-row';
+      const td=document.createElement('td');td.colSpan=7;td.innerHTML='<strong></strong><span></span>';td.querySelector('strong').textContent=group.location;td.querySelector('span').textContent=group.rows.length+' peralatan';tr.append(td);body.append(tr);
+      group.rows.forEach(row=>body.append(row));
+    });
+    updateBulkCount();
+  }
+  function updateBulkCount(){
+    const bar=$('bulkActions');if(!bar)return;
+    $('bulkSelectedCount').textContent=selectedAssetIds.size+' dipilih';
+    const boxes=[...$('rows').querySelectorAll('[data-bulk-select]')];
+    const all=$('selectAllVisibleAssets');if(all){all.checked=boxes.length>0&&boxes.every(x=>x.checked);all.indeterminate=boxes.some(x=>x.checked)&&!all.checked}
+  }
+  const renderGroupedByLocation=render;
+  render=function(){renderGroupedByLocation();enhanceInventory()};
+
   // New records use only the three categories in the supplied update. Legacy categories remain readable/editable.
   const category=$('assetForm').elements.category;
   const allowed=['CCTV','Jaringan','Box Panel','Kabinet (Rak Server)'];
