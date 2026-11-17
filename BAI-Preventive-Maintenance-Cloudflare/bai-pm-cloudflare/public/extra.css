@@ -289,3 +289,42 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(34,133,104,.10
   #rows .area-group-row td{padding:11px 12px}
   #rows .area-group-row span{display:block;float:none;margin:4px 0 0 15px}
 }
+
+
+/* Ambient BAI theme cycle: restrained palette transitions, never flashes */
+:root{
+ --bai-accent:#176b55;--bai-accent-hover:#105542;--bai-accent-soft:#eaf4ef;
+ --bai-accent-line:#cfe3d8;--bai-nav-accent:#245247;--bai-glow:rgba(45,137,105,.10)
+}
+body,aside,header,.notice,.stat,article,.chip,.track,.barrow .track i,
+nav button.active,.primary,.donut,.donut>div,.category-group-row td,
+.location-group-row td,#rows .area-group-row td,.bulk-actions,
+#register tbody tr,button,input,select,textarea{
+ transition:background-color 1.15s ease,border-color 1.15s ease,color .8s ease,
+ box-shadow 1.15s ease,outline-color .8s ease
+}
+aside{background:linear-gradient(155deg,var(--bai-nav-accent),#102c30 72%)}
+nav button.active{background:var(--bai-nav-accent);box-shadow:inset 3px 0 var(--bai-accent-line),0 5px 16px var(--bai-glow)}
+.primary{background:var(--bai-accent);border-color:var(--bai-accent)}
+.primary:hover{background:var(--bai-accent-hover);border-color:var(--bai-accent-hover)}
+.notice{background:var(--bai-accent-soft);border-color:var(--bai-accent-line)}
+.eyebrow,.status{color:var(--bai-accent)}
+.track i{background:var(--bai-accent)}
+.donut{filter:saturate(.9)}
+.chip{background:var(--bai-accent-soft);border-color:var(--bai-accent-line)}
+input:focus,select:focus,textarea:focus{outline-color:var(--bai-accent-line);box-shadow:0 0 0 3px var(--bai-glow)}
+.category-group-row td,.location-group-row td,#rows .area-group-row td{background:var(--bai-accent-soft)!important;border-color:var(--bai-accent-line);color:var(--bai-nav-accent)}
+.bulk-actions{background:var(--bai-accent-soft);border-color:var(--bai-accent-line)}
+#rows .area-group-row strong:before{background:var(--bai-accent);box-shadow:0 0 0 3px var(--bai-glow)}
+/* Soft ambient light and gentle float for a less static workspace */
+.shell{position:relative;isolation:isolate}
+.shell:before{content:"";position:fixed;z-index:-1;top:72px;right:0;width:min(42vw,620px);height:240px;pointer-events:none;
+ background:radial-gradient(ellipse at top right,var(--bai-glow),transparent 70%);opacity:.85;transition:background 1.2s ease}
+.stat,article{transition:transform .28s ease,box-shadow .3s ease,border-color 1.1s ease,background-color 1.1s ease}
+.stat:hover{transform:translateY(-3px)}
+article:hover{transform:translateY(-2px)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--bai-accent);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){
+ .shell:before{display:none}
+ .stat:hover,article:hover{transform:none}
+}
