@@ -397,3 +397,70 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  .primary{background-size:150% 150%;transition:background-position .35s ease,transform .16s ease,box-shadow .18s ease}
  .primary:hover{background-position:100% 50%}
 }
+
+
+/* Living BAI gradient: slow color drift and ambient motion */
+@keyframes baiColorDrift{
+  0%{filter:hue-rotate(0deg) saturate(1)}
+  25%{filter:hue-rotate(48deg) saturate(1.08)}
+  50%{filter:hue-rotate(105deg) saturate(1.04)}
+  75%{filter:hue-rotate(190deg) saturate(1.08)}
+  100%{filter:hue-rotate(360deg) saturate(1)}
+}
+@keyframes baiGradientFlow{
+  0%{background-position:0% 40%}
+  50%{background-position:100% 60%}
+  100%{background-position:0% 40%}
+}
+@keyframes baiOrbFloat{
+  0%,100%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(-24px,18px,0) scale(1.08)}
+}
+@keyframes baiGlowPulse{
+  0%,100%{opacity:.28;transform:scale(.96)}
+  50%{opacity:.58;transform:scale(1.04)}
+}
+@keyframes baiShimmer{
+  0%{background-position:0% 50%}
+  100%{background-position:200% 50%}
+}
+body{position:relative;isolation:isolate}
+body:before{
+  content:"";position:fixed;inset:-18%;z-index:-1;pointer-events:none;
+  background:
+   radial-gradient(ellipse at 14% 18%,rgba(119,86,231,.16),transparent 34%),
+   radial-gradient(ellipse at 84% 24%,rgba(46,174,214,.15),transparent 36%),
+   radial-gradient(ellipse at 58% 88%,rgba(49,190,157,.12),transparent 38%);
+  filter:hue-rotate(0deg);opacity:.78;animation:baiColorDrift 46s linear infinite;
+  will-change:filter
+}
+aside{
+  background-size:180% 180%;
+  animation:baiGradientFlow 24s ease-in-out infinite
+}
+.shell:after{
+  content:"";position:fixed;z-index:-1;right:8%;top:18%;width:190px;height:190px;
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(91,111,236,.13),rgba(49,190,204,.055) 48%,transparent 72%);
+  filter:blur(3px);animation:baiOrbFloat 13s ease-in-out infinite,baiGlowPulse 8s ease-in-out infinite
+}
+.primary{
+  background-size:220% 220%;
+  animation:baiGradientFlow 12s ease-in-out infinite;
+  box-shadow:0 6px 18px rgba(94,91,210,.17)
+}
+.primary:hover{animation-duration:5s;box-shadow:0 9px 24px rgba(94,91,210,.26)}
+nav button{position:relative;overflow:hidden}
+nav button:not(.active):hover{background:linear-gradient(100deg,rgba(120,87,232,.09),rgba(57,198,216,.09))}
+nav button.active:after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.10) 48%,transparent 72%);
+  background-size:220% 100%;animation:baiShimmer 5.5s ease-in-out infinite
+}
+.stat{will-change:transform}
+.stat:hover{box-shadow:0 12px 28px rgba(74,83,168,.12)}
+.donut{animation:baiGlowPulse 7s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){
+ body:before,.shell:after,aside,.primary,nav button.active:after,.donut{animation:none!important}
+ body:before{filter:none!important}
+}
