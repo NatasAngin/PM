@@ -224,3 +224,31 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(34,133,104,.10
  #register.history-view tbody td:nth-child(5)::before{content:"HASIL PEKERJAAN"}
  #register.history-view tbody td:nth-child(6)::before{content:"DETAIL"}
 }
+
+
+/* Status column: keep each status pill on one line and give it breathing room */
+#register th:nth-child(5){width:16%}
+#register th:nth-child(1){width:24%}
+#register th:nth-child(2){width:13%}
+#register th:nth-child(3){width:17%}
+#register th:nth-child(4){width:14%}
+#register th:nth-child(6){width:16%}
+#register td:nth-child(5){white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
+#register td:nth-child(5) .badge{
+ display:inline-flex;align-items:center;justify-content:center;
+ width:max-content;max-width:100%;white-space:nowrap;
+ word-break:keep-all;overflow-wrap:normal;line-height:1.2;
+ padding:6px 9px;border-radius:999px
+}
+@media(max-width:1050px) and (min-width:761px){
+ #register th:nth-child(5){width:16%}
+ #register th:nth-child(1){width:22%}
+ #register th:nth-child(2){width:12%}
+ #register th:nth-child(3){width:18%}
+ #register th:nth-child(4){width:13%}
+ #register th:nth-child(6){width:19%}
+}
+@media(max-width:760px){
+ #register tbody td:nth-child(5){grid-column:1/-1;padding-top:7px;padding-bottom:8px}
+ #register tbody td:nth-child(5) .badge{min-height:25px;padding:6px 11px}
+}
