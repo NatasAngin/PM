@@ -87,5 +87,5 @@ function prepare(text,assets,mode='add'){
 }
 function serialize(rows){return '\uFEFF'+rows.map(row=>row.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\r\n')+'\r\n'}
 const sample=[sourceHeaders,['2G01-3301-CVVB-0001','DS-2CD3T41G2-IUF','CCTV','2G01-3301 Desulfurization Building','','','','',''],['PANEL-001','Panel Box Hikvision','Box Panel','Ruang Panel','','','','',''],['CAB-001','Cabinet Rack Toten','Kabinet (Rak Server)','Data Center','','','','','']];
-g.PMCSV={headers:sourceHeaders,keys:sourceKeys,parse,prepare,serialize,sample,template:()=>serialize(sample)};
+g.PMCSV={headers:sourceHeaders,keys:sourceKeys,parse,prepare,serialize,sample,normalizeCategory,template:()=>serialize(sample)};
 })(globalThis);
