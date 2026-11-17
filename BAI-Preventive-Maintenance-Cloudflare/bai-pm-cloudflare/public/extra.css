@@ -172,3 +172,47 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(34,133,104,.10
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+
+/* Jadwal & inventaris: fit to viewport, no sideways table scrolling */
+#register .tablewrap{overflow-x:hidden;overflow-y:visible}
+#register table{width:100%;min-width:0;table-layout:fixed;white-space:normal}
+#register th,#register td{padding:12px 9px;overflow-wrap:anywhere;word-break:normal}
+#register th:nth-child(1){width:25%}
+#register th:nth-child(2){width:14%}
+#register th:nth-child(3){width:17%}
+#register th:nth-child(4){width:15%}
+#register th:nth-child(5){width:12%}
+#register th:nth-child(6){width:17%}
+#register td small{white-space:normal;line-height:1.4}
+#register .rowactions{display:flex;flex-wrap:wrap;gap:5px}
+#register .rowactions button{padding:6px 8px;font-size:10px;white-space:nowrap}
+@media(max-width:1050px) and (min-width:761px){
+ #register th,#register td{padding:10px 6px;font-size:10px}
+ #register th:nth-child(1){width:23%}
+ #register th:nth-child(2){width:12%}
+ #register th:nth-child(3){width:18%}
+ #register th:nth-child(4){width:14%}
+ #register th:nth-child(5){width:13%}
+ #register th:nth-child(6){width:20%}
+ #register .rowactions{flex-direction:column;align-items:stretch}
+}
+@media(max-width:760px){
+ #register .tablewrap{overflow:visible}
+ #register table,#register tbody{display:block;width:100%}
+ #register thead{display:none}
+ #register tbody{display:grid;gap:10px}
+ #register tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px;padding:12px 13px;border:1px solid #e5ece8;border-radius:9px;background:#fff;box-shadow:0 2px 8px rgba(24,60,48,.035)}
+ #register tbody td{display:block;min-width:0;padding:8px 0;border:0;font-size:11px;line-height:1.4;overflow-wrap:anywhere}
+ #register tbody td:first-child{grid-column:1/-1;padding-top:2px;padding-bottom:10px;border-bottom:1px solid #edf1ef;margin-bottom:3px}
+ #register tbody td:nth-child(2)::before{content:"KATEGORI / KONDISI";display:block;margin-bottom:4px;font-size:8px;font-weight:700;letter-spacing:.5px;color:#94a5a0}
+ #register tbody td:nth-child(3)::before{content:"JADWAL / INTERVAL";display:block;margin-bottom:4px;font-size:8px;font-weight:700;letter-spacing:.5px;color:#94a5a0}
+ #register tbody td:nth-child(4)::before{content:"PENANGGUNG JAWAB";display:block;margin-bottom:4px;font-size:8px;font-weight:700;letter-spacing:.5px;color:#94a5a0}
+ #register tbody td:nth-child(5)::before{content:"STATUS / KONDISI";display:block;margin-bottom:4px;font-size:8px;font-weight:700;letter-spacing:.5px;color:#94a5a0}
+ #register tbody td:nth-child(6){grid-column:1/-1;padding-top:9px}
+ #register tbody td:nth-child(6)::before{content:"TINDAKAN";display:block;margin-bottom:6px;font-size:8px;font-weight:700;letter-spacing:.5px;color:#94a5a0}
+ #register tbody td[colspan]{grid-column:1/-1;text-align:center;padding:22px 8px}
+ #register .rowactions{flex-direction:row;flex-wrap:wrap}
+ #register .rowactions button{flex:1 1 auto;min-height:32px}
+ #register .tablefooter{gap:8px;flex-wrap:wrap}
+}
