@@ -35,7 +35,7 @@ function prepare(text,assets,mode='add'){
  if(positions.some(i=>i<0)||new Set(header).size!==header.length)throw Error('Header tidak dikenali. Gunakan file BAI-Template-Upload-Maintenance.csv atau template 4 kolom dari aplikasi.');
  if(!sourceMode&&(header.length!==4||required.some(h=>!header.includes(h))))throw Error('Template lama harus memiliki tepat 4 kolom: Kode Asset, Nama Peralatan, Kategori, dan Lokasi.');
  if(sourceMode&&header.length!==9)throw Error('Template BAI harus memiliki tepat 9 kolom sesuai file sumber.');
- const seen=new Set(),errors=[],items=[];
+ const seen=new Map(),errors=[],items=[];
  rows.forEach((row,index)=>{const line=index+2;try{
  if(row.length!==header.length)throw Error('Jumlah kolom tidak sesuai header.');
  const raw=Object.fromEntries(keys.map((k,i)=>[k,(row[positions[i]]??'').trim()]));
@@ -44,7 +44,7 @@ function prepare(text,assets,mode='add'){
  if(!PM.categories.includes(a.category))throw Error('Kategori "'+a.category+'" belum dikenali aplikasi.');
  if(!a.location)throw Error('lokasi wajib diisi.');
  const existing=assets.find(x=>x.code.toLowerCase()===a.code.toLowerCase());
- if(seen.has(a.code.toLowerCase()))throw Error('Kode aset berulang dalam file.');seen.add(a.code.toLowerCase());
+ if(seen.has(a.code.toLowerCase()))throw Error('Kode aset '+a.code+' duplikat dengan baris '+seen.get(a.code.toLowerCase())+'. Perbaiki salah satu kode aset sebelum impor.');seen.set(a.code.toLowerCase(),line);
  if(existing&&mode==='add')throw Error('Kode aset sudah terdaftar. Pilih mode perbarui untuk menggantinya.');
  const pic=raw.pic||existing?.pic||'Belum ditentukan';
  const condition=raw.condition||existing?.condition||'Baik';
