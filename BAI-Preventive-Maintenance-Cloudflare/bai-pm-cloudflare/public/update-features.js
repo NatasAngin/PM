@@ -99,7 +99,8 @@
   // Group inventory by full physical location and provide administrator bulk deletion.
   const selectedAssetIds=new Set();
   function enhanceInventory(){
-    if(!isManager()||page!=='Inventaris Aset')return;
+    const existingBar=$('bulkActions');
+    if(!isManager()||page!=='Inventaris Aset'){if(existingBar)existingBar.hidden=true;return;}
     const body=$('rows'),head=$('thead'),tableWrap=$('register').querySelector('.tablewrap');
     if(!body||!head||!tableWrap)return;
     let bar=$('bulkActions');
@@ -120,6 +121,7 @@
         if(commit({...state,assets:state.assets.filter(a=>!selectedAssetIds.has(a.id))})){selectedAssetIds.clear();updateBulkCount();toast(ids.length+' peralatan dihapus. Riwayat pekerjaan tetap tersimpan.')}
       });
     }
+    bar.hidden=false;
     const rows=[...body.querySelectorAll('tr')].filter(row=>!row.classList.contains('category-group-row'));
     const groups=new Map();
     rows.forEach(row=>{
@@ -139,7 +141,7 @@
         cell.append(cb);row.insertBefore(cell,row.firstElementChild);
       }
     });
-    if(!groups.size){updateBulkCount();return}
+    if(!groups.size){body.querySelectorAll('tr.empty td').forEach(td=>td.colSpan=7);updateBulkCount();return}
     const header=head.querySelector('tr');
     if(header&&!header.querySelector('.select-head')){const th=document.createElement('th');th.className='select-head';th.textContent='PILIH';header.insertBefore(th,header.firstElementChild)}
     body.replaceChildren();
