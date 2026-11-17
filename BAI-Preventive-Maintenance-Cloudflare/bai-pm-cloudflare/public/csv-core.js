@@ -1,5 +1,5 @@
 (function(g){
-const headers=['Kode Asset','Nama Peralatan','Kategori (CCTV, Jaringan, Kabinet)','Lokasi'];
+const headers=['Kode Asset','Nama Peralatan','Kategori (CCTV, Jaringan, Kabinet (Rak Server))','Lokasi'];
 const keys=['code','name','category','location'];
 const categoryValues=['CCTV','Jaringan','Kabinet (Rak Server)'];
 const defaults={
