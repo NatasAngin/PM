@@ -216,3 +216,11 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(34,133,104,.10
  #register .rowactions button{flex:1 1 auto;min-height:32px}
  #register .tablefooter{gap:8px;flex-wrap:wrap}
 }
+
+@media(max-width:760px){
+ #register.history-view tbody td:nth-child(2)::before{content:"PELAKSANAAN"}
+ #register.history-view tbody td:nth-child(3)::before{content:"TEKNISI"}
+ #register.history-view tbody td:nth-child(4)::before{content:"KONDISI"}
+ #register.history-view tbody td:nth-child(5)::before{content:"HASIL PEKERJAAN"}
+ #register.history-view tbody td:nth-child(6)::before{content:"DETAIL"}
+}
