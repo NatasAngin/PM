@@ -76,10 +76,28 @@
     }
   };
   const baseRender=render;
-  render=function(){baseRender();if(isManager())document.querySelectorAll('[data-complete]').forEach(b=>{b.textContent='Lihat hasil';b.title='Lihat hasil maintenance sebelumnya'})};
+  let categoryMigrationRunning=false;
+  render=function(){
+    if(!categoryMigrationRunning&&globalThis.PMCSV?.normalizeCategory){
+      const normalize=globalThis.PMCSV.normalizeCategory;
+      const assets=state.assets.map(a=>{const category=normalize(a.category,a.name);return category&&category!==a.category?{...a,category}:a});
+      const history=state.history.map(h=>{const category=normalize(h.category,h.name);return category&&category!==h.category?{...h,category}:h});
+      const changed=assets.some((a,i)=>a!==state.assets[i])||history.some((h,i)=>h!==state.history[i]);
+      if(changed){categoryMigrationRunning=true;try{commit({...state,assets,history})}finally{categoryMigrationRunning=false}return}
+    }
+    baseRender();
+    const filter=$('category');
+    const counts={'CCTV':0,'Box Panel':0,'Kabinet (Rak Server)':0,'Jaringan':0};
+    state.assets.forEach(a=>{if(Object.prototype.hasOwnProperty.call(counts,a.category))counts[a.category]++});
+    [...filter.options].forEach(o=>{
+      if(!o.value)o.textContent='Semua kategori ('+state.assets.length+')';
+      else if(Object.prototype.hasOwnProperty.call(counts,o.value))o.textContent=o.value+' ('+counts[o.value]+')';
+    });
+    if(isManager())document.querySelectorAll('[data-complete]').forEach(b=>{b.textContent='Lihat hasil';b.title='Lihat hasil maintenance sebelumnya'});
+  };
   // New records use only the three categories in the supplied update. Legacy categories remain readable/editable.
   const category=$('assetForm').elements.category;
-  const allowed=['CCTV','Jaringan','Kabinet (Rak Server)'];
+  const allowed=['CCTV','Jaringan','Box Panel','Kabinet (Rak Server)'];
   const originalOpenAsset=openAsset;
   openAsset=function(id){
     originalOpenAsset(id);
