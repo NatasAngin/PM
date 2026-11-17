@@ -267,3 +267,25 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(34,133,104,.10
 .bulk-actions label{display:inline-flex;align-items:center;gap:7px;cursor:pointer}
 .bulk-actions button.danger{margin-left:auto;background:#fff5f3;color:#a23f34;border:1px solid #e8c7c1;padding:7px 12px;border-radius:6px;font-size:11px;font-weight:600}
 @media(max-width:700px){.bulk-actions{gap:10px}.bulk-actions button.danger{margin-left:0}}
+
+
+/* Area-code grouping for faster field maintenance */
+#rows .area-group-row td{
+  padding:13px 16px;background:#edf4ef;border-top:1px solid #dce9e0;
+  border-bottom:1px solid #dce9e0;color:#244b3e
+}
+#rows .area-group-row strong{
+  display:inline-flex;align-items:center;gap:8px;font-size:12px;
+  font-weight:750;letter-spacing:.045em
+}
+#rows .area-group-row strong:before{
+  content:"";display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:#e87516;box-shadow:0 0 0 3px rgba(232,117,22,.12)
+}
+#rows .area-group-row span{
+  float:right;color:#64776d;font-size:11px;font-weight:500
+}
+@media(max-width:760px){
+  #rows .area-group-row td{padding:11px 12px}
+  #rows .area-group-row span{display:block;float:none;margin:4px 0 0 15px}
+}
