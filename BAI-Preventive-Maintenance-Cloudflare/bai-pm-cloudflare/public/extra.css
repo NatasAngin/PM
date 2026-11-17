@@ -328,3 +328,72 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  .shell:before{display:none}
  .stat:hover,article:hover{transform:none}
 }
+
+
+/* BAI PM Galaxy gradient theme — deep-space navy with violet, blue and cyan accents */
+:root{
+ --bai-accent:#6557d9;--bai-accent-hover:#5143c3;--bai-accent-soft:#f0efff;
+ --bai-accent-line:#d9d5ff;--bai-nav-accent:#171b3d;
+ --bai-glow:rgba(115,99,238,.16);
+ --galaxy-violet:#7857e8;--galaxy-blue:#3978e8;--galaxy-cyan:#39c6d8;
+ --galaxy-ink:#171b3d
+}
+body{
+ background:
+  radial-gradient(ellipse at 84% 4%,rgba(120,87,232,.10),transparent 32%),
+  radial-gradient(ellipse at 10% 88%,rgba(57,198,216,.075),transparent 35%),
+  linear-gradient(145deg,#f7f8ff 0%,#f5f6ff 48%,#f2f8ff 100%)
+}
+aside{
+ background:
+  radial-gradient(ellipse at 8% 0%,rgba(120,87,232,.38),transparent 38%),
+  radial-gradient(ellipse at 100% 75%,rgba(57,198,216,.20),transparent 34%),
+  linear-gradient(155deg,#20234d 0%,#171b3d 52%,#102d48 100%)
+}
+nav button.active{
+ background:linear-gradient(105deg,rgba(120,87,232,.30),rgba(57,120,232,.18),rgba(57,198,216,.12));
+ box-shadow:inset 3px 0 #8b82ff,0 6px 20px rgba(8,13,43,.22)
+}
+.primary{
+ background:linear-gradient(110deg,#7257df 0%,#4e70dc 54%,#319fc4 100%);
+ border:1px solid rgba(255,255,255,.18);
+ box-shadow:0 5px 14px rgba(87,91,204,.20)
+}
+.primary:hover{
+ background:linear-gradient(110deg,#6247ce 0%,#3f60ca 54%,#258db3 100%);
+ box-shadow:0 7px 18px rgba(87,91,204,.27)
+}
+.notice,.chip,.bulk-actions{
+ background:linear-gradient(115deg,#f0efff 0%,#edf3ff 58%,#eafaff 100%);
+ border-color:#dcdfff
+}
+.eyebrow,.status{color:#6255c8}
+.track i{
+ background:linear-gradient(90deg,#795be7 0%,#477be2 58%,#39bfd2 100%)
+}
+.donut{filter:saturate(1.12)}
+.category-group-row td,.location-group-row td,#rows .area-group-row td{
+ background:linear-gradient(100deg,#f0efff 0%,#edf3ff 58%,#eafaff 100%)!important;
+ border-color:#dcdfff;color:#292b59
+}
+#rows .area-group-row strong:before{
+ background:linear-gradient(135deg,#8b5ce8,#398bdc 65%,#39c6d8);
+ box-shadow:0 0 0 3px rgba(111,99,225,.14)
+}
+.shell:before{
+ background:
+  radial-gradient(ellipse at 82% 12%,rgba(120,87,232,.18),transparent 62%),
+  radial-gradient(ellipse at 42% 80%,rgba(57,198,216,.10),transparent 60%);
+ opacity:1
+}
+.stat,article{
+ background:rgba(255,255,255,.88);
+ border-color:rgba(204,207,240,.72)
+}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+ outline:2px solid #7766e8;outline-offset:2px
+}
+@media(prefers-reduced-motion:no-preference){
+ .primary{background-size:150% 150%;transition:background-position .35s ease,transform .16s ease,box-shadow .18s ease}
+ .primary:hover{background-position:100% 50%}
+}
