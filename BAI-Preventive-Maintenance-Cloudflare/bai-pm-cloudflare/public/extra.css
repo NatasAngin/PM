@@ -252,3 +252,8 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(34,133,104,.10
  #register tbody td:nth-child(5){grid-column:1/-1;padding-top:7px;padding-bottom:8px}
  #register tbody td:nth-child(5) .badge{min-height:25px;padding:6px 11px}
 }
+
+/* Inventory grouped category separators */
+.category-group-row td{padding:11px 14px;background:#edf4f0;border-top:1px solid #d9e7df;border-bottom:1px solid #d9e7df;color:#245746}
+.category-group-row td strong{font-size:11px;letter-spacing:.045em;text-transform:uppercase}
+.category-group-row td span{float:right;color:#647a70;font-size:10px;font-weight:600}
