@@ -4,6 +4,33 @@ const legacyKeys=['code','name','category','location'];
 const sourceHeaders=['kode_aset','nama_peralatan','kategori','lokasi','penanggung_jawab','kondisi','jadwal_berikutnya','interval_bulan','checklist'];
 const sourceKeys=['code','name','category','location','pic','condition','due','interval','checklist'];
 const defaults={
+'CCTV':['Bersihkan lensa kamera','Periksa posisi, fokus, dan kualitas gambar','Verifikasi koneksi jaringan, rekaman, dan waktu sistem'],
+'Box Panel':['Periksa kondisi fisik box panel dan pengunci','Periksa kebersihan bagian dalam dan luar panel','Periksa kerapian kabel, label, dan grounding'],
+'Kabinet (Rak Server)':['Periksa kebersihan dan kondisi fisik kabinet','Periksa kerapian kabel dan jalur sirkulasi udara','Periksa pintu, engsel, kunci, dan grounding kabinet'],
+'Jaringan':['Periksa port, kabel, dan indikator perangkat','Tinjau log serta utilisasi perangkat','Cadangkan konfigurasi perangkat']
+};
+const normalizeKey=value=>String(value??'').normalize('NFKC').toLocaleLowerCase('id').replace(/[^a-z0-9]/g,'');
+function normalizeCategory(value,name=''){
+ const key=normalizeKey(value),asset=normalizeKey(name);
+ const aliases={
+  cctv:'CCTV',ipcam:'CCTV',camera:'CCTV',kamera:'CCTV',securitycamera:'CCTV',networkcamera:'CCTV',
+  boxpanel:'Box Panel',panelbox:'Box Panel',panelboxhikvision:'Box Panel',boxpanelhikvision:'Box Panel',panel:'Box Panel',
+  cabinet:'Kabinet (Rak Server)',cabinetrack:'Kabinet (Rak Server)',cabinetrack:'Kabinet (Rak Server)',rack:'Kabinet (Rak Server)',servercabinet:'Kabinet (Rak Server)',rackserver:'Kabinet (Rak Server)',
+  jaringan:'Jaringan',network:'Jaringan',switch:'Jaringan',router:'Jaringan'
+ };
+ if(aliases[key])return aliases[key];
+ if(asset.includes('panelbox')||asset.includes('boxpanel'))return 'Box Panel';
+ if(asset.includes('cctv')||asset.includes('camera')||asset.includes('hikvision')&&/ds2|ds/.test(asset))return 'CCTV';
+ if(asset.includes('cabinet')||asset.includes('rack'))return 'Kabinet (Rak Server)';
+ if(asset.includes('switch')||asset.includes('router')||asset.includes('firewall'))return 'Jaringan';
+ const canonical=PM.categories.find(v=>normalizeKey(v)===key);
+ return canonical||null;
+}unction(g){
+const legacyHeaders=['Kode Asset','Nama Peralatan','Kategori (CCTV, Jaringan, Kabinet (Rak Server))','Lokasi'];
+const legacyKeys=['code','name','category','location'];
+const sourceHeaders=['kode_aset','nama_peralatan','kategori','lokasi','penanggung_jawab','kondisi','jadwal_berikutnya','interval_bulan','checklist'];
+const sourceKeys=['code','name','category','location','pic','condition','due','interval','checklist'];
+const defaults={
 'CCTV':['Bersihkan lensa dan periksa posisi kamera','Periksa kualitas rekaman','Verifikasi penyimpanan dan waktu sistem'],
 'IP CAM':['Bersihkan lensa kamera','Periksa posisi, fokus, dan kualitas gambar','Verifikasi koneksi jaringan dan rekaman'],
 'Jaringan':['Periksa port, kabel, dan indikator perangkat','Tinjau log serta utilisasi perangkat','Cadangkan konfigurasi perangkat'],
@@ -39,7 +66,7 @@ function prepare(text,assets,mode='add'){
  rows.forEach((row,index)=>{const line=index+2;try{
  if(row.length!==header.length)throw Error('Jumlah kolom tidak sesuai header.');
  const raw=Object.fromEntries(keys.map((k,i)=>[k,(row[positions[i]]??'').trim()]));
- const a={code:raw.code,name:raw.name,category:raw.category,location:raw.location};
+ const a={code:raw.code,name:raw.name,category:normalizeCategory(raw.category,raw.name),location:raw.location};
  if(!a.code)throw Error('kode_aset wajib diisi.');if(!a.name)throw Error('nama_peralatan wajib diisi.');
  if(!PM.categories.includes(a.category))throw Error('Kategori "'+a.category+'" belum dikenali aplikasi.');
  if(!a.location)throw Error('lokasi wajib diisi.');
