@@ -13,14 +13,14 @@ const defaults={
 'Box Panel':['Periksa kondisi fisik box panel dan kunci','Periksa kebersihan bagian dalam dan luar panel','Periksa kerapian kabel serta label identifikasi']
 };
 function parse(text){
- text=text.replace(/^\\uFEFF/,'');
+ text=text.replace(/^\uFEFF/,'');
  if(text.length>5000000)throw Error('Ukuran CSV maksimum 5 MB.');
  let rows=[],row=[],field='',quoted=false,closed=false;
- const first=text.split(/\\r?\\n/)[0],delimiter=first.includes(';')&&!first.includes(',')?';':',';
+ const first=text.split(/\r?\n/)[0],delimiter=first.includes(';')&&!first.includes(',')?';':',';
  for(let i=0;i<text.length;i++){const c=text[i];if(quoted){if(c==='"'){if(text[i+1]==='"'){field+='"';i++}else{quoted=false;closed=true}}else field+=c;continue}
  if(c==='"'){if(field.length||closed)throw Error('Tanda kutip CSV tidak valid.');quoted=true}
  else if(c===delimiter){row.push(field);field='';closed=false}
- else if(c==='\\n'||c==='\\r'){if(c==='\\r'&&text[i+1]==='\\n')i++;row.push(field);if(row.some(x=>x.trim()))rows.push(row);row=[];field='';closed=false}
+ else if(c==='\n'||c==='\r'){if(c==='\r'&&text[i+1]==='\n')i++;row.push(field);if(row.some(x=>x.trim()))rows.push(row);row=[];field='';closed=false}
  else{if(closed)throw Error('Karakter setelah tanda kutip tidak valid.');field+=c}}
  if(quoted)throw Error('Tanda kutip CSV belum ditutup.');row.push(field);if(row.some(x=>x.trim()))rows.push(row);
  if(rows.length>1001)throw Error('Maksimal 1.000 peralatan per unggahan.');return rows
@@ -54,13 +54,13 @@ function prepare(text,assets,mode='add'){
  if(!PM.validDate(due))throw Error('jadwal_berikutnya harus berupa tanggal YYYY-MM-DD.');
  if(![1,3,6,12].includes(interval))throw Error('interval_bulan hanya boleh 1, 3, 6, atau 12.');
  const checklistText=raw.checklist||'';
- const checklist=checklistText?checklistText.split(/[;\\n|]/).map(x=>x.trim()).filter(Boolean):(existing?.checklist?.length?existing.checklist:(defaults[a.category]||['Periksa kondisi fisik peralatan','Periksa fungsi dan konektivitas','Catat hasil pemeriksaan serta tindak lanjut']));
+ const checklist=checklistText?checklistText.split(/[;\n|]/).map(x=>x.trim()).filter(Boolean):(existing?.checklist?.length?existing.checklist:(defaults[a.category]||['Periksa kondisi fisik peralatan','Periksa fungsi dan konektivitas','Catat hasil pemeriksaan serta tindak lanjut']));
  Object.assign(a,{pic,condition,due,interval,checklist,id:existing?.id||'csv-preview-'+index});
  PM.validate({version:1,assets:[a],history:[]});items.push({asset:a,update:!!existing,line})
  }catch(e){errors.push('Baris '+line+': '+e.message)}});
  return {items,errors}
 }
-function serialize(rows){return '\\uFEFF'+rows.map(row=>row.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\\r\\n')+'\\r\\n'}
+function serialize(rows){return '\uFEFF'+rows.map(row=>row.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\r\n')+'\r\n'}
 const sample=[sourceHeaders,['2G01-3301-CVVB-0001','DS-2CD3T41G2-IUF','IP CAM','2G01-3301 Desulfurization Building','','','','',''],['PANEL-001','Box Panel Utama','Box Panel','Ruang Panel','','','','',''],['CAB-001','Cabinet Rack Server','CABINET','Data Center','','','','','']];
 g.PMCSV={headers:sourceHeaders,keys:sourceKeys,parse,prepare,serialize,sample,template:()=>serialize(sample)};
 })(globalThis);
