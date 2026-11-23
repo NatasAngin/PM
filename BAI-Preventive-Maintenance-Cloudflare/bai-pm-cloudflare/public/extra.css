@@ -640,3 +640,65 @@ footer{border-top:1px solid rgba(155,165,255,.12);padding-top:18px}
   }
   .shell{margin-left:0!important;width:100%}
 }
+
+
+/* === HISTORY TABLE FIX: prevent long work notes from colliding with actions === */
+#register.history-view .tablewrap{
+  width:100%;
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  overscroll-behavior-x:contain;
+  scrollbar-width:thin;
+}
+#register.history-view .tablewrap table{
+  width:100%;
+  min-width:1080px;
+  table-layout:fixed;
+  border-collapse:separate;
+  border-spacing:0;
+}
+#register.history-view .tablewrap th,
+#register.history-view .tablewrap td{
+  box-sizing:border-box;
+  vertical-align:middle;
+}
+#register.history-view .tablewrap th:nth-child(1),
+#register.history-view .tablewrap td:nth-child(1){width:24%;white-space:normal}
+#register.history-view .tablewrap th:nth-child(2),
+#register.history-view .tablewrap td:nth-child(2){width:15%;white-space:normal}
+#register.history-view .tablewrap th:nth-child(3),
+#register.history-view .tablewrap td:nth-child(3){width:16%;white-space:normal}
+#register.history-view .tablewrap th:nth-child(4),
+#register.history-view .tablewrap td:nth-child(4){width:12%;white-space:normal}
+#register.history-view .tablewrap th:nth-child(5),
+#register.history-view .tablewrap td.notecell{
+  width:25%;
+  white-space:normal!important;
+  overflow-wrap:anywhere;
+  word-break:normal;
+  line-height:1.55;
+  min-width:0;
+}
+#register.history-view .tablewrap th:nth-child(6),
+#register.history-view .tablewrap td:last-child{
+  width:8%;
+  min-width:105px;
+  white-space:nowrap;
+  text-align:right;
+}
+#register.history-view .tablewrap td:last-child button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  white-space:nowrap;
+  min-width:88px;
+  position:relative;
+  z-index:1;
+}
+#register.history-view .tablewrap tbody tr:hover td{
+  background-color:rgba(115,105,220,.075);
+}
+@media(max-width:760px){
+  #register.history-view .tablewrap table{min-width:1080px}
+}
