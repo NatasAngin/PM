@@ -604,3 +604,39 @@ footer{border-top:1px solid rgba(155,165,255,.12);padding-top:18px}
  #galaxy-starfield{display:none!important}
  .primary,.stat{animation:none!important}
 }
+
+
+/* === LAYOUT HOTFIX: restore fixed desktop sidebar === */
+/* The galactic skin must not override the original sidebar positioning. */
+@media (min-width: 761px){
+  body{display:block!important}
+  aside{
+    position:fixed!important;
+    inset:0 auto 0 0!important;
+    width:238px!important;
+    height:100vh!important;
+    min-height:100vh!important;
+    overflow-y:auto;
+    z-index:20!important;
+  }
+  .shell{
+    position:relative!important;
+    isolation:isolate;
+    margin-left:238px!important;
+    min-height:100vh;
+    width:auto;
+  }
+  .shell>header{position:relative;z-index:2}
+  .shell>main{position:relative;z-index:1}
+}
+@media (max-width:760px){
+  aside{
+    position:static!important;
+    inset:auto!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    overflow:visible;
+  }
+  .shell{margin-left:0!important;width:100%}
+}
