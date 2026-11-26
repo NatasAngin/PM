@@ -1,7 +1,7 @@
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
 const statuses=['Baru dicatat','Menunggu inspeksi','Dalam inspeksi','Menunggu material','Dalam perbaikan','Menunggu verifikasi','Selesai','Tidak layak pakai'];
-const activeStatuses=statuses.slice(0,6);
+const incidentTypes=['Kebakaran','Gangguan listrik','Kerusakan mekanis','Banjir / kebocoran air','Benturan / kerusakan fisik','Korosi / paparan kimia','Gangguan operasional','Kegagalan fungsi','Kehilangan / pencurian','Near miss / kondisi tidak aman','Lainnya'];
 let active=false,selectedCase=null;
 const style=document.createElement('style');
 style.textContent=`
@@ -41,25 +41,25 @@ style.textContent=`
 document.head.append(style);
 const section=document.createElement('section');section.id='damageSection';
 section.innerHTML=`
- <div class="cardhead"><div><div class="eyebrow">INCIDENT RESPONSE • ASSET RECOVERY</div><h2>Damage & Recovery Tracking</h2><p>Lacak material terdampak dari pencatatan hingga verifikasi akhir.</p></div><div class="actions"><button id="damageExport">↓ Ekspor kasus</button><button class="primary" id="damageAdd">＋ Catat material terdampak</button></div></div>
- <div class="damage-warning">Material yang diduga terdampak kebakaran harus diberi identitas dan diamankan sesuai prosedur area. Status "Selesai" pada aplikasi bukan izin operasi; peralatan hanya boleh digunakan kembali setelah dinyatakan aman oleh personel berwenang.</div>
+ <div class="cardhead"><div><div class="eyebrow">INCIDENT RESPONSE • ASSET RECOVERY</div><h2>Asset Incident & Damage Management</h2><p>Kelola seluruh insiden, aset terdampak, tindakan pemulihan, dan riwayatnya.</p></div><div class="actions"><button id="damageExport">↓ Ekspor kasus</button><button class="primary" id="damageAdd">＋ Catat material terdampak</button></div></div>
+ <div class="damage-warning">Catat kejadian pada aset, material, fasilitas, maupun area kerja. Status selesai di aplikasi bukan izin operasi; aset hanya boleh digunakan kembali setelah dinyatakan aman oleh personel berwenang.</div>
  <div class="damage-kpis" id="damageKpis"></div>
- <article class="damage-panel"><div class="cardhead"><div><h2>Daftar kasus kerusakan</h2><p>Satu nomor kasus untuk setiap material yang terdampak.</p></div><span class="chip" id="damageCount">0 kasus</span></div>
- <div class="damage-tools"><input id="damageSearch" placeholder="Cari kode, material, lokasi, incident..."><select id="damageStatus"><option value="">Semua status</option>${statuses.map(s=>'<option>'+s+'</option>').join('')}</select><select id="damageSeverity"><option value="">Semua prioritas</option><option>Kritis</option><option>Tinggi</option><option>Sedang</option><option>Rendah</option></select></div>
- <div class="damage-table"><table><thead><tr><th>CASE / MATERIAL</th><th>INSIDEN / LOKASI</th><th>PRIORITAS</th><th>STATUS PEMULIHAN</th><th>PIC / FOLLOW-UP</th><th>AKSI</th></tr></thead><tbody id="damageRows"></tbody></table></div>
+ <article class="damage-panel"><div class="cardhead"><div><h2>Daftar kasus kerusakan</h2><p>Satu nomor kasus untuk setiap insiden / objek terdampak.</p></div><span class="chip" id="damageCount">0 kasus</span></div>
+ <div class="damage-tools"><input id="damageSearch" placeholder="Cari nomor kasus, aset, insiden, lokasi, PIC..."><select id="damageStatus"><option value="">Semua status</option>${statuses.map(s=>'<option>'+s+'</option>').join('')}</select><select id="damageSeverity"><option value="">Semua prioritas</option><option>Kritis</option><option>Tinggi</option><option>Sedang</option><option>Rendah</option></select></div>
+ <div class="damage-table"><table><thead><tr><th>CASE / OBJEK</th><th>JENIS / LOKASI</th><th>PRIORITAS</th><th>STATUS PEMULIHAN</th><th>PIC / FOLLOW-UP</th><th>AKSI</th></tr></thead><tbody id="damageRows"></tbody></table></div>
  <div class="tablefooter"><span id="damageShown"></span><span>Perubahan status tercatat dalam timeline.</span></div></article>
 `;
 const main=document.querySelector('main'),register=$('register');
 main.insertBefore(section,register);
 const addDialog=document.createElement('dialog');addDialog.id='damageDialog';
 addDialog.innerHTML=`<form id="damageForm"><div class="cardhead"><div><div class="eyebrow">NEW DAMAGE RECORD</div><h2>Catat material terdampak</h2></div><button type="button" data-damage-close="damageDialog">✕</button></div>
- <label>Ambil dari inventaris (opsional)<select name="assetId" id="damageAsset"><option value="">Material belum terdaftar / isi manual</option></select></label>
- <div class="pair"><label>Kode material<input name="code" required maxlength="40" placeholder="MAT-001"></label><label>Nama material / peralatan<input name="name" required maxlength="100"></label></div>
+ <div class="pair"><label>Objek terdampak<select name="affectedType"><option>Aset terdaftar</option><option>Material / suku cadang</option><option>Fasilitas / infrastruktur</option><option>Area / lingkungan kerja</option></select></label><label>Hubungkan aset inventaris (opsional)<select name="assetId" id="damageAsset"><option value="">Tidak terhubung ke aset terdaftar</option></select></label></div>
+ <div class="pair"><label>Kode objek / material<input name="code" required maxlength="40" placeholder="AST-001 / MAT-001"></label><label>Nama objek / material<input name="name" required maxlength="100"></label></div>
  <label>Lokasi terdampak<input name="location" required maxlength="100"></label>
- <div class="pair"><label>Nama / nomor insiden<input name="incident" required maxlength="100" value="Kebakaran Area"></label><label>Tanggal kejadian<input name="incidentDate" type="date" required></label></div>
+ <div class="pair"><label>Jenis insiden<select name="incidentType"><option>Kebakaran</option><option>Gangguan listrik</option><option>Kerusakan mekanis</option><option>Banjir / kebocoran air</option><option>Benturan / kerusakan fisik</option><option>Korosi / paparan kimia</option><option>Gangguan operasional</option><option>Kegagalan fungsi</option><option>Kehilangan / pencurian</option><option>Near miss / kondisi tidak aman</option><option>Lainnya</option></select></label><label>Nama / nomor insiden<input name="incident" required maxlength="100" placeholder="INC-2026-001"></label></div><div class="pair"><label>Tanggal kejadian<input name="incidentDate" type="date" required></label><label>Pelapor<input name="reportedBy" required maxlength="80"></label></div>
  <div class="pair"><label>Tingkat prioritas<select name="severity"><option>Kritis</option><option selected>Tinggi</option><option>Sedang</option><option>Rendah</option></select></label><label>Penanggung jawab / PIC<input name="assignedTo" required maxlength="80"></label></div>
  <div class="pair"><label>Status awal<select name="status"><option>Baru dicatat</option><option>Menunggu inspeksi</option></select></label><label>Tanggal tindak lanjut berikutnya<input name="followUpDate" type="date" required></label></div>
- <label>Deskripsi kerusakan / temuan<textarea name="description" rows="3" required maxlength="1500" placeholder="Contoh: isolasi kabel meleleh, casing menghitam..."></textarea></label>
+ <label>Deskripsi kejadian / temuan<textarea name="description" rows="3" required maxlength="1500" placeholder="Jelaskan kejadian, dampak, dan kondisi objek..."></textarea></label><div class="pair"><label>Estimasi biaya pemulihan (Rp)<input name="estimatedCost" type="number" min="0" step="1000" value="0"></label><label>Nomor work order (opsional)<input name="workOrder" maxlength="50" placeholder="WO-..."></label></div>
  <div class="formactions"><button type="button" data-damage-close="damageDialog">Batal</button><button class="primary">Simpan kasus kerusakan</button></div></form>`;
 const detailDialog=document.createElement('dialog');detailDialog.id='damageDetailDialog';
 detailDialog.innerHTML=`<div class="cardhead"><div><div class="eyebrow">DAMAGE CASE HISTORY</div><h2 id="damageDetailTitle">Detail kasus</h2></div><button type="button" data-damage-close="damageDetailDialog">✕</button></div><div id="damageDetailBody"></div>`;
@@ -69,11 +69,11 @@ const actorName=()=>window.PM_ACTOR?.name||'Pengguna PM';
 const pill=(s,sev=false)=>'<span class="damage-pill '+(sev?({Kritis:'critical',Tinggi:'high',Sedang:'medium',Rendah:'low'}[s]||'open'):(s==='Selesai'?'done':s==='Tidak layak pakai'?'critical':'open'))+'">'+esc(s)+'</span>';
 function ensureCases(){if(!Array.isArray(state.damageCases))state.damageCases=[]}
 function renderDamage(){
- ensureCases();$('overview').hidden=true;register.hidden=true;section.style.display='block';$('title').textContent='Damage & Recovery Tracking';$('crumb').textContent='Damage Tracking';$('add').hidden=true;$('export').hidden=true;
+ ensureCases();$('overview').hidden=true;register.hidden=true;section.style.display='block';$('title').textContent='Asset Incident & Damage Management';$('crumb').textContent='Asset Incident';$('add').hidden=true;$('export').hidden=true;
  const cases=state.damageCases,open=cases.filter(c=>!['Selesai','Tidak layak pakai'].includes(c.status)),critical=cases.filter(c=>c.severity==='Kritis'&&!['Selesai','Tidak layak pakai'].includes(c.status)),repair=cases.filter(c=>['Dalam perbaikan','Menunggu verifikasi'].includes(c.status)),late=cases.filter(c=>!['Selesai','Tidak layak pakai'].includes(c.status)&&c.followUpDate<now());
  $('damageKpis').innerHTML=[['Total kasus',cases.length],['Masih ditangani',open.length],['Prioritas kritis',critical.length],['Follow-up terlambat',late.length]].map(([n,v])=>'<div class="damage-kpi"><small>'+n+'</small><b>'+v+'</b></div>').join('');
  const q=$('damageSearch').value.toLowerCase(),s=$('damageStatus').value,v=$('damageSeverity').value;
- const list=cases.filter(c=>(!s||c.status===s)&&(!v||c.severity===v)&&[c.id,c.code,c.name,c.location,c.incident,c.assignedTo].join(' ').toLowerCase().includes(q)).sort((a,b)=>a.followUpDate.localeCompare(b.followUpDate)||a.incidentDate.localeCompare(b.incidentDate));
+ const list=cases.filter(c=>(!s||c.status===s)&&(!v||c.severity===v)&&[c.id,c.code,c.name,c.location,c.incident,c.incidentType,c.assignedTo,c.workOrder].join(' ').toLowerCase().includes(q)).sort((a,b)=>a.followUpDate.localeCompare(b.followUpDate)||a.incidentDate.localeCompare(b.incidentDate));
  $('damageCount').textContent=cases.length+' kasus';$('damageShown').textContent='Menampilkan '+list.length+' kasus';
  $('damageRows').innerHTML=list.map(c=>'<tr><td><strong>'+esc(c.id)+'</strong><small>'+esc(c.code)+' · '+esc(c.name)+'</small></td><td>'+esc(c.incident)+'<small>'+esc(c.location)+' · '+fmtDate(c.incidentDate)+'</small></td><td>'+pill(c.severity,true)+'</td><td>'+pill(c.status)+'<small>'+esc(c.description.slice(0,95))+(c.description.length>95?'…':'')+'</small></td><td>'+esc(c.assignedTo||'Belum ditentukan')+'<small>Follow-up: '+fmtDate(c.followUpDate)+'</small></td><td><button class="damage-action" data-damage-detail="'+esc(c.id)+'">Detail / Update ↗</button></td></tr>').join('')||'<tr><td colspan="6" class="damage-empty">Belum ada kasus kerusakan. Catat material terdampak untuk mulai tracking.</td></tr>';
 }
@@ -86,12 +86,12 @@ nav?.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation(
 $('damageAdd').onclick=()=>{
  const f=$('damageForm');f.reset();const sel=$('damageAsset');
  sel.innerHTML='<option value="">Material belum terdaftar / isi manual</option>'+state.assets.map(a=>'<option value="'+esc(a.id)+'">'+esc(a.code)+' · '+esc(a.name)+' — '+esc(a.location)+'</option>').join('');
- f.elements.incidentDate.value=now();f.elements.followUpDate.value=now();f.elements.status.value='Baru dicatat';f.elements.incident.value='Kebakaran Area';addDialog.showModal();
+ f.elements.incidentDate.value=now();f.elements.followUpDate.value=now();f.elements.status.value='Baru dicatat';f.elements.reportedBy.value=actorName();f.elements.affectedType.value='Aset terdaftar';addDialog.showModal();
 };
 $('damageAsset').onchange=e=>{const a=state.assets.find(x=>x.id===e.target.value);if(a){$('damageForm').elements.code.value=a.code;$('damageForm').elements.name.value=a.name;$('damageForm').elements.location.value=a.location}};
 $('damageForm').onsubmit=e=>{
  e.preventDefault();const raw=Object.fromEntries(new FormData(e.target)),id='DMG-'+new Date().getFullYear()+'-'+String(Date.now()).slice(-6);
- if(raw.incidentDate>now()||raw.followUpDate<raw.incidentDate){toast('Tanggal kejadian tidak boleh di masa depan dan follow-up tidak boleh sebelum kejadian.');return}const c={id:'DMG-'+new Date().getFullYear()+'-'+(crypto.randomUUID?crypto.randomUUID().slice(0,8).toUpperCase():String(Date.now()).slice(-8)),assetId:raw.assetId||'',code:raw.code.trim(),name:raw.name.trim(),location:raw.location.trim(),incident:raw.incident.trim(),incidentDate:raw.incidentDate,severity:raw.severity,status:raw.status,assignedTo:raw.assignedTo.trim(),followUpDate:raw.followUpDate,description:raw.description.trim(),timeline:[{date:now(),status:raw.status,note:'Kasus kerusakan dibuat. '+raw.description.trim(),by:actorName()}]};
+ if(raw.incidentDate>now()||raw.followUpDate<raw.incidentDate){toast('Tanggal kejadian tidak boleh di masa depan dan follow-up tidak boleh sebelum kejadian.');return}const c={id:'INC-'+new Date().getFullYear()+'-'+(crypto.randomUUID?crypto.randomUUID().slice(0,8).toUpperCase():String(Date.now()).slice(-8)),assetId:raw.assetId||'',affectedType:raw.affectedType,incidentType:raw.incidentType,reportedBy:raw.reportedBy.trim(),code:raw.code.trim(),name:raw.name.trim(),location:raw.location.trim(),incident:raw.incident.trim(),incidentDate:raw.incidentDate,severity:raw.severity,status:raw.status,assignedTo:raw.assignedTo.trim(),followUpDate:raw.followUpDate,description:raw.description.trim(),estimatedCost:Number(raw.estimatedCost||0),workOrder:raw.workOrder.trim(),timeline:[{date:now(),status:raw.status,note:'Kasus kerusakan dibuat. '+raw.description.trim(),by:actorName()}]};
  const next={...state,damageCases:[...(state.damageCases||[]),c]};if(commit(next)){addDialog.close();renderDamage();toast('Kasus '+id+' berhasil dicatat dan disinkronkan.')}
 };
 function openDamageDetail(id){
@@ -105,12 +105,12 @@ function openDamageDetail(id){
  detailDialog.showModal();
 }
 function exportDamage(){
- const keys=['id','incident','incidentDate','code','name','location','severity','status','assignedTo','followUpDate','description'];
+ const keys=['id','incidentType','incident','incidentDate','affectedType','assetId','code','name','location','severity','status','assignedTo','reportedBy','followUpDate','estimatedCost','workOrder','description'];
  const rows=state.damageCases||[];
  const cell=v=>{const x=String(v??'').replace(/^[=+@-]/,"'$&").replaceAll('"','""');return '"'+x+'"';};
  const csv='\uFEFF'+[keys.join(','),...rows.map(c=>keys.map(k=>cell(c[k])).join(','))].join('\r\n');
  const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');
- a.href=url;a.download='BAI-Damage-Tracking-'+now()+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ a.href=url;a.download='BAI-Asset-Incident-'+now()+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 $('damageExport').onclick=exportDamage;
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.damageClose){$(b.dataset.damageClose).close();return}if(b.dataset.damageDetail)openDamageDetail(b.dataset.damageDetail)});
