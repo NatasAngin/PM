@@ -86,7 +86,7 @@ async function saveState(request, env, actor) {
 
   if (actor?.role === "user") {
     const previous = await env.DB.prepare("SELECT payload FROM pm_state WHERE id=1").first();
-    if (!previous || !allowedUserStateChange(JSON.parse(previous.payload), state)) return json({error:"Akun User hanya dapat menambah/mengedit aset dan mencatat hasil maintenance. Perubahan ini ditolak server."},403);
+    if (!previous || !allowedUserStateChange(JSON.parse(previous.payload), state)) return json({error:"Akun User hanya dapat mengelola aset, mencatat maintenance, dan membuat atau memperbarui tracking insiden sesuai batas akses. Perubahan ini ditolak server."},403);
   }
 
   const photos = [];
