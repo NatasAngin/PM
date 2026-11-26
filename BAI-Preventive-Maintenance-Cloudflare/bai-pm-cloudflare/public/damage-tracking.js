@@ -41,7 +41,7 @@ style.textContent=`
 document.head.append(style);
 const section=document.createElement('section');section.id='damageSection';
 section.innerHTML=`
- <div class="cardhead"><div><div class="eyebrow">INCIDENT RESPONSE • ASSET RECOVERY</div><h2>Damage & Recovery Tracking</h2><p>Lacak material terdampak dari pencatatan hingga verifikasi akhir.</p></div><button class="primary" id="damageAdd">＋ Catat material terdampak</button></div>
+ <div class="cardhead"><div><div class="eyebrow">INCIDENT RESPONSE • ASSET RECOVERY</div><h2>Damage & Recovery Tracking</h2><p>Lacak material terdampak dari pencatatan hingga verifikasi akhir.</p></div><div class="actions"><button id="damageExport">↓ Ekspor kasus</button><button class="primary" id="damageAdd">＋ Catat material terdampak</button></div></div>
  <div class="damage-warning">Material yang diduga terdampak kebakaran harus diberi identitas dan diamankan sesuai prosedur area. Status "Selesai" pada aplikasi bukan izin operasi; peralatan hanya boleh digunakan kembali setelah dinyatakan aman oleh personel berwenang.</div>
  <div class="damage-kpis" id="damageKpis"></div>
  <article class="damage-panel"><div class="cardhead"><div><h2>Daftar kasus kerusakan</h2><p>Satu nomor kasus untuk setiap material yang terdampak.</p></div><span class="chip" id="damageCount">0 kasus</span></div>
@@ -91,7 +91,7 @@ $('damageAdd').onclick=()=>{
 $('damageAsset').onchange=e=>{const a=state.assets.find(x=>x.id===e.target.value);if(a){$('damageForm').elements.code.value=a.code;$('damageForm').elements.name.value=a.name;$('damageForm').elements.location.value=a.location}};
 $('damageForm').onsubmit=e=>{
  e.preventDefault();const raw=Object.fromEntries(new FormData(e.target)),id='DMG-'+new Date().getFullYear()+'-'+String(Date.now()).slice(-6);
- const c={id,assetId:raw.assetId||'',code:raw.code.trim(),name:raw.name.trim(),location:raw.location.trim(),incident:raw.incident.trim(),incidentDate:raw.incidentDate,severity:raw.severity,status:raw.status,assignedTo:raw.assignedTo.trim(),followUpDate:raw.followUpDate,description:raw.description.trim(),timeline:[{date:now(),status:raw.status,note:'Kasus kerusakan dibuat. '+raw.description.trim(),by:actorName()}]};
+ if(raw.incidentDate>now()||raw.followUpDate<raw.incidentDate){toast('Tanggal kejadian tidak boleh di masa depan dan follow-up tidak boleh sebelum kejadian.');return}const c={id:'DMG-'+new Date().getFullYear()+'-'+(crypto.randomUUID?crypto.randomUUID().slice(0,8).toUpperCase():String(Date.now()).slice(-8)),assetId:raw.assetId||'',code:raw.code.trim(),name:raw.name.trim(),location:raw.location.trim(),incident:raw.incident.trim(),incidentDate:raw.incidentDate,severity:raw.severity,status:raw.status,assignedTo:raw.assignedTo.trim(),followUpDate:raw.followUpDate,description:raw.description.trim(),timeline:[{date:now(),status:raw.status,note:'Kasus kerusakan dibuat. '+raw.description.trim(),by:actorName()}]};
  const next={...state,damageCases:[...(state.damageCases||[]),c]};if(commit(next)){addDialog.close();renderDamage();toast('Kasus '+id+' berhasil dicatat dan disinkronkan.')}
 };
 function openDamageDetail(id){
@@ -104,7 +104,7 @@ function openDamageDetail(id){
  $('damageUpdateForm').onsubmit=e=>{e.preventDefault();const raw=Object.fromEntries(new FormData(e.target)),nextCases=state.damageCases.map(x=>x.id===id?{...x,status:raw.status,assignedTo:raw.assignedTo.trim(),followUpDate:raw.followUpDate,timeline:[...x.timeline,{date:now(),status:raw.status,note:raw.note.trim(),by:actorName()}]}:x);if(commit({...state,damageCases:nextCases})){detailDialog.close();renderDamage();toast('Timeline '+id+' berhasil diperbarui.')}};
  detailDialog.showModal();
 }
-document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.damageClose){$(b.dataset.damageClose).close();return}if(b.dataset.damageDetail)openDamageDetail(b.dataset.damageDetail)});
+function exportDamage(){const keys=['id','incident','incidentDate','code','name','location','severity','status','assignedTo','followUpDate','description'];const rows=state.damageCases||[];const cell=v=>'\"'+String(v??'').replace(/^[=+@-]/,\"'document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.damageClose)\").replaceAll('\"','\"\"')+'\"';const csv='\\uFEFF'+[keys.join(','),...rows.map(c=>keys.map(k=>cell(c[k])).join(','))].join('\\r\\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='BAI-Damage-Tracking-'+now()+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}$('damageExport').onclick=exportDamage;\ndocument.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.damageClose){$(b.dataset.damageClose).close();return}if(b.dataset.damageDetail)openDamageDetail(b.dataset.damageDetail)});
 ['damageSearch','damageStatus','damageSeverity'].forEach(id=>$(id).addEventListener('input',renderDamage));
 document.addEventListener('click',e=>{const b=e.target.closest('button[data-page]');if(b&&active){hideDamagePage()}},true);
 })();
