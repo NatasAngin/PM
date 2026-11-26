@@ -25,6 +25,24 @@ function allowedUserStateChange(before, after) {
   const clean = x => ({...x, demo:undefined, assets:x.assets, history:x.history.map(h=>{const c={...h};delete c.photos;return c;})});
   before=clean(before); after=clean(after);
   const strip = (x, keys) => Object.fromEntries(Object.entries(x).filter(([k]) => !keys.includes(k)));
+  const beforeCases=before.damageCases||[], afterCases=after.damageCases||[];
+  const withoutCases=x=>{const c={...x};delete c.damageCases;return c};
+  if(JSON.stringify(withoutCases(before))===JSON.stringify(withoutCases(after)) && JSON.stringify(before.assets)===JSON.stringify(after.assets) && JSON.stringify(before.history)===JSON.stringify(after.history)){
+    if(afterCases.length===beforeCases.length+1 && JSON.stringify(afterCases.slice(0,-1))===JSON.stringify(beforeCases)){
+      const c=afterCases.at(-1);return !!c&&!!c.id&&c.timeline?.length===1&&c.timeline[0].status===c.status;
+    }
+    if(afterCases.length===beforeCases.length){
+      let changedCase=null,changes=0;
+      for(let i=0;i<beforeCases.length;i++)if(JSON.stringify(beforeCases[i])!==JSON.stringify(afterCases[i])){changes++;changedCase={old:beforeCases[i],next:afterCases[i]};}
+      if(changes===1&&changedCase){
+        const {old,next}=changedCase,allowed=new Set(["status","assignedTo","followUpDate","timeline"]);
+        const oldCore=Object.fromEntries(Object.entries(old).filter(([k])=>!allowed.has(k)));
+        const nextCore=Object.fromEntries(Object.entries(next).filter(([k])=>!allowed.has(k)));
+        return JSON.stringify(oldCore)===JSON.stringify(nextCore)&&next.timeline.length===old.timeline.length+1&&JSON.stringify(next.timeline.slice(0,-1))===JSON.stringify(old.timeline)&&next.timeline.at(-1).status===next.status;
+      }
+    }
+    return false;
+  }
   if (JSON.stringify(strip(before,["assets","history"])) !== JSON.stringify(strip(after,["assets","history"]))) return false;
   if (JSON.stringify(before.history) === JSON.stringify(after.history) && after.assets.length >= before.assets.length) {
     if (JSON.stringify(after.assets.slice(0,before.assets.length)) === JSON.stringify(before.assets)) return true;
