@@ -80,7 +80,7 @@ async function saveState(request, env, actor) {
 
   if (!state || state.version !== 1 || !Array.isArray(state.assets) ||
       !Array.isArray(state.history) || state.assets.length > 10000 ||
-      state.history.length > 50000) {
+      state.history.length > 50000 || (state.damageCases!==undefined && (!Array.isArray(state.damageCases) || state.damageCases.length>20000))) {
     return json({ error: "Struktur data Preventive Maintenance tidak valid." }, 400);
   }
 
