@@ -22,7 +22,7 @@ async function readState(env) {
 
 function allowedUserStateChange(before, after) {
   if (!before || !after || after.version !== before.version || !Array.isArray(before.assets) || !Array.isArray(after.assets) || !Array.isArray(before.history) || !Array.isArray(after.history)) return false;
-  const clean = x => ({...x, demo:undefined, assets:x.assets, history:x.history.map(h=>{const c={...h};delete c.photos;return c;})});
+  const clean = x => ({...x, demo:undefined, damageCases:Array.isArray(x.damageCases)?x.damageCases:[], assets:x.assets, history:x.history.map(h=>{const c={...h};delete c.photos;return c;})});
   before=clean(before); after=clean(after);
   const strip = (x, keys) => Object.fromEntries(Object.entries(x).filter(([k]) => !keys.includes(k)));
   const beforeCases=before.damageCases||[], afterCases=after.damageCases||[];
