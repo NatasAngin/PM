@@ -104,7 +104,16 @@ function openDamageDetail(id){
  $('damageUpdateForm').onsubmit=e=>{e.preventDefault();const raw=Object.fromEntries(new FormData(e.target)),nextCases=state.damageCases.map(x=>x.id===id?{...x,status:raw.status,assignedTo:raw.assignedTo.trim(),followUpDate:raw.followUpDate,timeline:[...x.timeline,{date:now(),status:raw.status,note:raw.note.trim(),by:actorName()}]}:x);if(commit({...state,damageCases:nextCases})){detailDialog.close();renderDamage();toast('Timeline '+id+' berhasil diperbarui.')}};
  detailDialog.showModal();
 }
-function exportDamage(){const keys=['id','incident','incidentDate','code','name','location','severity','status','assignedTo','followUpDate','description'];const rows=state.damageCases||[];const cell=v=>'\"'+String(v??'').replace(/^[=+@-]/,\"'document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.damageClose)\").replaceAll('\"','\"\"')+'\"';const csv='\\uFEFF'+[keys.join(','),...rows.map(c=>keys.map(k=>cell(c[k])).join(','))].join('\\r\\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='BAI-Damage-Tracking-'+now()+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}$('damageExport').onclick=exportDamage;\ndocument.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.damageClose){$(b.dataset.damageClose).close();return}if(b.dataset.damageDetail)openDamageDetail(b.dataset.damageDetail)});
+function exportDamage(){
+ const keys=['id','incident','incidentDate','code','name','location','severity','status','assignedTo','followUpDate','description'];
+ const rows=state.damageCases||[];
+ const cell=v=>{const x=String(v??'').replace(/^[=+@-]/,"'$&").replaceAll('"','""');return '"'+x+'"';};
+ const csv='\uFEFF'+[keys.join(','),...rows.map(c=>keys.map(k=>cell(c[k])).join(','))].join('\r\n');
+ const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');
+ a.href=url;a.download='BAI-Damage-Tracking-'+now()+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+$('damageExport').onclick=exportDamage;
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.damageClose)\").replaceAll('\"','\"\"')+'\"';const csv='\\uFEFF'+[keys.join(','),...rows.map(c=>keys.map(k=>cell(c[k])).join(','))].join('\\r\\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='BAI-Damage-Tracking-'+now()+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}$('damageExport').onclick=exportDamage;\ndocument.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.damageClose){$(b.dataset.damageClose).close();return}if(b.dataset.damageDetail)openDamageDetail(b.dataset.damageDetail)});
 ['damageSearch','damageStatus','damageSeverity'].forEach(id=>$(id).addEventListener('input',renderDamage));
 document.addEventListener('click',e=>{const b=e.target.closest('button[data-page]');if(b&&active){hideDamagePage()}},true);
 })();
